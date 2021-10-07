@@ -1,0 +1,57 @@
+/databasemaster/save:
+    post:
+        tags:
+           - DatabaseMaster
+        description:
+           save.
+        parameters:
+          - name: body
+            in: body
+            schema:
+                type: object
+                properties:
+                    data:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                example: null
+                            vendorId:
+                                type: string
+                                example: "AP-1"
+                            pigmentSetId:
+                                type: string
+                                example: "K53HB4LI"
+                            systemCode:
+                                type: string
+                                example: "xyz"                            
+                            nameEn:
+                                type: string
+                                example: "Jazeera"
+                            nameAr:
+                                type: string
+                                example: "الجزيرة"
+                            shot:
+                                type: string
+                                example: "1/90"
+                            shotConversion:
+                                type: string
+                                example: "0.98765"    
+                            active:
+                                type: boolean
+                                example: true 
+                            # vendor:
+                            #     type: object
+                            #     properties:
+                            #         id:
+                            #             type: string
+                            #             example: null
+                            # pigmentSet:
+                            #     type: object
+                            #     properties:
+                            #         id:
+                            #             type: string
+                            #             example: null 
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"

@@ -1,0 +1,42 @@
+/sizemaster/save:
+    post:
+        tags:
+           - SizeMaster
+        description:
+           save.
+        parameters:
+          - name: body
+            in: body
+            schema:
+                type: object
+                properties:
+                    data:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                example: null
+                            code:
+                                type: string
+                                example: "CT004/1LT"    
+                            name:
+                                type: string
+                                example: "CARTOON 4 PSC/1LT	"
+                            nameAr:
+                                type: string
+                                example: "كرتون 4 عبوات/1لتر"
+                            unit:
+                                type: string
+                                example: "LTR/LG"
+                            volume:
+                                type: number
+                                example: 9
+                            vid:
+                                type: string
+                                example: "AP-1"
+                            active:
+                                type: boolean
+                                example: true  
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"

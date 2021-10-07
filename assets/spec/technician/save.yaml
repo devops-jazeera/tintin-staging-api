@@ -1,0 +1,72 @@
+/technician/save:
+    post:
+        tags:
+           - Technician
+        description:
+           save.
+        parameters:
+          - name: body
+            in: body
+            schema:
+                type: object
+                properties:
+                    data:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                example: null
+                            name:
+                                type: string
+                                example: "xyz"
+                            nameAr:
+                                type: string
+                                example: "xyz"
+                            countryCode:
+                                type: string
+                                example: "91"
+                            mobile:
+                                type: string
+                                example: "xyz"
+                            email:
+                                type: string
+                                example: "xyz"
+                            vendor_id:
+                                type: string
+                                example: "xyz"
+                            active:
+                                type: boolean
+                                example: true 
+                            # vendor:
+                            #     type: object
+                            #     properties:
+                            #         id:
+                            #             type: string
+                            #             example: null 
+                            # address:
+                            #     type: object
+                            #     properties:
+                            #         id:
+                            #             type: string
+                            #             example: null
+                            #         lane:
+                            #             type: string
+                            #             example: "xyz"
+                            #         landMark:
+                            #             type: string
+                            #             example: "xyz"
+                            #         city:
+                            #             type: string
+                            #             example: "xyz"
+                            #         state:
+                            #             type: string
+                            #             example: "xyz"
+                            #         country:
+                            #             type: string
+                            #             example: "xyz"
+                            #         zipCode:
+                            #             type: number
+                            #             example: 9   
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"

@@ -1,0 +1,44 @@
+/areamaster/save:
+    post:
+        tags:
+            - AreaMaster
+        description: save.
+        parameters:
+            - name: body
+              in: body
+              schema:
+                  type: object
+                  properties:
+                      data:
+                          type: object
+                          properties:
+                            id:
+                                type: Integer
+                                example: null  
+                            countryId:
+                                type: Integer
+                                example: "108"
+                            regionName:
+                                type: string
+                                example: "South"
+                            regionNameAr:
+                                type: string
+                                example: "الجزر"    
+                            city:
+                                type: string
+                                example: "Hyderabad" 
+                            cityAr:
+                                type: string
+                                example: "الجزر"
+                            district:
+                                type: string
+                                example: "124"
+                            districtAr:
+                                type: string
+                                example: "88"
+                            active:
+                                type: boolean
+                                example: true    
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"

@@ -1,0 +1,20 @@
+/applang/search:
+  post:
+    tags:
+      - AppLang
+    description: search.
+    parameters:
+      - name: body
+        in: body
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "SATTAR"
+    responses:
+      200:
+        description: "status:1 is success; status: 0 is failure;"

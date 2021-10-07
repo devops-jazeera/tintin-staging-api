@@ -1,0 +1,77 @@
+/profiledocs/save:
+  post:
+    tags:
+      - ProfileDocs
+    description: save.
+    parameters:
+      - name: body
+        in: body
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: null
+                title:
+                  type: string
+                  example: "xyz"
+                firstName:
+                  type: string
+                  example: "xyz"
+                lastName:
+                  type: string
+                  example: "xyz"
+                gender:
+                  type: string
+                  example: "xyz"
+                dob:
+                  type: date
+                  example: "2000-01-01T00:00:00.000"
+                docType:
+                  type: string
+                  example: "xyz"
+                docNumber:
+                  type: string
+                  example: "xyz"
+                expDate:
+                  type: date
+                  example: "2000-01-01T00:00:00.000"
+                vid:
+                  type: string
+                  example: "xyz"
+                profile:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: null
+                branch:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: null
+                address:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: null
+                imgFile:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: null
+                docFile:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: null
+    responses:
+      200:
+        description: "status:1 is success; status: 0 is failure;"

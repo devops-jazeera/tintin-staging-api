@@ -1,0 +1,65 @@
+/colormaster/save:
+    post:
+        tags:
+            - ColorMaster
+        description: save.
+        parameters:
+            - name: body
+              in: body
+              schema:
+                  type: object
+                  properties:
+                      data:
+                          type: object
+                          properties:
+                            id:
+                                type: Integer
+                                example: null  
+                            nameEn:
+                                type: string
+                                example: "Carrots"
+                            nameAr:
+                                type: string
+                                example: "الجزر"
+                            code:
+                                type: string
+                                example: "OR-0537" 
+                            hex:
+                                type: string
+                                example: "#7C583D"
+                            red:
+                                type: string
+                                example: "124"
+                            green:
+                                type: string
+                                example: "88"
+                            blue:
+                                type: string
+                                example: "62" 
+                            active:
+                                type: boolean
+                                example: true 
+                            catalogueId:
+                                type: string
+                                example: "CAT_MAS_KC32Y054" 
+                            vid:
+                                type: string
+                                example: "AP-1"       
+                            # vendor:
+                            #     type: object
+                            #     properties: 
+                            #         id: 
+                            #             type: string
+                            #             example: "AP-1"
+                            # catalogue:
+                            #     type: object
+                            #     properties:
+                            #         id: 
+                            #             type: string
+                            #             example: "CAT_MAS_KC32Y054"
+                                
+                              
+                              
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"

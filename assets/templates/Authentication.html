@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SMTP Authentication Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    .main-container {
+      background-color: #F9F9F9;
+      width: 60%;
+      padding-top: 3%;
+      padding-bottom: 3%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .content-container {
+      width: 85%;
+      background-color: white;
+      box-shadow: 3px 3px 10px #888888;
+      margin: auto;
+      font-family: Arial;
+    }
+    .top-table {
+      width: 100%;
+      padding: 10px;
+      background-color: #E8E8E8;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+    .bottom-table {
+      width: 100%;
+      border-top: #002F6C 5px solid;
+      color: #fff;
+      font-family: "Roboto", sans-serif;
+      background-color: #78909C;
+      padding: 5px;
+      padding-bottom: 40px;
+    }
+    .otp-container {
+      padding: 10px;
+      background-color: #FBC02D;
+      color: #002F6C;
+      border-radius: 5px;
+      font-weight: bolder;
+      border: 1px solid #fff;
+      text-align: center;
+      font-size: 20px;
+      width: max-content;
+    }
+    .info-icon-en {
+      font-weight: bolder;
+      font-size: 15px;
+      color: #90A4AE;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .info-icon-ar {
+      font-weight: bolder;
+      font-size: 15px;
+      color: #90A4AE;
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+    .info-text {
+      font-size: 12px;
+      width: 100%;
+      text-align: start;
+      border-bottom: 1px solid #78909C;
+      line-height: 0.1em;
+      margin: 10px 0 20px;
+    }
+    img {
+      max-width: 100px;
+      max-height: 75px;
+    }
+    @media screen and (max-width: 600px) {
+      .main-container {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body {{#if data.isRtl}} dir="rtl"{{/if}}>
+  <div class="main-container">
+    <div class="content-container">      
+      <table class="top-table">
+        <tr>
+          <td style="width: 50%; color: #353535;">
+            {{#if data.isRtl}}
+            نجاح عملية التحقق الأولية من نقل البريد البسيط
+            {{else}}
+            SMTP Validation Success 
+            {{/if}}
+          </td>
+          
+        </tr>
+      </table>
+      <table class="bottom-table">
+        <tr>
+          <td></td>
+          <td style="width: 45%;">
+            <div>
+              <h2>                
+                {{#if data.isRtl}}
+                عزيزي المشرف!
+                {{else}}
+                Dear Admin!
+                {{/if}}              
+              </h2>
+              <p style="font-size: 13px;">
+                {{#if data.isRtl}}
+                تحقق عملية التحقق الأولية من نقل البريد البسيط الخاص بك بنجاح من تطبيق الصبغ ببيانات الاعتماد أدناه
+                {{else}}
+                Your SMTP validation is successful from TINTING application with below credentials
+                {{/if}}
+              </p>              
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+      <div style="padding: 25px;">
+        <p style="font-weight:bold;color:#353535">
+            {{#if data.isRtl}}
+            تفاصيل أولية بسيطة لنقل البريد
+            {{else}}
+            SMTP Details
+            {{/if}}
+        </p>
+      <table>
+        <tr>
+            {{#if data.isRtl}}
+                <td>اسم المستخدم</td>
+                <td>:</td>
+                <td>{{data.user}}</td>
+            {{else}}
+                <td>User name</td>
+                <td>:</td>
+                <td>{{data.user}}</td>
+            {{/if}}
+        </tr>
+        <tr>
+            {{#if data.isRtl}}
+                <td>كلمه السر</td>
+                <td>:</td>
+                <td>{{data.pass}}</td>
+            {{else}}
+                <td>Password</td>
+                <td>:</td>
+                <td>{{data.pass}}</td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if data.isRtl}}
+                <td>المنفذ (TLS / SSL)</td>
+                <td>:</td>
+                <td>{{data.port}}</td>
+            {{else}}
+                <td>Port(TLS/SSL)</td>
+                <td>:</td>
+                <td>{{data.port}}</td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if data.isRtl}}
+                <td>محدد موقع المعلومات</td>
+                <td>:</td>
+                <td>{{data.host}}</td>
+            {{else}}
+                <td>URL</td>
+                <td>:</td>
+                <td>{{data.host}}</td>
+            {{/if}}
+          </tr>
+          <tr>
+            {{#if data.isRtl}}
+                <td>الحالة</td>
+                <td>:</td>
+                <td style="color:rgb(3, 117, 3);">نجاح</td>
+            {{else}}
+                <td>Status</td>
+                <td>:</td>
+                <td style="color:rgb(3, 117, 3);">Success</td>
+            {{/if}}
+          </tr>
+        </table>
+    </div>
+      <div style="padding: 25px;">
+        
+        <p style="color: #78909C; font-size: 12px;">
+          {{#if data.isRtl}}
+          <span class="info-icon-ar">&#9432;</span>لا تشارك هذه المعلومات مع أي شخص من أجل أمان حسابك.
+          {{else}}
+          <span class="info-icon-en">&#9432;</span>Do not share this information with anyone for your account security.
+          {{/if}}
+        </p>
+        
+        <p style="color: #78909C; font-size: 12px;">
+          {{#if data.isRtl}}
+          شكرا لكم
+          {{else}}
+          Thank you
+          {{/if}}
+        </p>
+        <p style="color: #1C6BD3; font-size: 14px; font-weight: bolder;">
+          {{#if data.isRtl}}
+          - مسؤول الصبغ
+          {{else}}
+           - Tinting Admin          
+          {{/if}}
+        </p>
+      </div>
+      <div style="padding: 0 25px 25px 25px;">
+        <div class="info-text">
+          <span style="padding-right: 5px; background: #fff; font-weight: bold;">
+            {{#if data.isRtl}}
+            مذكرة السرية
+            {{else}}
+            Confidentiality Note          
+            {{/if}}
+          </span>
+        </div>
+        <p style="font-size: 10px; color: #A7A2A2;">
+          {{#if data.isRtl}}
+          هذا البريد الإلكتروني وأية مرفقات سرية وقد تكون محمية بامتياز قانوني. إذا لم تكن أنت المستلم المقصود ، فاحذر من أي إفشاء أو نسخ أو توزيع أو استخدام لهذا البريد الإلكتروني أو أي مرفق. إذا تلقيت هذا البريد الإلكتروني عن طريق الخطأ ، فيرجى إخطارنا على الفور من خلال إعادته إلى المرسل وحذف هذه النسخة من نظامك. شكرا لتعاونكم.
+          {{else}}
+          This e-mail and any attachments are confidential and may be protected by legal privilege. If you are not the intended recipient, be aware that any disclosure, copying, distribution or use of this e-mail or any attachment is prohibited. If you have received this e-mail in error, please notify us immediately by returning it to the sender and delete this copy from your system. Thank you for your cooperation.
+          {{/if}}
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+

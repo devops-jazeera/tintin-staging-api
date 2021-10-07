@@ -1,0 +1,80 @@
+/vendor/save:
+    post:
+        tags:
+           - Vendor
+        description:
+           save.
+        parameters:
+          - name: body
+            in: body
+            schema:
+                type: object
+                properties:
+                    data:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                example: "JTECHHYD"
+                            name:
+                                type: string
+                                example: "Name English"
+                            name_ar:
+                                type: string
+                                example: "الاسم بالعربية"
+                            email:
+                                type: string
+                                example: "email@mail.com"
+                            mobile:
+                                type: string
+                                example: "123456789"
+                            logo:
+                                type: string
+                                example: "Logo Url"
+                            active:
+                                type: boolean
+                                example: true
+                            address:
+                                type: object
+                                properties:
+                                    id:
+                                        type: string
+                                        example: null  
+                                    lane:
+                                        type: string
+                                        example: "Address Lane"  
+                                    country:
+                                        type: string
+                                        example: "Country Name"  
+                                    lng:
+                                        type: string
+                                        example: "67.2619278"  
+                                    lat:
+                                        type: string
+                                        example: "24.9760451"
+                                    countryCode:
+                                        type: string
+                                        example: "91"
+                            profile:
+                                type: object
+                                properties:
+                                    id:
+                                        type: string
+                                        example: null  
+                                    name:
+                                        type: string
+                                        example: "Name"  
+                                    email:
+                                        type: string
+                                        example: "email" 
+                                    countryCode:
+                                        type: string
+                                        example: "91"     
+                                    mobile:
+                                        type: string
+                                        example: "123456789"
+                                    
+
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"

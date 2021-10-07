@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Password Reset</title>
+    </head>
+    <body>
+        <div style="background-color:#F9F9F9 ;width: 100%;height: 50%;padding-top: 3%;padding-bottom: 3%">
+            <div style="width: 80%;height: 30%;background-color:white;box-shadow:  3px 3px 10px #888888 ;padding: 40px;margin: auto;border-radius: 10px;">                
+                <p style="font-family: 'Roboto', sans-serif;line-height: 30px;">
+                    Hi {{ data.name }},
+                </p>
+                <p style="font-family: 'Roboto', sans-serif;line-height: 30px;">
+                    Greetings,
+                </p>
+                <p style="font-family: 'Roboto', sans-serif;line-height: 25px;">
+                    You are a step away from accessing your Tinting account
+                </p>
+                <p style="font-family: 'Roboto', sans-serif;line-height: 25px;">
+                    We are sharing a verification code to access your account. The code is valid for 15 minutes and usable only once
+                </p>
+                <p style="font-family: 'Roboto', sans-serif;line-height: 25px;">
+                    Once you have verified code, you can set a new password immediately.
+                </p>
+                <p>Your OTP: <strong>{{ data.token }}</strong></p>
+                <p>Expires in: 15 minutes only</p>
+                <br />
+                <p>Thanks,<br />Tinting Team</p>
+            </div>
+        </div>
+    </body>
+</html>

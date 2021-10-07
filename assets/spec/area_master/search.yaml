@@ -1,0 +1,20 @@
+/areamaster/search:
+  post:
+    tags:
+      - AreaMaster
+    description: search.
+    parameters:
+      - name: body
+        in: body
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                countryId:
+                  type: integer
+                  example: "108"
+    responses:
+      200:
+        description: "status:1 is success; status: 0 is failure;"

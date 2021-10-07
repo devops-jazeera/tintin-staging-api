@@ -1,0 +1,45 @@
+/pigment/save:
+    post:
+        tags:
+           - Pigment
+        description:
+           save.
+        parameters:
+          - name: body
+            in: body
+            schema:
+                type: object
+                properties:
+                    data:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                example: null
+                            name:
+                                type: string
+                                example: "xyz"
+                            nameAr:
+                                type: string
+                                example: "xyz"
+                            code:
+                                type: string
+                                example: "xyz"
+                            hex:
+                                type: string
+                                example: "xyz"
+                            vid:
+                                type: string
+                                example: "xyz"
+                            active:
+                                type: boolean
+                                example: true 
+                            pigmentSet:
+                                type: object
+                                properties:
+                                    id:
+                                        type: string
+                                        example: null 
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"

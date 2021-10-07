@@ -1,0 +1,26 @@
+/colormaster/search:
+  post:
+    tags:
+      - ColorMaster
+    description: save.
+    parameters:
+      - name: body
+        in: body
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                code:
+                  type: string
+                  example: "OR-0537"
+                fromDate:
+                  type: string
+                  example: "2000-01-00T00:00:00"
+                toDate:
+                  type: string
+                  example: "2000-01-00T00:00:00"
+    responses:
+      200:
+        description: "status:1 is success; status: 0 is failure;"

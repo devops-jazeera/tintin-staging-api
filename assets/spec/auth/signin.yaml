@@ -1,0 +1,27 @@
+/auth/signin:
+  post:
+    summary: Sign In
+    tags:
+      - Auth
+    description: Sign In.
+    parameters:
+      - name: body
+        in: body
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "super@admin.com"
+                password:
+                  type: string
+                  example: "80086699"
+                provider:
+                  type: string
+                  example: "email"
+    responses:
+      200:
+        description: "status:1 is success; status: 0 is failure;"

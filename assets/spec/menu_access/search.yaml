@@ -1,0 +1,24 @@
+/menuaccess/search:
+  post:
+    tags:
+      - MenuAccess
+    description: save.
+    parameters:
+      - name: body
+        in: body
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                roleId:
+                  type: string
+                  example: "ADMIN"
+
+    responses:
+      200:
+        description: "status:1 is success; status: 0 is failure;"
+
+
+

@@ -1,0 +1,36 @@
+/auth/signup:
+  post:
+    summary: Sign Up
+    tags:
+      - Auth
+    parameters:
+      - name: body
+        in: body
+        required: false
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Mr."
+                name:
+                  type: string
+                  example: "user"
+                password:
+                  type: string
+                  example: "Test!234"
+                countryCode:
+                  type: string
+                  example: "91"
+                mobile:
+                  type: string
+                  example: "999999999"
+                email:
+                  type: string
+                  example: "user@mail.com"
+    responses:
+      200:
+        description: "status:1 is success; status: 0 is failure;"

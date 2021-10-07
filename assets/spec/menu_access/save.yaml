@@ -1,0 +1,48 @@
+/menuaccess/save:
+    post:
+        tags:
+           - MenuAccess
+        description:
+           save.
+        parameters:
+          - name: body
+            in: body
+            schema:
+                type: object
+                properties:
+                    data:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                example: null
+                            readAccess:
+                                type: boolean
+                                example: true
+                            writeAccess:
+                                type: boolean
+                                example: true
+                            deleteAccess:
+                                type: boolean
+                                example: true
+                            vid:
+                                type: string
+                                example: "xyz"
+                            priority:
+                                type: number
+                                example: 9 
+                            role:
+                                type: object
+                                properties:
+                                    id:
+                                        type: string
+                                        example: null
+                            link:
+                                type: object
+                                properties:
+                                    id:
+                                        type: string
+                                        example: null 
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"

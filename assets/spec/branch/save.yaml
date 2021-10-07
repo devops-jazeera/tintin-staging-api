@@ -1,0 +1,66 @@
+/branch/save:
+    post:
+        tags:
+           - Branch
+        description:
+           save.
+        parameters:
+          - name: body
+            in: body
+            schema:
+                type: object
+                properties:
+                    data:
+                        type: object
+                        properties:
+                            id:
+                                type: string
+                                example: null
+                            name:
+                                type: string
+                                example: "xyz"
+                            countryCode:
+                                type: string
+                                example: "xyz"
+                            phone:
+                                type: string
+                                example: "xyz"
+                            mobile:
+                                type: string
+                                example: "xyz"
+                            email:
+                                type: string
+                                example: "xyz"
+                            pan:
+                                type: string
+                                example: "xyz"
+                            tan:
+                                type: string
+                                example: "xyz"
+                            gstin:
+                                type: string
+                                example: "xyz"
+                            lat:
+                                type: string
+                                example: "xyz"
+                            lng:
+                                type: string
+                                example: "xyz"
+                            isMain:
+                                type: boolean
+                                example: true
+                            active:
+                                type: boolean
+                                example: true
+                            vid:
+                                type: string
+                                example: "xyz" 
+                            address:
+                                type: object
+                                properties:
+                                    id:
+                                        type: string
+                                        example: null 
+        responses:
+            200:
+                description: "status:1 is success; status: 0 is failure;"
