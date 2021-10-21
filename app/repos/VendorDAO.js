@@ -36,6 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var Address_1 = require("../../entities/Address");
+var Branch_1 = require("../../entities/Branch");
+var Profile_1 = require("../../entities/Profile");
 var Vendor_1 = require("../../entities/Vendor");
 var VendorDAO = /** @class */ (function () {
     function VendorDAO() {
@@ -53,10 +56,56 @@ var VendorDAO = /** @class */ (function () {
     };
     VendorDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var queryRunner, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.save(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        queryRunner = typeorm_1.getConnection().createQueryRunner();
+                        return [4 /*yield*/, queryRunner.connect()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.startTransaction()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        _a.trys.push([3, 12, 14, 16]);
+                        if (!data.profile) return [3 /*break*/, 5];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Profile_1.Profile).save(data.profile)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5:
+                        if (!data.address) return [3 /*break*/, 7];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7:
+                        if (!data.branch) return [3 /*break*/, 9];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Branch_1.Branch).save(data.branch)];
+                    case 8:
+                        _a.sent();
+                        _a.label = 9;
+                    case 9: return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data)];
+                    case 10:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.commitTransaction()];
+                    case 11:
+                        _a.sent();
+                        return [3 /*break*/, 16];
+                    case 12:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
+                    case 13:
+                        _a.sent();
+                        return [3 /*break*/, 16];
+                    case 14: return [4 /*yield*/, queryRunner.release()];
+                    case 15:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 16: return [2 /*return*/];
                 }
             });
         });

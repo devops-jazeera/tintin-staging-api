@@ -53,10 +53,44 @@ var MenuLinkDAO = /** @class */ (function () {
     };
     MenuLinkDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var queryRunner, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.save(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        queryRunner = typeorm_1.getConnection().createQueryRunner();
+                        return [4 /*yield*/, queryRunner.connect()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.startTransaction()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        _a.trys.push([3, 8, 10, 12]);
+                        if (!data.parent) return [3 /*break*/, 5];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(MenuLink_1.MenuLink).save(data.parent)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5: return [4 /*yield*/, queryRunner.manager.getRepository(MenuLink_1.MenuLink).save(data)];
+                    case 6:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.commitTransaction()];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 12];
+                    case 8:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
+                    case 9:
+                        _a.sent();
+                        return [3 /*break*/, 12];
+                    case 10: return [4 /*yield*/, queryRunner.release()];
+                    case 11:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 12: return [2 /*return*/];
                 }
             });
         });

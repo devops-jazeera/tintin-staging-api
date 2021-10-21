@@ -54,32 +54,66 @@ var SyncMasterLogsServices = /** @class */ (function () {
     }
     SyncMasterLogsServices.prototype.executeSync = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var syncLogData, tableData, savedDataArray, _i, tableData_1, table, daoObj, data, e_1;
+            var syncLogData, tableData, savedDataArray, _i, tableData_1, table, e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 9, , 10]);
+                        _a.trys.push([0, 8, , 9]);
                         Log_1.master.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>((((EXECUTION STARTED))))))))))<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
                         return [4 /*yield*/, this.getSyncMaterLogsData()];
                     case 1:
                         syncLogData = _a.sent();
-                        if (!(syncLogData && syncLogData.rows && syncLogData.rows.length > 0)) return [3 /*break*/, 8];
+                        if (!(syncLogData && syncLogData.rows && syncLogData.rows.length > 0)) return [3 /*break*/, 7];
                         Log_1.master.info("((((((((((((((((((((((((((((((Got result from syn mater logs ))))))))))))))))))))))))))))))))");
                         Log_1.master.info("((((((((((((((((((((((((((((((" + syncLogData.rows.length + " ))))))))))))))))))))))))))))))))");
                         tableData = syncLogData.rows;
-                        if (!(tableData && tableData.length > 0)) return [3 /*break*/, 8];
+                        if (!(tableData && tableData.length > 0)) return [3 /*break*/, 7];
                         savedDataArray = [];
                         _i = 0, tableData_1 = tableData;
                         _a.label = 2;
                     case 2:
-                        if (!(_i < tableData_1.length)) return [3 /*break*/, 6];
+                        if (!(_i < tableData_1.length)) return [3 /*break*/, 5];
                         table = tableData_1[_i];
-                        return [4 /*yield*/, this.getDAOService(table.tableName)];
+                        //   console.log(table);
+                        return [4 /*yield*/, this.saveData(table)];
                     case 3:
+                        //   console.log(table);
+                        _a.sent();
+                        _a.label = 4;
+                    case 4:
+                        _i++;
+                        return [3 /*break*/, 2];
+                    case 5:
+                        Log_1.master.info("Actual data came ::: " + tableData.length + " ");
+                        Log_1.master.info("Saved data ::: " + savedDataArray.length);
+                        if (!(savedDataArray.length > 0)) return [3 /*break*/, 7];
+                        return [4 /*yield*/, this.deleteSyncMaterLogsData(savedDataArray)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7:
+                        Log_1.master.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>((((EXECUTION COMPLETED))))))))))<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                        return [3 /*break*/, 9];
+                    case 8:
+                        e_1 = _a.sent();
+                        throw e_1;
+                    case 9: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SyncMasterLogsServices.prototype.saveData = function (table, savedDataArray) {
+        if (savedDataArray === void 0) { savedDataArray = []; }
+        return __awaiter(this, void 0, void 0, function () {
+            var daoObj, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getDAOService(table.tableName)];
+                    case 1:
                         daoObj = _a.sent();
                         Log_1.master.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
                         Log_1.master.debug(JSON.stringify(table.data));
-                        if (!daoObj) return [3 /*break*/, 5];
+                        if (!daoObj) return [3 /*break*/, 3];
                         return [4 /*yield*/, daoObj
                                 .save(table.data)
                                 .then(function (res) {
@@ -89,29 +123,12 @@ var SyncMasterLogsServices = /** @class */ (function () {
                                 Log_1.master.error(rej);
                                 return null;
                             })];
-                    case 4:
+                    case 2:
                         data = _a.sent();
                         Log_1.master.info("After Save DATA IS:::::::::::::::::::::::::::::::::" + JSON.stringify(table.data));
                         data ? savedDataArray.push(table.id) : null;
-                        _a.label = 5;
-                    case 5:
-                        _i++;
-                        return [3 /*break*/, 2];
-                    case 6:
-                        Log_1.master.info("Actual data came ::: " + tableData.length + " ");
-                        Log_1.master.info("Saved data ::: " + savedDataArray.length);
-                        if (!(savedDataArray.length > 0)) return [3 /*break*/, 8];
-                        return [4 /*yield*/, this.deleteSyncMaterLogsData(savedDataArray)];
-                    case 7:
-                        _a.sent();
-                        _a.label = 8;
-                    case 8:
-                        Log_1.master.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>((((EXECUTION COMPLETED))))))))))<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-                        return [3 /*break*/, 10];
-                    case 9:
-                        e_1 = _a.sent();
-                        throw e_1;
-                    case 10: return [2 /*return*/];
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
                 }
             });
         });

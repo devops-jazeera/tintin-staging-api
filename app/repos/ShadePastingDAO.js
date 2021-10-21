@@ -36,7 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var BasesMaster_1 = require("../../entities/BasesMaster");
+var PigmentSet_1 = require("../../entities/PigmentSet");
+var ProductMaster_1 = require("../../entities/ProductMaster");
 var ShadePasting_1 = require("../../entities/ShadePasting");
+var Vendor_1 = require("../../entities/Vendor");
 var ShadePastingDAO = /** @class */ (function () {
     function ShadePastingDAO() {
         this.dao = typeorm_1.getRepository(ShadePasting_1.ShadePasting);
@@ -53,10 +57,62 @@ var ShadePastingDAO = /** @class */ (function () {
     };
     ShadePastingDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var queryRunner, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.save(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        queryRunner = typeorm_1.getConnection().createQueryRunner();
+                        return [4 /*yield*/, queryRunner.connect()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.startTransaction()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        _a.trys.push([3, 14, 16, 18]);
+                        if (!data.vendor) return [3 /*break*/, 5];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendor)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5:
+                        if (!data.product) return [3 /*break*/, 7];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(ProductMaster_1.ProductMaster).save(data.product)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7:
+                        if (!data.base) return [3 /*break*/, 9];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(BasesMaster_1.BasesMaster).save(data.base)];
+                    case 8:
+                        _a.sent();
+                        _a.label = 9;
+                    case 9:
+                        if (!data.pigmentSet) return [3 /*break*/, 11];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(PigmentSet_1.PigmentSet).save(data.pigmentSet)];
+                    case 10:
+                        _a.sent();
+                        _a.label = 11;
+                    case 11: return [4 /*yield*/, queryRunner.manager.getRepository(ShadePasting_1.ShadePasting).save(data)];
+                    case 12:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.commitTransaction()];
+                    case 13:
+                        _a.sent();
+                        return [3 /*break*/, 18];
+                    case 14:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
+                    case 15:
+                        _a.sent();
+                        return [3 /*break*/, 18];
+                    case 16: return [4 /*yield*/, queryRunner.release()];
+                    case 17:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 18: return [2 /*return*/];
                 }
             });
         });

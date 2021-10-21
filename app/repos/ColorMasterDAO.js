@@ -36,7 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var CatalogueMaster_1 = require("../../entities/CatalogueMaster");
 var ColorMaster_1 = require("../../entities/ColorMaster");
+var Vendor_1 = require("../../entities/Vendor");
 var ColorMasterDAO = /** @class */ (function () {
     function ColorMasterDAO() {
         this.dao = typeorm_1.getRepository(ColorMaster_1.ColorMaster);
@@ -53,10 +55,50 @@ var ColorMasterDAO = /** @class */ (function () {
     };
     ColorMasterDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var queryRunner, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.save(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        queryRunner = typeorm_1.getConnection().createQueryRunner();
+                        return [4 /*yield*/, queryRunner.connect()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.startTransaction()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        _a.trys.push([3, 10, 12, 14]);
+                        if (!data.catalogue) return [3 /*break*/, 5];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(CatalogueMaster_1.CatalogueMaster).save(data.catalogue)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5:
+                        if (!data.vendor) return [3 /*break*/, 7];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendor)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7: return [4 /*yield*/, queryRunner.manager.getRepository(ColorMaster_1.ColorMaster).save(data)];
+                    case 8:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.commitTransaction()];
+                    case 9:
+                        _a.sent();
+                        return [3 /*break*/, 14];
+                    case 10:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
+                    case 11:
+                        _a.sent();
+                        return [3 /*break*/, 14];
+                    case 12: return [4 /*yield*/, queryRunner.release()];
+                    case 13:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 14: return [2 /*return*/];
                 }
             });
         });

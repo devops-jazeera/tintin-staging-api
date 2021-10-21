@@ -51,14 +51,13 @@ var AppExpress_1 = __importDefault(require("./apex/AppExpress"));
 var typeorm_1 = require("typeorm");
 var Config = __importStar(require("./utils/Config"));
 var Log_1 = require("./utils/Log");
-var Watcher_1 = require("./utils/Watcher");
 //import { main } from "./sync";
 var http = require("http");
 var Store_1 = require("./utils/Store");
 var App_1 = require("./utils/App");
 var SysService_1 = require("./SysService");
 var SyncMainService_1 = require("./app/task/SyncMainService");
-var port = 5000;
+var port = 5002;
 var TINTING_STORE_ID = process.env ? process.env.TINTING_STORE_ID : null;
 var count = 0;
 Config.setEnvConfig();
@@ -73,8 +72,8 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                 _a.trys.push([0, 4, , 5]);
                 Log_1.log.log(Config.dbOptions);
                 if (!(!conn || !conn.isConnected)) return [3 /*break*/, 3];
-                Watcher_1.WatcherInit();
-                console.table(Config.dbOptions);
+                // WatcherInit();
+                console.log(Config.dbOptions);
                 return [4 /*yield*/, typeorm_1.createConnection(Config.dbOptions)];
             case 1:
                 conn = _a.sent();
@@ -129,7 +128,7 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                                     // }
                                 }
                                 catch (err) {
-                                    Log_1.log.error("SyncService 1 Error: ");
+                                    Log_1.log.error("SyncService  Error: ");
                                     Log_1.log.error(err);
                                 }
                                 return [2 /*return*/];
@@ -142,8 +141,8 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                         if (TINTING_STORE_ID) {
                             lastSyncDate = null;
                             diff = null;
-                            Store_1.StoreInIt();
-                            sync();
+                            // StoreInIt();
+                            // sync();
                         }
                     }
                     catch (error) {

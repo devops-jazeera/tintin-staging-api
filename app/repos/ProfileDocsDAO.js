@@ -36,6 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var Address_1 = require("../../entities/Address");
+var Branch_1 = require("../../entities/Branch");
+var FileData_1 = require("../../entities/FileData");
+var Profile_1 = require("../../entities/Profile");
 var ProfileDocs_1 = require("../../entities/ProfileDocs");
 var ProfileDocsDAO = /** @class */ (function () {
     function ProfileDocsDAO() {
@@ -53,10 +57,68 @@ var ProfileDocsDAO = /** @class */ (function () {
     };
     ProfileDocsDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var queryRunner, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.save(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        queryRunner = typeorm_1.getConnection().createQueryRunner();
+                        return [4 /*yield*/, queryRunner.connect()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.startTransaction()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        _a.trys.push([3, 16, 18, 20]);
+                        if (!data.profile) return [3 /*break*/, 5];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Profile_1.Profile).save(data.profile)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5:
+                        if (!data.docFile) return [3 /*break*/, 7];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(FileData_1.FileData).save(data.docFile)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7:
+                        if (!data.address) return [3 /*break*/, 9];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
+                    case 8:
+                        _a.sent();
+                        _a.label = 9;
+                    case 9:
+                        if (!data.imgFile) return [3 /*break*/, 11];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(FileData_1.FileData).save(data.imgFile)];
+                    case 10:
+                        _a.sent();
+                        _a.label = 11;
+                    case 11:
+                        if (!data.branch) return [3 /*break*/, 13];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Branch_1.Branch).save(data.branch)];
+                    case 12:
+                        _a.sent();
+                        _a.label = 13;
+                    case 13: return [4 /*yield*/, queryRunner.manager.getRepository(ProfileDocs_1.ProfileDocs).save(data)];
+                    case 14:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.commitTransaction()];
+                    case 15:
+                        _a.sent();
+                        return [3 /*break*/, 20];
+                    case 16:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
+                    case 17:
+                        _a.sent();
+                        return [3 /*break*/, 20];
+                    case 18: return [4 /*yield*/, queryRunner.release()];
+                    case 19:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 20: return [2 /*return*/];
                 }
             });
         });

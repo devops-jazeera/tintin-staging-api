@@ -57,11 +57,11 @@ var SyncTransactionsServices = /** @class */ (function () {
     }
     SyncTransactionsServices.prototype.executeSync = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var tableData, transData, _i, tableData_1, table, daoObj, data, reqData, url, responseData, _loop_1, this_1, _a, tableData_2, table, e_1;
+            var tableData, transData, _i, tableData_1, table, reqData, url, responseData, _a, tableData_2, table, resultData, e_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _b.trys.push([0, 11, , 12]);
+                        _b.trys.push([0, 10, , 11]);
                         tableData = [
                             'dispense_log'
                         ];
@@ -69,14 +69,64 @@ var SyncTransactionsServices = /** @class */ (function () {
                         _i = 0, tableData_1 = tableData;
                         _b.label = 1;
                     case 1:
-                        if (!(_i < tableData_1.length)) return [3 /*break*/, 5];
+                        if (!(_i < tableData_1.length)) return [3 /*break*/, 4];
                         table = tableData_1[_i];
+                        return [4 /*yield*/, this.getData(table, transData)];
+                    case 2:
+                        _b.sent();
+                        _b.label = 3;
+                    case 3:
+                        _i++;
+                        return [3 /*break*/, 1];
+                    case 4:
+                        reqData = {
+                            data: transData,
+                        };
+                        if (!(Object.keys(transData).length > 0)) return [3 /*break*/, 9];
+                        url = this.url + "transactionaldata" + "/save";
+                        return [4 /*yield*/, this.callApi(url, this.token, reqData)];
+                    case 5:
+                        responseData = _b.sent();
+                        Log_1.transaction.debug("^^^^^^^^^^^^^^^^^^^^^^^^^^^^AFTER API CALL transactionaldata/save ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+                        // log.debug(JSON.stringify(responseData));
+                        console.log(responseData);
+                        _a = 0, tableData_2 = tableData;
+                        _b.label = 6;
+                    case 6:
+                        if (!(_a < tableData_2.length)) return [3 /*break*/, 9];
+                        table = tableData_2[_a];
+                        resultData = responseData[table];
+                        if (!resultData) return [3 /*break*/, 8];
+                        return [4 /*yield*/, this.saveData(table, resultData)];
+                    case 7:
+                        _b.sent();
+                        _b.label = 8;
+                    case 8:
+                        _a++;
+                        return [3 /*break*/, 6];
+                    case 9: return [3 /*break*/, 11];
+                    case 10:
+                        e_1 = _b.sent();
+                        Log_1.transaction.error(e_1);
+                        throw e_1;
+                    case 11: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SyncTransactionsServices.prototype.getData = function (table, transData) {
+        if (transData === void 0) { transData = []; }
+        return __awaiter(this, void 0, void 0, function () {
+            var daoObj, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
                         Log_1.transaction.info("*************************************((((((((((Fetch Data for " + table + " )))))))))))))))*********************************************");
                         return [4 /*yield*/, this.getDAOService(table)];
-                    case 2:
-                        daoObj = _b.sent();
+                    case 1:
+                        daoObj = _a.sent();
                         Log_1.transaction.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
-                        if (!daoObj) return [3 /*break*/, 4];
+                        if (!daoObj) return [3 /*break*/, 3];
                         return [4 /*yield*/, daoObj
                                 .search({})
                                 .then(function (res) {
@@ -87,76 +137,74 @@ var SyncTransactionsServices = /** @class */ (function () {
                                 Log_1.transaction.error(rej);
                                 return null;
                             })];
-                    case 3:
-                        data = _b.sent();
+                    case 2:
+                        data = _a.sent();
                         if (data && data.length > 0) {
                             Log_1.transaction.debug("__________________________GOT DATA for table " + table + " of " + data.length + " records__________________________");
                             transData[table] = data;
                         }
-                        _b.label = 4;
-                    case 4:
-                        _i++;
-                        return [3 /*break*/, 1];
-                    case 5:
-                        reqData = {
-                            data: transData,
-                        };
-                        if (!(Object.keys(transData).length > 0)) return [3 /*break*/, 10];
-                        url = this.url + "transactionaldata" + "/save";
-                        return [4 /*yield*/, this.callApi(url, this.token, reqData)];
-                    case 6:
-                        responseData = _b.sent();
-                        Log_1.transaction.debug("^^^^^^^^^^^^^^^^^^^^^^^^^^^^AFTER API CALL transactionaldata/save ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                        // log.debug(JSON.stringify(responseData));
-                        console.log(responseData);
-                        _loop_1 = function (table) {
-                            var resultData, daoObj;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        resultData = responseData[table];
-                                        if (!resultData) return [3 /*break*/, 3];
-                                        return [4 /*yield*/, this_1.getDAOService(table)];
-                                    case 1:
-                                        daoObj = _a.sent();
-                                        Log_1.transaction.info("Actual data came ::: " + table + " ===> " + resultData.length + " ");
-                                        return [4 /*yield*/, daoObj
-                                                .save(resultData.savedIds)
-                                                .then(function (res) {
-                                                Log_1.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$ synced records " + table + " records " + resultData.savedIds.length + " $$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                                                return res;
-                                            })
-                                                .catch(function (rej) {
-                                                Log_1.transaction.error(rej);
-                                                Log_1.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$ skiped records " + table + " records " + resultData.length + " $$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                                                return null;
-                                            })];
-                                    case 2:
-                                        _a.sent();
-                                        _a.label = 3;
-                                    case 3: return [2 /*return*/];
-                                }
-                            });
-                        };
-                        this_1 = this;
-                        _a = 0, tableData_2 = tableData;
-                        _b.label = 7;
-                    case 7:
-                        if (!(_a < tableData_2.length)) return [3 /*break*/, 10];
-                        table = tableData_2[_a];
-                        return [5 /*yield**/, _loop_1(table)];
-                    case 8:
-                        _b.sent();
-                        _b.label = 9;
-                    case 9:
-                        _a++;
-                        return [3 /*break*/, 7];
-                    case 10: return [3 /*break*/, 12];
-                    case 11:
-                        e_1 = _b.sent();
-                        Log_1.transaction.error(e_1);
-                        throw e_1;
-                    case 12: return [2 /*return*/];
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SyncTransactionsServices.prototype.saveData = function (table, resultData) {
+        return __awaiter(this, void 0, void 0, function () {
+            var daoObj;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getDAOService(table)];
+                    case 1:
+                        daoObj = _a.sent();
+                        Log_1.transaction.info("Actual data came ::: " + table + " ===> " + resultData.length + " ");
+                        return [4 /*yield*/, daoObj
+                                .save(resultData.savedIds)
+                                .then(function (res) {
+                                Log_1.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$ synced records " + table + " records " + resultData.savedIds.length + " $$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                                return res;
+                            })
+                                .catch(function (rej) {
+                                Log_1.transaction.error(rej);
+                                Log_1.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$ skiped records " + table + " records " + resultData.length + " $$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                                return null;
+                            })];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SyncTransactionsServices.prototype.getTransData = function (table) {
+        return __awaiter(this, void 0, void 0, function () {
+            var daoObj, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        Log_1.transaction.info("*************************************((((((((((Fetch Data for " + table + " )))))))))))))))*********************************************");
+                        return [4 /*yield*/, this.getDAOService(table)];
+                    case 1:
+                        daoObj = _a.sent();
+                        Log_1.transaction.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
+                        if (!daoObj) return [3 /*break*/, 3];
+                        return [4 /*yield*/, daoObj
+                                .search({})
+                                .then(function (res) {
+                                Log_1.transaction.info(res);
+                                return res;
+                            })
+                                .catch(function (rej) {
+                                Log_1.transaction.error(rej);
+                                return null;
+                            })];
+                    case 2:
+                        data = _a.sent();
+                        if (data.length > 0) {
+                            Log_1.transaction.debug("__________________________GOT DATA for table " + table + " of " + data.length + " records__________________________");
+                        }
+                        return [2 /*return*/, data];
+                    case 3: return [2 /*return*/];
                 }
             });
         });

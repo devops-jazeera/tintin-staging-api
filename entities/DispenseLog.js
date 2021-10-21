@@ -136,6 +136,10 @@ var DispenseLog = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "c7" }),
         __metadata("design:type", Number)
+    ], DispenseLog.prototype, "c7", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "q7" }),
+        __metadata("design:type", Number)
     ], DispenseLog.prototype, "q7", void 0);
     __decorate([
         typeorm_1.Column({ name: "created_at" }),

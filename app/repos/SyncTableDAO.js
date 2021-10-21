@@ -36,6 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var SyncSource_1 = require("../../entities/SyncSource");
+var SyncTable_1 = require("../../entities/SyncTable");
 var SyncTableDAO = /** @class */ (function () {
     function SyncTableDAO() {
         this.dao = typeorm_1.getRepository(SyncTableDAO);
@@ -52,10 +54,50 @@ var SyncTableDAO = /** @class */ (function () {
     };
     SyncTableDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var queryRunner, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.save(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        queryRunner = typeorm_1.getConnection().createQueryRunner();
+                        return [4 /*yield*/, queryRunner.connect()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.startTransaction()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        _a.trys.push([3, 10, 12, 14]);
+                        if (!data.source) return [3 /*break*/, 5];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(SyncSource_1.SyncSource).save(data.source)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5:
+                        if (!data.target) return [3 /*break*/, 7];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(SyncSource_1.SyncSource).save(data.target)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7: return [4 /*yield*/, queryRunner.manager.getRepository(SyncTable_1.SyncTable).save(data)];
+                    case 8:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.commitTransaction()];
+                    case 9:
+                        _a.sent();
+                        return [3 /*break*/, 14];
+                    case 10:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
+                    case 11:
+                        _a.sent();
+                        return [3 /*break*/, 14];
+                    case 12: return [4 /*yield*/, queryRunner.release()];
+                    case 13:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 14: return [2 /*return*/];
                 }
             });
         });

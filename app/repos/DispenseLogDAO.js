@@ -36,6 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var BasesMaster_1 = require("../../entities/BasesMaster");
+var DatabaseMaster_1 = require("../../entities/DatabaseMaster");
+var Dealer_1 = require("../../entities/Dealer");
 var DispenseLog_1 = require("../../entities/DispenseLog");
 var DispenseLogDAO = /** @class */ (function () {
     function DispenseLogDAO() {
@@ -56,10 +59,56 @@ var DispenseLogDAO = /** @class */ (function () {
     };
     DispenseLogDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var queryRunner, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.save(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        queryRunner = typeorm_1.getConnection().createQueryRunner();
+                        return [4 /*yield*/, queryRunner.connect()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.startTransaction()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        _a.trys.push([3, 12, 14, 16]);
+                        if (!data.base) return [3 /*break*/, 5];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(BasesMaster_1.BasesMaster).save(data.base)];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5:
+                        if (!data.dbMaster) return [3 /*break*/, 7];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(DatabaseMaster_1.DatabaseMaster).save(data.dbMaster)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7:
+                        if (!data.dealer) return [3 /*break*/, 9];
+                        return [4 /*yield*/, queryRunner.manager.getRepository(Dealer_1.Dealer).save(data.dealer)];
+                    case 8:
+                        _a.sent();
+                        _a.label = 9;
+                    case 9: return [4 /*yield*/, queryRunner.manager.getRepository(DispenseLog_1.DispenseLog).save(data)];
+                    case 10:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.commitTransaction()];
+                    case 11:
+                        _a.sent();
+                        return [3 /*break*/, 16];
+                    case 12:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
+                    case 13:
+                        _a.sent();
+                        return [3 /*break*/, 16];
+                    case 14: return [4 /*yield*/, queryRunner.release()];
+                    case 15:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 16: return [2 /*return*/];
                 }
             });
         });
