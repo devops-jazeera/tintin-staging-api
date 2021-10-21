@@ -189,7 +189,6 @@ var SyncMainService = /** @class */ (function () {
                                     switch (_a.label) {
                                         case 0:
                                             data = JSON.parse(message.message.value);
-                                            console.log(data);
                                             return [4 /*yield*/, this.syncManagerLogs.saveData(data)];
                                         case 1:
                                             _a.sent();
@@ -197,7 +196,7 @@ var SyncMainService = /** @class */ (function () {
                                                 parkTableId: data.parkedId,
                                                 storeId: process.env.TINTING_STORE_ID
                                             };
-                                            console.log(reqData);
+                                            Log_1.master.info(reqData);
                                             return [4 /*yield*/, this.kafkaService.publisher({
                                                     topic: 'synced_data',
                                                     acks: 1,

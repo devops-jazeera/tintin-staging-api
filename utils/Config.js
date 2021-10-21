@@ -159,6 +159,13 @@ exports.DbEnvConfig = function () { return __awaiter(_this, void 0, void 0, func
         }
     });
 }); };
+exports.kafkaOptions = {
+    brokers: ['3.125.168.5:9092'],
+    username: "",
+    pass: "",
+    clientId: process.env.TINTING_STORE_ID
+};
 exports.getSyncUrl = function () {
     return exports.syncConfig;
 };
+
