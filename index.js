@@ -141,8 +141,8 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                         if (TINTING_STORE_ID) {
                             lastSyncDate = null;
                             diff = null;
-                            // StoreInIt();
-                            // sync();
+                            Store_1.StoreInIt();
+                            sync();
                         }
                     }
                     catch (error) {
