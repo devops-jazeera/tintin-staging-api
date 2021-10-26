@@ -74,19 +74,19 @@ var BaseSizesDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 12, 14, 16]);
-                        if (!data.base) return [3 /*break*/, 5];
+                        if (!(data.base && data.base.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(BasesMaster_1.BasesMaster).save(data.color)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.size) return [3 /*break*/, 7];
+                        if (!(data.size && data.size.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(SizeMaster_1.SizeMaster).save(data.size)];
                     case 6:
                         _a.sent();
                         _a.label = 7;
                     case 7:
-                        if (!data.product) return [3 /*break*/, 9];
+                        if (!(data.product && data.product.id)) return [3 /*break*/, 9];
                         return [4 /*yield*/, queryRunner.manager.getRepository(ProductMaster_1.ProductMaster).save(data.product)];
                     case 8:
                         _a.sent();

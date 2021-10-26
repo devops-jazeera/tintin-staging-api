@@ -69,13 +69,13 @@ var DealerDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 10, 12, 14]);
-                        if (!data.vendor) return [3 /*break*/, 5];
+                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendor)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.address) return [3 /*break*/, 7];
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
                     case 6:
                         _a.sent();

@@ -71,31 +71,31 @@ var ProfileDocsDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 16, 18, 20]);
-                        if (!data.profile) return [3 /*break*/, 5];
+                        if (!(data.profile && data.profile.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Profile_1.Profile).save(data.profile)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.docFile) return [3 /*break*/, 7];
+                        if (!(data.docFile && data.docFile.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(FileData_1.FileData).save(data.docFile)];
                     case 6:
                         _a.sent();
                         _a.label = 7;
                     case 7:
-                        if (!data.address) return [3 /*break*/, 9];
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 9];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
                     case 8:
                         _a.sent();
                         _a.label = 9;
                     case 9:
-                        if (!data.imgFile) return [3 /*break*/, 11];
+                        if (!(data.imgFile && data.imgFile.id)) return [3 /*break*/, 11];
                         return [4 /*yield*/, queryRunner.manager.getRepository(FileData_1.FileData).save(data.imgFile)];
                     case 10:
                         _a.sent();
                         _a.label = 11;
                     case 11:
-                        if (!data.branch) return [3 /*break*/, 13];
+                        if (!(data.branch && data.branch.id)) return [3 /*break*/, 13];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Branch_1.Branch).save(data.branch)];
                     case 12:
                         _a.sent();

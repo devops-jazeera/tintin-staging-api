@@ -57,7 +57,7 @@ log4js_1.configure({
     appenders: {
         app: {
             type: "multiFile",
-            base: __dirname + "/../../logs/jpos/",
+            base: __dirname + "/../../logs/tinting/",
             property: "type",
             extension: ".log",
             maxLogSize: 1000000,
@@ -66,7 +66,7 @@ log4js_1.configure({
         out: { type: "stdout", layout: { type: "dummy" } },
         emergencies: {
             type: "file",
-            filename: __dirname + "/../../logs/jpos/error.log",
+            filename: __dirname + "/../../logs/tinting/error.log",
             maxLogSize: 10000000,
             backups: 10,
         },

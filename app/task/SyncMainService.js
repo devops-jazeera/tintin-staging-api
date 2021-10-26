@@ -69,7 +69,7 @@ var SyncMainService = /** @class */ (function () {
         var _this = this;
         cron.schedule("*/11 * * * * *", function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ cron is running::::::::isSyncProceed:::::::" + this.isSyncProceed + " $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                Log_2.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ cron is running::::::::isTranscationProceed = " + this.isSyncProceed + " $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                 // if (!this.isSyncProceed) {
                 //   this.isSyncProceed = !this.isSyncProceed;
                 //   this.runSync();
@@ -164,7 +164,7 @@ var SyncMainService = /** @class */ (function () {
                         // count = 1
                         this.isTranscationProceed = false;
                         Log_2.transaction.error("--------- TRANSACTION ERROR ---------");
-                        Log_1.master.debug(error_2);
+                        Log_2.transaction.debug(error_2);
                         Log_2.transaction.error("--------- TRANSACTION ERROR ---------");
                         return [3 /*break*/, 10];
                     case 10: return [3 /*break*/, 0];
@@ -175,11 +175,13 @@ var SyncMainService = /** @class */ (function () {
     };
     SyncMainService.prototype.subscribe = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var consumer;
+            var consumer, err_1;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.kafkaService.subscriber('parked_table')];
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.kafkaService.subscriber('parked_table')];
                     case 1:
                         consumer = _a.sent();
                         consumer.run({
@@ -188,10 +190,17 @@ var SyncMainService = /** @class */ (function () {
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
                                         case 0:
+                                            Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
+                                            Log_1.master.info(message.message.value);
+                                            Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
                                             data = JSON.parse(message.message.value);
-                                            return [4 /*yield*/, this.syncManagerLogs.saveData(data)];
+                                            return [4 /*yield*/, this.syncManagerLogs.saveData(data, [], Log_1.master)
+                                                //  await this.updateLastSynced({})
+                                            ];
                                         case 1:
                                             _a.sent();
+                                            //  await this.updateLastSynced({})
+                                            Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  DATA SAVED $$$$$$$$$$$$$$$$$$$$$$$$");
                                             reqData = {
                                                 parkTableId: data.parkedId,
                                                 storeId: process.env.TINTING_STORE_ID
@@ -211,7 +220,12 @@ var SyncMainService = /** @class */ (function () {
                                 });
                             }); },
                         });
-                        return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_1 = _a.sent();
+                        Log_1.master.error(err_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });
@@ -245,7 +259,7 @@ var SyncMainService = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_3 = _a.sent();
-                        console.log(error_3);
+                        Log_1.master.error(error_3);
                         throw error_3;
                     case 3: return [2 /*return*/];
                 }
@@ -274,7 +288,7 @@ var SyncMainService = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_4 = _a.sent();
-                        console.log(error_4);
+                        Log_1.master.log(error_4);
                         throw error_4;
                     case 3: return [2 /*return*/];
                 }

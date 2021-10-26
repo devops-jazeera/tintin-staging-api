@@ -53,10 +53,17 @@ var AppDataDAO = /** @class */ (function () {
     };
     AppDataDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.save(data)];
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.dao.save(data)];
                     case 1: return [2 /*return*/, _a.sent()];
+                    case 2:
+                        err_1 = _a.sent();
+                        throw err_1;
+                    case 3: return [2 /*return*/];
                 }
             });
         });

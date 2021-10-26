@@ -68,13 +68,13 @@ var SyncTableDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 10, 12, 14]);
-                        if (!data.source) return [3 /*break*/, 5];
+                        if (!(data.source && data.source.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(SyncSource_1.SyncSource).save(data.source)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.target) return [3 /*break*/, 7];
+                        if (!(data.target && data.target.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(SyncSource_1.SyncSource).save(data.target)];
                     case 6:
                         _a.sent();

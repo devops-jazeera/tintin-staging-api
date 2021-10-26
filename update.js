@@ -102,27 +102,6 @@ var extratFolder = function () {
     fs.unlinkSync(__dirname + "/" + fileName);
     SysService_1.SysService.ResetService(Log_1.ulog);
 };
-// export var UpdateService = () => {
-//   cmd.get("sc query  jpos-offline", (err: any, data: any) => {
-//     if (err) log.error(err);
-//     log.warn(data);
-//     if (data && data.includes("STOPPED")) {
-//       log.warn("net start jpos-offline");
-//       cmd.run("net start jpos-offline");
-//       setTimeout(() => {
-//         log.warn("net stop jpos-alt");
-//         cmd.run("net stop jpos-alt");
-//       }, 1000);
-//     } else {
-//       log.warn("net start jpos-alt");
-//       cmd.run("net start jpos-alt");
-//       setTimeout(() => {
-//         log.warn("net stop jpos-offline");
-//         cmd.run("net stop jpos-offline");
-//       }, 1000);
-//     }
-//   });
-// };
 var main = function () {
     Log_1.ulog.info("Update Started ... ");
     // cmd.get("npm run env | grep npm_package_version | cut -d '=' -f 2", (err: any, data: any) => {

@@ -75,7 +75,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                         if (!(_i < tableData_1.length)) return [3 /*break*/, 5];
                         table = tableData_1[_i];
                         //   console.log(table);
-                        return [4 /*yield*/, this.saveData(table)];
+                        return [4 /*yield*/, this.saveData(table, savedDataArray, Log_1.master)];
                     case 3:
                         //   console.log(table);
                         _a.sent();
@@ -102,7 +102,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
             });
         });
     };
-    SyncMasterLogsServices.prototype.saveData = function (table, savedDataArray) {
+    SyncMasterLogsServices.prototype.saveData = function (table, savedDataArray, log) {
         if (savedDataArray === void 0) { savedDataArray = []; }
         return __awaiter(this, void 0, void 0, function () {
             var daoObj, data;
@@ -111,8 +111,8 @@ var SyncMasterLogsServices = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.getDAOService(table.tableName)];
                     case 1:
                         daoObj = _a.sent();
-                        Log_1.master.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
-                        Log_1.master.debug(JSON.stringify(table.data));
+                        log.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
+                        log.debug(JSON.stringify(table.data));
                         if (!daoObj) return [3 /*break*/, 3];
                         return [4 /*yield*/, daoObj
                                 .save(table.data)
@@ -120,12 +120,12 @@ var SyncMasterLogsServices = /** @class */ (function () {
                                 return res;
                             })
                                 .catch(function (rej) {
-                                Log_1.master.error(rej);
+                                log.error(rej);
                                 return null;
                             })];
                     case 2:
                         data = _a.sent();
-                        Log_1.master.info("After Save DATA IS:::::::::::::::::::::::::::::::::" + JSON.stringify(table.data));
+                        log.info("After Save DATA IS:::::::::::::::::::::::::::::::::" + JSON.stringify(table.data));
                         data ? savedDataArray.push(table.id) : null;
                         _a.label = 3;
                     case 3: return [2 /*return*/];

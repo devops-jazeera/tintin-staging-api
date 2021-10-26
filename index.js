@@ -54,7 +54,6 @@ var Log_1 = require("./utils/Log");
 //import { main } from "./sync";
 var http = require("http");
 var Store_1 = require("./utils/Store");
-var App_1 = require("./utils/App");
 var SysService_1 = require("./SysService");
 var SyncMainService_1 = require("./app/task/SyncMainService");
 var port = 5002;
@@ -70,12 +69,11 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 4, , 5]);
-                Log_1.log.log(Config.dbOptions);
+                Log_1.log.info(JSON.stringify(Config.dbOptions));
                 if (!(!conn || !conn.isConnected)) return [3 /*break*/, 3];
-                // WatcherInit();
-                console.log(Config.dbOptions);
                 return [4 /*yield*/, typeorm_1.createConnection(Config.dbOptions)];
             case 1:
+                // WatcherInit();
                 conn = _a.sent();
                 Log_1.log.debug("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 return [4 /*yield*/, Config.DbEnvConfig()];
@@ -171,29 +169,15 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
 }); };
 run();
 var sync = function () { return __awaiter(_this, void 0, void 0, function () {
-    var child_process, fs, syncFileUpdate, macAddress, _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                child_process = require("child_process");
-                fs = require("fs");
-                syncFileUpdate = __dirname + "/update.ts";
-                syncFileUpdate = fs.existsSync(syncFileUpdate) ? __dirname + "/update.ts" : __dirname + "/update.js";
-                child_process.fork(syncFileUpdate);
-                Log_1.log.warn("syncFileUpdate:", syncFileUpdate);
-                _a = {};
-                return [4 /*yield*/, App_1.App.getMacAddress()];
-            case 1:
-                _a.systemAddress = _b.sent(),
-                    _a.storeId = TINTING_STORE_ID;
-                return [4 /*yield*/, SysService_1.SysService.SelectedMacAddress(TINTING_STORE_ID, Log_1.log)];
-            case 2:
-                macAddress = (_a.selectAddress = _b.sent(),
-                    _a);
-                console.log(JSON.stringify(macAddress));
-                Log_1.log.warn(JSON.stringify(macAddress));
-                return [2 /*return*/];
-        }
+    var child_process, fs, syncFileUpdate;
+    return __generator(this, function (_a) {
+        child_process = require("child_process");
+        fs = require("fs");
+        syncFileUpdate = __dirname + "/update.ts";
+        syncFileUpdate = fs.existsSync(syncFileUpdate) ? __dirname + "/update.ts" : __dirname + "/update.js";
+        child_process.fork(syncFileUpdate);
+        Log_1.log.warn("syncFileUpdate:", syncFileUpdate);
+        return [2 /*return*/];
     });
 }); };
 var syncTimeDiff = function () {

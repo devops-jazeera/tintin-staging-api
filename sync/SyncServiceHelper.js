@@ -637,6 +637,7 @@ var SyncServiceHelper = /** @class */ (function () {
                             sql = "UPDATE sync_source SET  mac_address = '" + data + "', updated_on = '" + moment().toISOString() + "'  WHERE id='" + STORE_ID + "' ";
                         }
                         if (!sql) return [3 /*break*/, 3];
+                        log.info(sql);
                         return [4 /*yield*/, SyncServiceHelper.BatchQueryApi(stagUrl + 'batchquery', token, [sql], log)];
                     case 2:
                         _a.sent();

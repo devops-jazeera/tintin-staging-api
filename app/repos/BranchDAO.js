@@ -68,7 +68,7 @@ var BranchDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 8, 10, 12]);
-                        if (!data.address) return [3 /*break*/, 5];
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
                     case 4:
                         _a.sent();

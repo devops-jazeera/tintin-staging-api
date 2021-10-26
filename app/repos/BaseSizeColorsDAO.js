@@ -77,19 +77,19 @@ var BaseSizeColorsDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 12, 14, 16]);
-                        if (!data.color) return [3 /*break*/, 5];
+                        if (!(data.color && data.color.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(ColorMaster_1.ColorMaster).save(data.color)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.base) return [3 /*break*/, 7];
+                        if (!(data.base && data.base.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(BasesMaster_1.BasesMaster).save(data.base)];
                     case 6:
                         _a.sent();
                         _a.label = 7;
                     case 7:
-                        if (!data.dbMaster) return [3 /*break*/, 9];
+                        if (!(data.dbMaster && data.dbMaster.id)) return [3 /*break*/, 9];
                         return [4 /*yield*/, queryRunner.manager.getRepository(DatabaseMaster_1.DatabaseMaster).save(data.dbMaster)];
                     case 8:
                         _a.sent();

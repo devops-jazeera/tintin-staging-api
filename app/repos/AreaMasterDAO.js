@@ -68,7 +68,7 @@ var AreaMasterDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 8, 10, 12]);
-                        if (!data.countryMaster) return [3 /*break*/, 5];
+                        if (!(data.countryMaster && data.countryMaster.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(CountryMaster_1.CountryMaster).save(data.countryMaster)];
                     case 4:
                         _a.sent();

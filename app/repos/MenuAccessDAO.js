@@ -69,13 +69,13 @@ var MenuAccessDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 10, 12, 14]);
-                        if (!data.role) return [3 /*break*/, 5];
+                        if (!(data.role && data.role.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(MenuRole_1.MenuRole).save(data.role)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.link) return [3 /*break*/, 7];
+                        if (!(data.link && data.link.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(MenuLink_1.MenuLink).save(data.link)];
                     case 6:
                         _a.sent();

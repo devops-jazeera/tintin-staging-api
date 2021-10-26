@@ -68,7 +68,7 @@ var ProfileDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 8, 10, 12]);
-                        if (!data.vendors) return [3 /*break*/, 5];
+                        if (!(data.vendors && data.vendors.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendors)];
                     case 4:
                         _a.sent();

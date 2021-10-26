@@ -68,7 +68,7 @@ var PigmentDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 8, 10, 12]);
-                        if (!data.pigmentSet) return [3 /*break*/, 5];
+                        if (!(data.pigmentSet && data.pigmentSet.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(PigmentSet_1.PigmentSet).save(data.pigmentSet)];
                     case 4:
                         _a.sent();

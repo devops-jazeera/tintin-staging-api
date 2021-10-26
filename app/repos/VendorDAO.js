@@ -70,19 +70,20 @@ var VendorDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 12, 14, 16]);
-                        if (!data.profile) return [3 /*break*/, 5];
+                        if (!(data.profile && data.profile.length > 0)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Profile_1.Profile).save(data.profile)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.address) return [3 /*break*/, 7];
+                        console.log(data.address);
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
                     case 6:
                         _a.sent();
                         _a.label = 7;
                     case 7:
-                        if (!data.branch) return [3 /*break*/, 9];
+                        if (!(data.branch && data.branch.id)) return [3 /*break*/, 9];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Branch_1.Branch).save(data.branch)];
                     case 8:
                         _a.sent();

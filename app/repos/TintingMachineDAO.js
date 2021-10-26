@@ -74,61 +74,61 @@ var TintingMachineDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 26, 28, 30]);
-                        if (!data.dealer) return [3 /*break*/, 5];
+                        if (!(data.dealer && data.dealer.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Dealer_1.Dealer).save(data.dealer)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.database) return [3 /*break*/, 7];
+                        if (!(data.database && data.database.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(DatabaseMaster_1.DatabaseMaster).save(data.database)];
                     case 6:
                         _a.sent();
                         _a.label = 7;
                     case 7:
-                        if (!data.technician) return [3 /*break*/, 9];
+                        if (!(data.technician && data.technician.id)) return [3 /*break*/, 9];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Technician_1.Technician).save(data.technician)];
                     case 8:
                         _a.sent();
                         _a.label = 9;
                     case 9:
-                        if (!data.vendor) return [3 /*break*/, 11];
+                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 11];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendor)];
                     case 10:
                         _a.sent();
                         _a.label = 11;
                     case 11:
-                        if (!data.address) return [3 /*break*/, 13];
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 13];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
                     case 12:
                         _a.sent();
                         _a.label = 13;
                     case 13:
-                        if (!data.countryMaster) return [3 /*break*/, 15];
+                        if (!(data.countryMaster && data.countryMaster.id)) return [3 /*break*/, 15];
                         return [4 /*yield*/, queryRunner.manager.getRepository(CountryMaster_1.CountryMaster).save(data.countryMaster)];
                     case 14:
                         _a.sent();
                         _a.label = 15;
                     case 15:
-                        if (!data.areaMaster) return [3 /*break*/, 17];
+                        if (!(data.areaMaster && data.areaMaster.id)) return [3 /*break*/, 17];
                         return [4 /*yield*/, queryRunner.manager.getRepository(AreaMaster_1.AreaMaster).save(data.areaMaster)];
                     case 16:
                         _a.sent();
                         _a.label = 17;
                     case 17:
-                        if (!data.regionMaster) return [3 /*break*/, 19];
+                        if (!(data.regionMaster && data.regionMaster)) return [3 /*break*/, 19];
                         return [4 /*yield*/, queryRunner.manager.getRepository(AreaMaster_1.AreaMaster).save(data.regionMaster)];
                     case 18:
                         _a.sent();
                         _a.label = 19;
                     case 19:
-                        if (!data.cityMaster) return [3 /*break*/, 21];
+                        if (!(data.cityMaster && data.cityMaster.id)) return [3 /*break*/, 21];
                         return [4 /*yield*/, queryRunner.manager.getRepository(AreaMaster_1.AreaMaster).save(data.cityMaster)];
                     case 20:
                         _a.sent();
                         _a.label = 21;
                     case 21:
-                        if (!data.districtMaster) return [3 /*break*/, 23];
+                        if (!(data.districtMaster && data.districtMaster.id)) return [3 /*break*/, 23];
                         return [4 /*yield*/, queryRunner.manager.getRepository(AreaMaster_1.AreaMaster).save(data.districtMaster)];
                     case 22:
                         _a.sent();

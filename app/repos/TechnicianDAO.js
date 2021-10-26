@@ -71,25 +71,25 @@ var TechnicianDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 14, 16, 18]);
-                        if (!data.address) return [3 /*break*/, 5];
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
                     case 4:
                         _a.sent();
                         _a.label = 5;
                     case 5:
-                        if (!data.countryMaster) return [3 /*break*/, 7];
+                        if (!(data.countryMaster && data.countryMaster.id)) return [3 /*break*/, 7];
                         return [4 /*yield*/, queryRunner.manager.getRepository(AccessData_1.AccessData).save(data.countryMaster)];
                     case 6:
                         _a.sent();
                         _a.label = 7;
                     case 7:
-                        if (!data.areaMaster) return [3 /*break*/, 9];
+                        if (!(data.areaMaster && data.areaMaster.id)) return [3 /*break*/, 9];
                         return [4 /*yield*/, queryRunner.manager.getRepository(AreaMaster_1.AreaMaster).save(data.areaMaster)];
                     case 8:
                         _a.sent();
                         _a.label = 9;
                     case 9:
-                        if (!data.vendor) return [3 /*break*/, 11];
+                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 11];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendor)];
                     case 10:
                         _a.sent();

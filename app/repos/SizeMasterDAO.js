@@ -68,7 +68,7 @@ var SizeMasterDAO = /** @class */ (function () {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 8, 10, 12]);
-                        if (!data.vendor) return [3 /*break*/, 5];
+                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 5];
                         return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendor)];
                     case 4:
                         _a.sent();
