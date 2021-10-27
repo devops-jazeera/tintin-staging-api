@@ -112,7 +112,6 @@ var SyncMasterLogsServices = /** @class */ (function () {
                     case 1:
                         daoObj = _a.sent();
                         log.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
-                        log.debug(JSON.stringify(table.data));
                         if (!daoObj) return [3 /*break*/, 3];
                         return [4 /*yield*/, daoObj
                                 .save(table.data)
@@ -125,7 +124,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                             })];
                     case 2:
                         data = _a.sent();
-                        log.info("After Save DATA IS:::::::::::::::::::::::::::::::::" + JSON.stringify(table.data));
+                        // log.info("After Save DATA IS:::::::::::::::::::::::::::::::::" + JSON.stringify(table.data));
                         data ? savedDataArray.push(table.id) : null;
                         _a.label = 3;
                     case 3: return [2 /*return*/];

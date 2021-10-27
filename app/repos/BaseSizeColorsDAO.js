@@ -37,9 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var BaseSizeColors_1 = require("../../entities/BaseSizeColors");
-var BasesMaster_1 = require("../../entities/BasesMaster");
-var ColorMaster_1 = require("../../entities/ColorMaster");
-var DatabaseMaster_1 = require("../../entities/DatabaseMaster");
 var BaseSizeColorsDAO = /** @class */ (function () {
     function BaseSizeColorsDAO() {
         this.dao = typeorm_1.getRepository(BaseSizeColors_1.BaseSizeColors);
@@ -63,56 +60,29 @@ var BaseSizeColorsDAO = /** @class */ (function () {
     // }
     BaseSizeColorsDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var queryRunner, err_1;
+            var err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        queryRunner = typeorm_1.getConnection().createQueryRunner();
-                        return [4 /*yield*/, queryRunner.connect()];
+                        _a.trys.push([0, 2, , 3]);
+                        if (data.color && !data.color.id) {
+                            delete data.color;
+                        }
+                        if (data.base && !data.base.id) {
+                            delete data.base;
+                        }
+                        if (data.dbMaster && !data.dbMaster.id) {
+                            delete data.dbMaster;
+                        }
+                        return [4 /*yield*/, this.dao.save(data)];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.startTransaction()];
+                        return [3 /*break*/, 3];
                     case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3:
-                        _a.trys.push([3, 12, 14, 16]);
-                        if (!(data.color && data.color.id)) return [3 /*break*/, 5];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(ColorMaster_1.ColorMaster).save(data.color)];
-                    case 4:
-                        _a.sent();
-                        _a.label = 5;
-                    case 5:
-                        if (!(data.base && data.base.id)) return [3 /*break*/, 7];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(BasesMaster_1.BasesMaster).save(data.base)];
-                    case 6:
-                        _a.sent();
-                        _a.label = 7;
-                    case 7:
-                        if (!(data.dbMaster && data.dbMaster.id)) return [3 /*break*/, 9];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(DatabaseMaster_1.DatabaseMaster).save(data.dbMaster)];
-                    case 8:
-                        _a.sent();
-                        _a.label = 9;
-                    case 9: return [4 /*yield*/, queryRunner.manager.getRepository(BaseSizeColors_1.BaseSizeColors).save(data)];
-                    case 10:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.commitTransaction()];
-                    case 11:
-                        _a.sent();
-                        return [3 /*break*/, 16];
-                    case 12:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
-                    case 13:
-                        _a.sent();
-                        return [3 /*break*/, 16];
-                    case 14: return [4 /*yield*/, queryRunner.release()];
-                    case 15:
-                        _a.sent();
-                        return [7 /*endfinally*/];
-                    case 16: return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });

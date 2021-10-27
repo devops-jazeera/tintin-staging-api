@@ -37,8 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var DatabaseMaster_1 = require("../../entities/DatabaseMaster");
-var PigmentSet_1 = require("../../entities/PigmentSet");
-var Vendor_1 = require("../../entities/Vendor");
 var DatabaseMasterDAO = /** @class */ (function () {
     function DatabaseMasterDAO() {
         this.dao = typeorm_1.getRepository(DatabaseMaster_1.DatabaseMaster);
@@ -59,50 +57,26 @@ var DatabaseMasterDAO = /** @class */ (function () {
     };
     DatabaseMasterDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var queryRunner, err_1;
+            var err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        queryRunner = typeorm_1.getConnection().createQueryRunner();
-                        return [4 /*yield*/, queryRunner.connect()];
+                        _a.trys.push([0, 2, , 3]);
+                        if (data.vendor && !data.vendor.id) {
+                            delete data.vendor;
+                        }
+                        if (data.pigmentSet && !data.pigmentSet.id) {
+                            delete data.pigmentSet;
+                        }
+                        return [4 /*yield*/, this.dao.save(data)];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.startTransaction()];
+                        return [3 /*break*/, 3];
                     case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3:
-                        _a.trys.push([3, 10, 12, 14]);
-                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 5];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendor)];
-                    case 4:
-                        _a.sent();
-                        _a.label = 5;
-                    case 5:
-                        if (!(data.pigmentSet && data.pigmentSet.id)) return [3 /*break*/, 7];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(PigmentSet_1.PigmentSet).save(data.pigmentSet)];
-                    case 6:
-                        _a.sent();
-                        _a.label = 7;
-                    case 7: return [4 /*yield*/, queryRunner.manager.getRepository(DatabaseMaster_1.DatabaseMaster).save(data)];
-                    case 8:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.commitTransaction()];
-                    case 9:
-                        _a.sent();
-                        return [3 /*break*/, 14];
-                    case 10:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
-                    case 11:
-                        _a.sent();
-                        return [3 /*break*/, 14];
-                    case 12: return [4 /*yield*/, queryRunner.release()];
-                    case 13:
-                        _a.sent();
-                        return [7 /*endfinally*/];
-                    case 14: return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });

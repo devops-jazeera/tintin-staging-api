@@ -186,8 +186,8 @@ var SyncTransactionsServices = /** @class */ (function () {
                         return [4 /*yield*/, this.getDAOService(table)];
                     case 1:
                         daoObj = _a.sent();
-                        Log_1.transaction.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
                         if (!daoObj) return [3 /*break*/, 3];
+                        Log_1.transaction.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
                         return [4 /*yield*/, daoObj
                                 .search({})
                                 .then(function (res) {

@@ -36,11 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var AccessData_1 = require("../../entities/AccessData");
-var Address_1 = require("../../entities/Address");
-var AreaMaster_1 = require("../../entities/AreaMaster");
 var Technician_1 = require("../../entities/Technician");
-var Vendor_1 = require("../../entities/Vendor");
 var TechnicianDAO = /** @class */ (function () {
     function TechnicianDAO() {
         this.dao = typeorm_1.getRepository(Technician_1.Technician);
@@ -57,62 +53,32 @@ var TechnicianDAO = /** @class */ (function () {
     };
     TechnicianDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var queryRunner, err_1;
+            var err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        queryRunner = typeorm_1.getConnection().createQueryRunner();
-                        return [4 /*yield*/, queryRunner.connect()];
+                        _a.trys.push([0, 2, , 3]);
+                        if (data.address && !data.address.id) {
+                            delete data.address;
+                        }
+                        if (data.countryMaster && !data.countryMaster.id) {
+                            delete data.countryMaster;
+                        }
+                        if (data.areaMaster && !data.areaMaster.id) {
+                            delete data.areaMaster;
+                        }
+                        if (data.vendor && !data.vendor.id) {
+                            delete data.vendor;
+                        }
+                        return [4 /*yield*/, this.dao.save(data)];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, queryRunner.startTransaction()];
+                        return [3 /*break*/, 3];
                     case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3:
-                        _a.trys.push([3, 14, 16, 18]);
-                        if (!(data.address && data.address.id)) return [3 /*break*/, 5];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(Address_1.Address).save(data.address)];
-                    case 4:
-                        _a.sent();
-                        _a.label = 5;
-                    case 5:
-                        if (!(data.countryMaster && data.countryMaster.id)) return [3 /*break*/, 7];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(AccessData_1.AccessData).save(data.countryMaster)];
-                    case 6:
-                        _a.sent();
-                        _a.label = 7;
-                    case 7:
-                        if (!(data.areaMaster && data.areaMaster.id)) return [3 /*break*/, 9];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(AreaMaster_1.AreaMaster).save(data.areaMaster)];
-                    case 8:
-                        _a.sent();
-                        _a.label = 9;
-                    case 9:
-                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 11];
-                        return [4 /*yield*/, queryRunner.manager.getRepository(Vendor_1.Vendor).save(data.vendor)];
-                    case 10:
-                        _a.sent();
-                        _a.label = 11;
-                    case 11: return [4 /*yield*/, queryRunner.manager.getRepository(Technician_1.Technician).save(data)];
-                    case 12:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.commitTransaction()];
-                    case 13:
-                        _a.sent();
-                        return [3 /*break*/, 18];
-                    case 14:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
-                    case 15:
-                        _a.sent();
-                        return [3 /*break*/, 18];
-                    case 16: return [4 /*yield*/, queryRunner.release()];
-                    case 17:
-                        _a.sent();
-                        return [7 /*endfinally*/];
-                    case 18: return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });

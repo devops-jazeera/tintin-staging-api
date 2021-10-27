@@ -60,14 +60,14 @@ log4js_1.configure({
             base: __dirname + "/../../logs/tinting/",
             property: "type",
             extension: ".log",
-            maxLogSize: 1000000,
-            backups: 1,
+            maxLogSize: 10485760,
+            backups: 4,
         },
         out: { type: "stdout", layout: { type: "dummy" } },
         emergencies: {
             type: "file",
             filename: __dirname + "/../../logs/tinting/error.log",
-            maxLogSize: 10000000,
+            maxLogSize: 10485760,
             backups: 10,
         },
         error: {
@@ -82,12 +82,6 @@ log4js_1.configure({
 });
 exports.log = log4js_1.getLogger("app");
 exports.log.addContext("type", "app");
-exports.sdlog = log4js_1.getLogger("sync");
-exports.sdlog.addContext("type", "syncd");
-exports.smlog = log4js_1.getLogger("sync");
-exports.smlog.addContext("type", "syncm");
-exports.stlog = log4js_1.getLogger("sync");
-exports.stlog.addContext("type", "synct");
 exports.master = log4js_1.getLogger("master");
 exports.master.addContext("type", "master");
 exports.transaction = log4js_1.getLogger("transaction");
