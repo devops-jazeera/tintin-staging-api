@@ -175,13 +175,14 @@ var SyncMainService = /** @class */ (function () {
     };
     SyncMainService.prototype.subscribe = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var consumer, err_1;
+            var topic, consumer, err_1;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.kafkaService.subscriber('parked_table')];
+                        topic = process.env.TINTING_STORE_ID;
+                        return [4 /*yield*/, this.kafkaService.subscriber(topic)];
                     case 1:
                         consumer = _a.sent();
                         consumer.run({
