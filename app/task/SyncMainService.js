@@ -224,6 +224,7 @@ var SyncMainService = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
+                        setTimeout(function () { _this.subscribe(); }, 3000);
                         Log_1.master.error(err_1);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
