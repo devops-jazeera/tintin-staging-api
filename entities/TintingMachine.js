@@ -37,13 +37,25 @@ var TintingMachine = /** @class */ (function () {
         __metadata("design:type", Date)
     ], TintingMachine.prototype, "mfgDate", void 0);
     __decorate([
+        typeorm_1.Column({ name: "installation_date" }),
+        __metadata("design:type", Date)
+    ], TintingMachine.prototype, "installationDate", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "expiry_date" }),
+        __metadata("design:type", Date)
+    ], TintingMachine.prototype, "expiryDate", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "license_key" }),
+        __metadata("design:type", String)
+    ], TintingMachine.prototype, "licenseKey", void 0);
+    __decorate([
         typeorm_1.Column({ name: "service_occurance" }),
         __metadata("design:type", Number)
     ], TintingMachine.prototype, "serviceOccurance", void 0);
     __decorate([
         typeorm_1.Column({ name: "vendor_id" }),
         __metadata("design:type", String)
-    ], TintingMachine.prototype, "vendor_id", void 0);
+    ], TintingMachine.prototype, "vendorId", void 0);
     __decorate([
         typeorm_1.Column({ name: "vid" }),
         __metadata("design:type", String)
@@ -107,6 +119,11 @@ var TintingMachine = /** @class */ (function () {
         __metadata("design:type", CountryMaster_1.CountryMaster)
     ], TintingMachine.prototype, "countryMaster", void 0);
     __decorate([
+        typeorm_1.JoinColumn({ name: "country_id" }),
+        typeorm_1.ManyToOne(function (type) { return AreaMaster_1.AreaMaster; }, function (area) { return area.countryId; }),
+        __metadata("design:type", AreaMaster_1.AreaMaster)
+    ], TintingMachine.prototype, "areaMaster", void 0);
+    __decorate([
         typeorm_1.Column({ name: "region_id" }),
         __metadata("design:type", Number)
     ], TintingMachine.prototype, "regionId", void 0);
@@ -133,6 +150,14 @@ var TintingMachine = /** @class */ (function () {
         typeorm_1.ManyToOne(function (type) { return AreaMaster_1.AreaMaster; }, function (cm) { return cm.id; }),
         __metadata("design:type", AreaMaster_1.AreaMaster)
     ], TintingMachine.prototype, "districtMaster", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "machine_photo_id" }),
+        __metadata("design:type", String)
+    ], TintingMachine.prototype, "machinePhotoId", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "machine_id" }),
+        __metadata("design:type", String)
+    ], TintingMachine.prototype, "machineId", void 0);
     TintingMachine = __decorate([
         typeorm_1.Entity("tinting_machine")
     ], TintingMachine);
