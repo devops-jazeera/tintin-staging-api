@@ -36,10 +36,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var DatabaseMaster_1 = require("../../entities/DatabaseMaster");
 var ProductMaster_1 = require("../../entities/ProductMaster");
+var Vendor_1 = require("../../entities/Vendor");
 var ProductMasterDAO = /** @class */ (function () {
     function ProductMasterDAO() {
         this.dao = typeorm_1.getRepository(ProductMaster_1.ProductMaster);
+        this.vendor = typeorm_1.getRepository(Vendor_1.Vendor);
+        this.dataBaseMaster = typeorm_1.getRepository(DatabaseMaster_1.DatabaseMaster);
     }
     ProductMasterDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -57,21 +61,32 @@ var ProductMasterDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.vendor && !data.vendor.id) {
-                            delete data.vendor;
-                        }
-                        if (data.dataBaseMaster && !data.dataBaseMaster.id) {
-                            delete data.dataBaseMaster;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 8, , 9]);
+                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.vendor.save(data.vendor)];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
+                        delete data.vendor;
+                        _a.label = 3;
+                    case 3:
+                        if (!(data.dataBaseMaster && data.dataBaseMaster.id)) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.dataBaseMaster.save(data.dataBaseMaster)];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        delete data.dataBaseMaster;
+                        _a.label = 6;
+                    case 6: return [4 /*yield*/, this.dao.save(data)];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
                         err_1 = _a.sent();
                         throw err_1;
-                    case 3: return [2 /*return*/];
+                    case 9: return [2 /*return*/];
                 }
             });
         });

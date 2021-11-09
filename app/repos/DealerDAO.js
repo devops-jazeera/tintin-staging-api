@@ -37,9 +37,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Dealer_1 = require("../../entities/Dealer");
+var AddressDAO_1 = require("./AddressDAO");
+var VendorDAO_1 = require("./VendorDAO");
 var DealerDAO = /** @class */ (function () {
     function DealerDAO() {
         this.dao = typeorm_1.getRepository(Dealer_1.Dealer);
+        this.vendor = new VendorDAO_1.VendorDAO();
+        this.address = new AddressDAO_1.AddressDAO();
     }
     DealerDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -53,26 +57,45 @@ var DealerDAO = /** @class */ (function () {
     };
     DealerDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var err_1;
+            var err_1, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.vendor && !data.vendor.id) {
-                            delete data.vendor;
-                        }
-                        if (data.address && !data.address.id) {
-                            delete data.address;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 11, , 12]);
+                        if (!(data.vendor && data.vendor.id && data.vendor.name)) return [3 /*break*/, 5];
+                        _a.label = 1;
                     case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.vendor.save(data.vendor)];
                     case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
                         err_1 = _a.sent();
-                        console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        delete data.vendor;
+                        return [3 /*break*/, 4];
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        delete data.vendor;
+                        _a.label = 6;
+                    case 6:
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 8];
+                        return [4 /*yield*/, this.address.save(data.address)];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
+                        delete data.address;
+                        _a.label = 9;
+                    case 9: return [4 /*yield*/, this.dao.save(data)];
+                    case 10:
+                        _a.sent();
+                        return [3 /*break*/, 12];
+                    case 11:
+                        err_2 = _a.sent();
+                        console.log(err_2);
+                        return [3 /*break*/, 12];
+                    case 12: return [2 /*return*/];
                 }
             });
         });

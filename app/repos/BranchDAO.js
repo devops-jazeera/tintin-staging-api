@@ -36,10 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var Address_1 = require("../../entities/Address");
 var Branch_1 = require("../../entities/Branch");
 var BranchDAO = /** @class */ (function () {
     function BranchDAO() {
         this.dao = typeorm_1.getRepository(Branch_1.Branch);
+        this.addressdao = typeorm_1.getRepository(Address_1.Address);
     }
     BranchDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -57,19 +59,24 @@ var BranchDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.address && !data.address.id) {
-                            delete data.address;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 5, , 6]);
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.addressdao.save(data.address)];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
+                        delete data.address;
+                        _a.label = 3;
+                    case 3: return [4 /*yield*/, this.dao.save(data)];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });

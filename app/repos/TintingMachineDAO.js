@@ -36,10 +36,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var Address_1 = require("../../entities/Address");
+var AreaMaster_1 = require("../../entities/AreaMaster");
+var CountryMaster_1 = require("../../entities/CountryMaster");
+var DatabaseMaster_1 = require("../../entities/DatabaseMaster");
+var Dealer_1 = require("../../entities/Dealer");
+var Technician_1 = require("../../entities/Technician");
 var TintingMachine_1 = require("../../entities/TintingMachine");
+var VendorDAO_1 = require("./VendorDAO");
 var TintingMachineDAO = /** @class */ (function () {
     function TintingMachineDAO() {
         this.dao = typeorm_1.getRepository(TintingMachine_1.TintingMachine);
+        this.dealer = typeorm_1.getRepository(Dealer_1.Dealer);
+        this.database = typeorm_1.getRepository(DatabaseMaster_1.DatabaseMaster);
+        this.vendor = new VendorDAO_1.VendorDAO();
+        this.address = typeorm_1.getRepository(Address_1.Address);
+        this.countryMaster = typeorm_1.getRepository(CountryMaster_1.CountryMaster);
+        this.areaMaster = typeorm_1.getRepository(AreaMaster_1.AreaMaster);
+        this.regionMaster = typeorm_1.getRepository(AreaMaster_1.AreaMaster);
+        this.technician = typeorm_1.getRepository(Technician_1.Technician);
     }
     TintingMachineDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -57,46 +72,110 @@ var TintingMachineDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.dealer && !data.dealer.id) {
-                            delete data.dealer;
-                        }
-                        if (data.database && !data.database.id) {
-                            delete data.database;
-                        }
-                        if (data.technician && !data.technician.id) {
-                            delete data.technician;
-                        }
-                        if (data.vendor && !data.vendor.id) {
-                            delete data.vendor;
-                        }
-                        if (data.address && !data.address.id) {
-                            delete data.address;
-                        }
-                        if (data.countryMaster && !data.countryMaster.id) {
-                            delete data.countryMaster;
-                        }
-                        if (data.areaMaster && !data.areaMaster.id) {
-                            delete data.areaMaster;
-                        }
-                        if (data.regionMaster && !data.regionMaster) {
-                            delete data.regionMaster;
-                        }
-                        if (data.cityMaster && !data.cityMaster.id) {
-                            delete data.cityMaster;
-                        }
-                        if (data.districtMaster && !data.districtMaster.id) {
-                            delete data.districtMaster;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 34, , 35]);
+                        if (!(data.dealer && data.dealer.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.dealer.save(data.dealer)];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
+                        delete data.dealer;
+                        _a.label = 3;
+                    case 3:
+                        if (!(data.database && data.database.id)) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.database.save(data.database)];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        delete data.database;
+                        _a.label = 6;
+                    case 6:
+                        if (!(data.technician && data.technician.id)) return [3 /*break*/, 8];
+                        return [4 /*yield*/, this.technician.save(data.technician)];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
+                        delete data.technician;
+                        _a.label = 9;
+                    case 9:
+                        if (!(data.vendor && data.vendor.id && data.vendor.name)) return [3 /*break*/, 13];
+                        if (!data.vendor.name) return [3 /*break*/, 11];
+                        return [4 /*yield*/, this.vendor.save(data.vendor)];
+                    case 10:
+                        _a.sent();
+                        return [3 /*break*/, 12];
+                    case 11:
+                        data.vendorId = data.vendor.id;
+                        _a.label = 12;
+                    case 12: return [3 /*break*/, 14];
+                    case 13:
+                        delete data.vendor;
+                        _a.label = 14;
+                    case 14:
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 16];
+                        return [4 /*yield*/, this.address.save(data.address)];
+                    case 15:
+                        _a.sent();
+                        return [3 /*break*/, 17];
+                    case 16:
+                        delete data.address;
+                        _a.label = 17;
+                    case 17:
+                        if (!(data.countryMaster && data.countryMaster.id)) return [3 /*break*/, 19];
+                        return [4 /*yield*/, this.countryMaster.save(data.countryMaster)];
+                    case 18:
+                        _a.sent();
+                        return [3 /*break*/, 20];
+                    case 19:
+                        delete data.countryMaster;
+                        _a.label = 20;
+                    case 20:
+                        if (!(data.areaMaster && data.areaMaster.id)) return [3 /*break*/, 22];
+                        return [4 /*yield*/, this.areaMaster.save(data.areaMaster)];
+                    case 21:
+                        _a.sent();
+                        return [3 /*break*/, 23];
+                    case 22:
+                        delete data.areaMaster;
+                        _a.label = 23;
+                    case 23:
+                        if (!(data.regionMaster && data.regionMaster)) return [3 /*break*/, 25];
+                        return [4 /*yield*/, this.regionMaster.save(data.regionMaster)];
+                    case 24:
+                        _a.sent();
+                        return [3 /*break*/, 26];
+                    case 25:
+                        delete data.regionMaster;
+                        _a.label = 26;
+                    case 26:
+                        if (!(data.cityMaster && data.cityMaster.id)) return [3 /*break*/, 28];
+                        return [4 /*yield*/, this.areaMaster.save(data.cityMaster)];
+                    case 27:
+                        _a.sent();
+                        return [3 /*break*/, 29];
+                    case 28:
+                        delete data.cityMaster;
+                        _a.label = 29;
+                    case 29:
+                        if (!(data.districtMaster && data.districtMaster.id)) return [3 /*break*/, 31];
+                        return [4 /*yield*/, this.areaMaster.save(data.districtMaster)];
+                    case 30:
+                        _a.sent();
+                        return [3 /*break*/, 32];
+                    case 31:
+                        delete data.districtMaster;
+                        _a.label = 32;
+                    case 32: return [4 /*yield*/, this.dao.save(data)];
+                    case 33:
+                        _a.sent();
+                        return [3 /*break*/, 35];
+                    case 34:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 35];
+                    case 35: return [2 /*return*/];
                 }
             });
         });

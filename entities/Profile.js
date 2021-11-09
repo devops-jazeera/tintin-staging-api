@@ -59,6 +59,10 @@ var Profile = /** @class */ (function () {
         __metadata("design:type", String)
     ], Profile.prototype, "vid", void 0);
     __decorate([
+        typeorm_1.Column({ name: "pic" }),
+        __metadata("design:type", String)
+    ], Profile.prototype, "pic", void 0);
+    __decorate([
         typeorm_1.Column({ name: "created_by" }),
         __metadata("design:type", String)
     ], Profile.prototype, "createdBy", void 0);

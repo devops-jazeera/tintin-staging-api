@@ -22,6 +22,10 @@ var AppLang = /** @class */ (function () {
         __metadata("design:type", String)
     ], AppLang.prototype, "en", void 0);
     __decorate([
+        typeorm_1.Column({ name: "active" }),
+        __metadata("design:type", Boolean)
+    ], AppLang.prototype, "active", void 0);
+    __decorate([
         typeorm_1.Column({ name: "ar" }),
         __metadata("design:type", String)
     ], AppLang.prototype, "ar", void 0);

@@ -36,10 +36,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
+var Address_1 = require("../../entities/Address");
+var Branch_1 = require("../../entities/Branch");
+var Profile_1 = require("../../entities/Profile");
 var Vendor_1 = require("../../entities/Vendor");
 var VendorDAO = /** @class */ (function () {
     function VendorDAO() {
         this.dao = typeorm_1.getRepository(Vendor_1.Vendor);
+        this.profile = typeorm_1.getRepository(Profile_1.Profile);
+        this.address = typeorm_1.getRepository(Address_1.Address);
+        this.branch = typeorm_1.getRepository(Branch_1.Branch);
     }
     VendorDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -57,26 +63,39 @@ var VendorDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.profile && !data.profile.id) {
-                            delete data.profile;
-                        }
-                        console.log(data.address);
-                        if (data.address && !data.address.id) {
-                            delete data.address;
-                        }
-                        if (data.branch && !data.branch.id) {
-                            delete data.branch;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 8, , 9]);
+                        if (!(data.profile && data.profile.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.profile.save(data.profile)];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
+                        delete data.profile;
+                        _a.label = 3;
+                    case 3:
+                        if (!(data.address && data.address.id)) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.address.save(data.address)];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        delete data.address;
+                        _a.label = 6;
+                    case 6:
+                        if (data.branch && data.branch.id) {
+                        }
+                        else {
+                            delete data.branch;
+                        }
+                        return [4 /*yield*/, this.dao.save(data)];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
                 }
             });
         });

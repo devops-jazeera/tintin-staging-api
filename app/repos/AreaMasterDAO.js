@@ -37,9 +37,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var AreaMaster_1 = require("../../entities/AreaMaster");
+var CountryMaster_1 = require("../../entities/CountryMaster");
 var AreaMasterDAO = /** @class */ (function () {
     function AreaMasterDAO() {
         this.dao = typeorm_1.getRepository(AreaMaster_1.AreaMaster);
+        this.countryMasterDao = typeorm_1.getRepository(CountryMaster_1.CountryMaster);
     }
     AreaMasterDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -58,7 +60,10 @@ var AreaMasterDAO = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        if (data.countryMaster && !data.countryMaster.id) {
+                        if (data.countryMaster && data.countryMaster.id) {
+                            this.countryMasterDao.save(data.countryMaster);
+                        }
+                        else {
                             delete data.countryMaster;
                         }
                         return [4 /*yield*/, this.dao.save(data)];

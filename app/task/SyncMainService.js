@@ -225,6 +225,9 @@ var SyncMainService = /** @class */ (function () {
                     case 2:
                         err_1 = _a.sent();
                         setTimeout(function () { _this.subscribe(); }, 3000);
+                        Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA  ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_1.master.info(err_1);
+                        Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA  ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
                         Log_1.master.error(err_1);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];

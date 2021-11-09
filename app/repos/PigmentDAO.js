@@ -37,9 +37,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Pigment_1 = require("../../entities/Pigment");
+var PigmentSet_1 = require("../../entities/PigmentSet");
 var PigmentDAO = /** @class */ (function () {
     function PigmentDAO() {
         this.dao = typeorm_1.getRepository(Pigment_1.Pigment);
+        this.pigmentSet = typeorm_1.getRepository(PigmentSet_1.PigmentSet);
     }
     PigmentDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -57,19 +59,21 @@ var PigmentDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.pigmentSet && !data.pigmentSet.id) {
-                            delete data.pigmentSet;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 4, , 5]);
+                        if (!(data.pigmentSet && data.pigmentSet.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.pigmentSet.save(data.pigmentSet)];
                     case 1:
                         _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.dao.save(data)];
+                    case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
             });
         });

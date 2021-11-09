@@ -37,9 +37,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var BasesMaster_1 = require("../../entities/BasesMaster");
+var ProductMaster_1 = require("../../entities/ProductMaster");
+var Vendor_1 = require("../../entities/Vendor");
 var BasesMastersDAO = /** @class */ (function () {
     function BasesMastersDAO() {
         this.dao = typeorm_1.getRepository(BasesMaster_1.BasesMaster);
+        this.productdao = typeorm_1.getRepository(ProductMaster_1.ProductMaster);
+        this.vendordao = typeorm_1.getRepository(Vendor_1.Vendor);
     }
     BasesMastersDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -57,22 +61,33 @@ var BasesMastersDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.vendor && !data.vendor.id) {
-                            delete data.vendor;
-                        }
-                        if (data.product && !data.product.id) {
-                            delete data.product;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 8, , 9]);
+                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.vendordao.save(data.vendor)];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
+                        delete data.vendor;
+                        _a.label = 3;
+                    case 3:
+                        if (!(data.product && data.product.id)) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.productdao.save(data.product)];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        delete data.product;
+                        _a.label = 6;
+                    case 6: return [4 /*yield*/, this.dao.save(data)];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
                 }
             });
         });

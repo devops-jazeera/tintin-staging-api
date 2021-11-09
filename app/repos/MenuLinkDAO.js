@@ -40,6 +40,7 @@ var MenuLink_1 = require("../../entities/MenuLink");
 var MenuLinkDAO = /** @class */ (function () {
     function MenuLinkDAO() {
         this.dao = typeorm_1.getRepository(MenuLink_1.MenuLink);
+        this.parent = typeorm_1.getRepository(MenuLink_1.MenuLink);
     }
     MenuLinkDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -57,19 +58,24 @@ var MenuLinkDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.parent && !data.parent.id) {
-                            delete data.parent;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 5, , 6]);
+                        if (!(data.parent && data.parent.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.parent.save(data.parent)];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
+                        delete data.parent;
+                        _a.label = 3;
+                    case 3: return [4 /*yield*/, this.dao.save(data)];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });

@@ -37,9 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var BaseSizes_1 = require("../../entities/BaseSizes");
+var BasesMaster_1 = require("../../entities/BasesMaster");
+var ProductMaster_1 = require("../../entities/ProductMaster");
+var SizeMaster_1 = require("../../entities/SizeMaster");
 var BaseSizesDAO = /** @class */ (function () {
     function BaseSizesDAO() {
         this.dao = typeorm_1.getRepository(BaseSizes_1.BaseSizes);
+        this.basedao = typeorm_1.getRepository(BasesMaster_1.BasesMaster);
+        this.sizedao = typeorm_1.getRepository(SizeMaster_1.SizeMaster);
+        this.productdao = typeorm_1.getRepository(ProductMaster_1.ProductMaster);
     }
     BaseSizesDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -61,25 +67,42 @@ var BaseSizesDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        if (data.base && !data.base.id) {
-                            delete data.base;
-                        }
-                        if (data.size && !data.size.id) {
-                            delete data.size;
-                        }
-                        if (data.product && !data.product.id) {
-                            delete data.product;
-                        }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        _a.trys.push([0, 11, , 12]);
+                        if (!(data.base && data.base.id)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.basedao.save(data.base)];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
+                        delete data.base;
+                        _a.label = 3;
+                    case 3:
+                        if (!(data.size && data.size.id)) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.sizedao.save(data.size)];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        delete data.size;
+                        _a.label = 6;
+                    case 6:
+                        if (!(data.product && data.product.id)) return [3 /*break*/, 8];
+                        return [4 /*yield*/, this.productdao.save(data.product)];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
+                        delete data.product;
+                        _a.label = 9;
+                    case 9: return [4 /*yield*/, this.dao.save(data)];
+                    case 10:
+                        _a.sent();
+                        return [3 /*break*/, 12];
+                    case 11:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 12];
+                    case 12: return [2 /*return*/];
                 }
             });
         });

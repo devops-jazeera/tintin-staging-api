@@ -53,6 +53,10 @@ var BaseSizeColors = /** @class */ (function () {
         __metadata("design:type", Number)
     ], BaseSizeColors.prototype, "basePrice", void 0);
     __decorate([
+        typeorm_1.Column({ name: "catalogue_code" }),
+        __metadata("design:type", String)
+    ], BaseSizeColors.prototype, "catalogueCode", void 0);
+    __decorate([
         typeorm_1.Column({ name: "colarant_price" }),
         __metadata("design:type", Number)
     ], BaseSizeColors.prototype, "colarantPrice", void 0);

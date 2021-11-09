@@ -128,28 +128,13 @@ var TintingMachine = /** @class */ (function () {
         __metadata("design:type", Number)
     ], TintingMachine.prototype, "regionId", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "region_id" }),
-        typeorm_1.ManyToOne(function (type) { return AreaMaster_1.AreaMaster; }, function (cm) { return cm.id; }),
-        __metadata("design:type", AreaMaster_1.AreaMaster)
-    ], TintingMachine.prototype, "regionMaster", void 0);
-    __decorate([
         typeorm_1.Column({ name: "city_id" }),
         __metadata("design:type", Number)
     ], TintingMachine.prototype, "cityId", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "city_id" }),
-        typeorm_1.ManyToOne(function (type) { return AreaMaster_1.AreaMaster; }, function (cm) { return cm.id; }),
-        __metadata("design:type", AreaMaster_1.AreaMaster)
-    ], TintingMachine.prototype, "cityMaster", void 0);
-    __decorate([
         typeorm_1.Column({ name: "district_id" }),
         __metadata("design:type", Number)
     ], TintingMachine.prototype, "districtId", void 0);
-    __decorate([
-        typeorm_1.JoinColumn({ name: "district_id" }),
-        typeorm_1.ManyToOne(function (type) { return AreaMaster_1.AreaMaster; }, function (cm) { return cm.id; }),
-        __metadata("design:type", AreaMaster_1.AreaMaster)
-    ], TintingMachine.prototype, "districtMaster", void 0);
     __decorate([
         typeorm_1.Column({ name: "machine_photo_id" }),
         __metadata("design:type", String)
