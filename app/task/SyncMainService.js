@@ -195,6 +195,7 @@ var SyncMainService = /** @class */ (function () {
                                             Log_1.master.info(message.message.value);
                                             Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
                                             data = JSON.parse(message.message.value);
+                                            console.log(data);
                                             return [4 /*yield*/, this.syncManagerLogs.saveData(data, [], Log_1.master)
                                                 //  await this.updateLastSynced({})
                                             ];
@@ -203,6 +204,7 @@ var SyncMainService = /** @class */ (function () {
                                             //  await this.updateLastSynced({})
                                             Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  DATA SAVED $$$$$$$$$$$$$$$$$$$$$$$$");
                                             reqData = {
+                                                id: data.id,
                                                 parkTableId: data.parkedId,
                                                 storeId: process.env.TINTING_STORE_ID
                                             };
