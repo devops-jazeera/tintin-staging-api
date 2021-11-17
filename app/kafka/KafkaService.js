@@ -108,6 +108,33 @@ var KafkaService = /** @class */ (function () {
             });
         });
     };
+    KafkaService.prototype.batchPublisher = function (topicMessages) {
+        return __awaiter(this, void 0, void 0, function () {
+            var err_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, this.producer.connect()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.producer.sendBatch({
+                                topicMessages: topicMessages,
+                                acks: 1,
+                                timeout: 3000
+                            })];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, { status: 1, message: "Message Sent", data: topicMessages }];
+                    case 3:
+                        err_3 = _a.sent();
+                        console.log(err_3);
+                        throw err_3;
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     KafkaService.prototype.subscriber = function (topic) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

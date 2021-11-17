@@ -102,33 +102,62 @@ var SyncMasterLogsServices = /** @class */ (function () {
             });
         });
     };
+    SyncMasterLogsServices.prototype.chunkArray = function (myArray, chunk_size) {
+        return __awaiter(this, void 0, void 0, function () {
+            var index, arrayLength, tempArray, myChunk;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        index = 0;
+                        arrayLength = myArray.length;
+                        tempArray = [];
+                        for (index = 0; index < arrayLength; index += chunk_size) {
+                            myChunk = myArray.slice(index, index + chunk_size);
+                            // Do something if you want with the group
+                            tempArray.push(myChunk);
+                        }
+                        return [4 /*yield*/, tempArray];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     SyncMasterLogsServices.prototype.saveData = function (table, savedDataArray, log) {
         if (savedDataArray === void 0) { savedDataArray = []; }
         return __awaiter(this, void 0, void 0, function () {
-            var daoObj, data;
+            var daoObj, chunck_data, _i, chunck_data_1, chunck, e_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getDAOService(table.tableName)];
+                    case 0:
+                        _a.trys.push([0, 7, , 8]);
+                        return [4 /*yield*/, this.getDAOService(table.tableName)];
                     case 1:
                         daoObj = _a.sent();
                         log.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
-                        log.debug(JSON.stringify(table.data));
-                        if (!daoObj) return [3 /*break*/, 3];
-                        return [4 /*yield*/, daoObj
-                                .save(table.data)
-                                .then(function (res) {
-                                return res;
-                            })
-                                .catch(function (rej) {
-                                log.error(rej);
-                                return null;
-                            })];
+                        if (!daoObj) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.chunkArray(table.data, 1000)];
                     case 2:
-                        data = _a.sent();
-                        // log.info("After Save DATA IS:::::::::::::::::::::::::::::::::" + JSON.stringify(table.data));
-                        data ? savedDataArray.push(table.id) : null;
+                        chunck_data = _a.sent();
+                        _i = 0, chunck_data_1 = chunck_data;
                         _a.label = 3;
-                    case 3: return [2 /*return*/];
+                    case 3:
+                        if (!(_i < chunck_data_1.length)) return [3 /*break*/, 6];
+                        chunck = chunck_data_1[_i];
+                        log.info(chunck.length);
+                        return [4 /*yield*/, daoObj.save(chunck)
+                            // log.info("After Save DATA IS:::::::::::::::::::::::::::::::::" + JSON.stringify(table.data));
+                        ];
+                    case 4:
+                        _a.sent();
+                        _a.label = 5;
+                    case 5:
+                        _i++;
+                        return [3 /*break*/, 3];
+                    case 6: return [3 /*break*/, 8];
+                    case 7:
+                        e_2 = _a.sent();
+                        throw e_2;
+                    case 8: return [2 /*return*/];
                 }
             });
         });

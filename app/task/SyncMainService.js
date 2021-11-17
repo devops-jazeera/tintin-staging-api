@@ -173,6 +173,43 @@ var SyncMainService = /** @class */ (function () {
             });
         });
     };
+    // async subscribe(){
+    //   try{
+    //     let topic = process.env.TINTING_STORE_ID
+    //     const consumer = await this.kafkaService.subscriber(topic)
+    //     consumer.run({
+    //       eachMessage: async (message:any ) => {
+    //         log.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$")
+    //         log.info(message.message.value)
+    //         log.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$")
+    //         let data:any = JSON.parse(message.message.value)
+    //         console.log(data)
+    //          await this.syncManagerLogs.saveData(data, [], log)
+    //         //  await this.updateLastSynced({})
+    //          log.info("$$$$$$$$$$$$$$$$$$$$$$$$  DATA SAVED $$$$$$$$$$$$$$$$$$$$$$$$")
+    //          let reqData = {
+    //               id:data.id,
+    //               parkTableId: data.parkedId,
+    //               storeId: process.env.TINTING_STORE_ID
+    //           }
+    //           log.info(reqData)
+    //           await this.kafkaService.publisher({
+    //             topic: 'synced_data',
+    //             acks: 1,
+    //             messages:[{
+    //               value: reqData
+    //             }]
+    //           })
+    //       },
+    //   })
+    //   }catch(err) {
+    //     setTimeout(()=> {this.subscribe()} , 3000);
+    //     log.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA  ERROR $$$$$$$$$$$$$$$$$$$$$$$$")
+    //     log.info(err)
+    //     log.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA  ERROR $$$$$$$$$$$$$$$$$$$$$$$$")
+    //     log.error(err)
+    //   }
+    // }
     SyncMainService.prototype.subscribe = function () {
         return __awaiter(this, void 0, void 0, function () {
             var topic, consumer, err_1;
@@ -186,42 +223,86 @@ var SyncMainService = /** @class */ (function () {
                     case 1:
                         consumer = _a.sent();
                         consumer.run({
-                            eachMessage: function (message) { return __awaiter(_this, void 0, void 0, function () {
-                                var data, reqData;
-                                return __generator(this, function (_a) {
-                                    switch (_a.label) {
-                                        case 0:
-                                            Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
-                                            Log_1.master.info(message.message.value);
-                                            Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
-                                            data = JSON.parse(message.message.value);
-                                            console.log(data);
-                                            return [4 /*yield*/, this.syncManagerLogs.saveData(data, [], Log_1.master)
+                            eachBatchAutoResolve: false,
+                            eachBatch: function (_a) {
+                                var batch = _a.batch, resolveOffset = _a.resolveOffset;
+                                return __awaiter(_this, void 0, void 0, function () {
+                                    var messages, _i, _b, message, data, groupData, _c, groupData_1, table_data, reqData, messageData, err_2;
+                                    return __generator(this, function (_d) {
+                                        switch (_d.label) {
+                                            case 0:
+                                                messages = [];
+                                                _i = 0, _b = batch.messages;
+                                                _d.label = 1;
+                                            case 1:
+                                                if (!(_i < _b.length)) return [3 /*break*/, 10];
+                                                message = _b[_i];
+                                                Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
+                                                data = JSON.parse(message.value);
+                                                Log_1.master.info(data.length);
+                                                Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
+                                                return [4 /*yield*/, this.groupBy(data, function (item) {
+                                                        return [item.tableName];
+                                                    })];
+                                            case 2:
+                                                groupData = _d.sent();
+                                                Log_1.master.info(JSON.stringify(groupData[0][0].tableName));
+                                                _c = 0, groupData_1 = groupData;
+                                                _d.label = 3;
+                                            case 3:
+                                                if (!(_c < groupData_1.length)) return [3 /*break*/, 8];
+                                                table_data = groupData_1[_c];
+                                                reqData = {
+                                                    tableName: table_data[0].tableName,
+                                                    data: table_data.map(function (v) { return v.data; })
+                                                };
+                                                messageData = table_data.map(function (v) {
+                                                    return {
+                                                        id: v.id,
+                                                        parkTableId: v.parkedId,
+                                                        storeId: process.env.TINTING_STORE_ID
+                                                    };
+                                                });
+                                                // log.info(JSON.stringify(messageData))
+                                                messages.push.apply(messages, messageData);
+                                                _d.label = 4;
+                                            case 4:
+                                                _d.trys.push([4, 6, , 7]);
+                                                return [4 /*yield*/, this.syncManagerLogs.saveData(reqData, [], Log_1.master)];
+                                            case 5:
+                                                _d.sent();
+                                                return [3 /*break*/, 7];
+                                            case 6:
+                                                err_2 = _d.sent();
+                                                throw err_2;
+                                            case 7:
+                                                _c++;
+                                                return [3 /*break*/, 3];
+                                            case 8:
                                                 //  await this.updateLastSynced({})
-                                            ];
-                                        case 1:
-                                            _a.sent();
-                                            //  await this.updateLastSynced({})
-                                            Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  DATA SAVED $$$$$$$$$$$$$$$$$$$$$$$$");
-                                            reqData = {
-                                                id: data.id,
-                                                parkTableId: data.parkedId,
-                                                storeId: process.env.TINTING_STORE_ID
-                                            };
-                                            Log_1.master.info(reqData);
-                                            return [4 /*yield*/, this.kafkaService.publisher({
-                                                    topic: 'synced_data',
-                                                    acks: 1,
-                                                    messages: [{
-                                                            value: reqData
-                                                        }]
-                                                })];
-                                        case 2:
-                                            _a.sent();
-                                            return [2 /*return*/];
-                                    }
+                                                Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  DATA SAVED $$$$$$$$$$$$$$$$$$$$$$$$");
+                                                resolveOffset(message.offset);
+                                                _d.label = 9;
+                                            case 9:
+                                                _i++;
+                                                return [3 /*break*/, 1];
+                                            case 10:
+                                                Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  PUBLISHING SAVED DATA $$$$$$$$$$$$$$$$$$$$$$$$");
+                                                return [4 /*yield*/, this.kafkaService.publisher({
+                                                        topic: 'synced_data',
+                                                        acks: 1,
+                                                        messages: [{
+                                                                value: JSON.stringify(messages)
+                                                            }]
+                                                    })];
+                                            case 11:
+                                                _d.sent();
+                                                Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  PUBLISHED SAVED DATA $$$$$$$$$$$$$$$$$$$$$$$$");
+                                                return [2 /*return*/];
+                                        }
+                                    });
                                 });
-                            }); },
+                            }
                         });
                         return [3 /*break*/, 3];
                     case 2:
@@ -300,6 +381,17 @@ var SyncMainService = /** @class */ (function () {
                     case 3: return [2 /*return*/];
                 }
             });
+        });
+    };
+    SyncMainService.prototype.groupBy = function (array, f) {
+        var groups = {};
+        array.forEach(function (o) {
+            var group = JSON.stringify(f(o));
+            groups[group] = groups[group] || [];
+            groups[group].push(o);
+        });
+        return Object.keys(groups).map(function (group) {
+            return groups[group];
         });
     };
     return SyncMainService;
