@@ -77,6 +77,10 @@ var BaseSizes = /** @class */ (function () {
         __metadata("design:type", String)
     ], BaseSizes.prototype, "baseId", void 0);
     __decorate([
+        typeorm_1.Column({ name: "size_id" }),
+        __metadata("design:type", String)
+    ], BaseSizes.prototype, "sizeId", void 0);
+    __decorate([
         typeorm_1.Column({ name: "product_id" }),
         __metadata("design:type", String)
     ], BaseSizes.prototype, "productId", void 0);

@@ -48,6 +48,10 @@ var Dealer = /** @class */ (function () {
         __metadata("design:type", String)
     ], Dealer.prototype, "vendor_id", void 0);
     __decorate([
+        typeorm_1.Column({ name: "address_id" }),
+        __metadata("design:type", String)
+    ], Dealer.prototype, "addressId", void 0);
+    __decorate([
         typeorm_1.Column({ name: "vid" }),
         __metadata("design:type", String)
     ], Dealer.prototype, "vid", void 0);

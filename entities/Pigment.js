@@ -55,6 +55,10 @@ var Pigment = /** @class */ (function () {
         __metadata("design:type", Date)
     ], Pigment.prototype, "updatedOn", void 0);
     __decorate([
+        typeorm_1.Column({ name: "pigment_set_id" }),
+        __metadata("design:type", Boolean)
+    ], Pigment.prototype, "pigmentSetId", void 0);
+    __decorate([
         typeorm_1.JoinColumn({ name: "pigment_set_id" }),
         typeorm_1.ManyToOne(function (type) { return PigmentSet_1.PigmentSet; }),
         __metadata("design:type", PigmentSet_1.PigmentSet)
