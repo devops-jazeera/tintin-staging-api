@@ -307,7 +307,14 @@ var SyncMainService = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
-                        setTimeout(function () { _this.subscribe(); }, 3000);
+                        setTimeout(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, this.subscribe()];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        }); }); }, 3000);
                         Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA  ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
                         Log_1.master.info(err_1);
                         Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA  ERROR $$$$$$$$$$$$$$$$$$$$$$$$");

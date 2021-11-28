@@ -38,10 +38,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var CatalogueMaster_1 = require("../../entities/CatalogueMaster");
 var ColorMaster_1 = require("../../entities/ColorMaster");
+var ColorMasterCopy_1 = require("../../entities/ColorMasterCopy");
 var Vendor_1 = require("../../entities/Vendor");
 var ColorMasterDAO = /** @class */ (function () {
     function ColorMasterDAO() {
         this.dao = typeorm_1.getRepository(ColorMaster_1.ColorMaster);
+        this.daoCopy = typeorm_1.getRepository(ColorMasterCopy_1.ColorMasterCopy);
         this.catalogue = typeorm_1.getRepository(CatalogueMaster_1.CatalogueMaster);
         this.vendor = typeorm_1.getRepository(Vendor_1.Vendor);
     }
@@ -55,6 +57,19 @@ var ColorMasterDAO = /** @class */ (function () {
             });
         });
     };
+    // async save(data: any) {
+    //   try{
+    //     if(data.catalogue && data.catalogue.id){
+    //       await this.catalogue.save(data.catalogue)
+    //     }else{delete data.catalogue}
+    //     if(data.vendor && data.vendor.id){
+    //       await this.vendor.save(data.vendor)
+    //     }else{delete data.vendor}
+    //     await this.dao.save(data);
+    //   }catch(err){
+    //     console.log(err);
+    //   }
+    // }
     ColorMasterDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             var err_1;
@@ -79,7 +94,7 @@ var ColorMasterDAO = /** @class */ (function () {
                     case 5:
                         delete data.vendor;
                         _a.label = 6;
-                    case 6: return [4 /*yield*/, this.dao.save(data)];
+                    case 6: return [4 /*yield*/, this.daoCopy.save(data)];
                     case 7:
                         _a.sent();
                         return [3 /*break*/, 9];
