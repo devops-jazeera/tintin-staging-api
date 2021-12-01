@@ -254,6 +254,7 @@ var SyncMainService = /** @class */ (function () {
                                                 table_data = groupData_1[_c];
                                                 reqData = {
                                                     tableName: table_data[0].tableName,
+                                                    operation: table_data[0].operation,
                                                     data: table_data.map(function (v) { return v.data; })
                                                 };
                                                 messageData = table_data.map(function (v) {

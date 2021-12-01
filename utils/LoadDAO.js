@@ -33,6 +33,7 @@ var TintingMachineDAO_1 = require("./../app/repos/TintingMachineDAO");
 var TranslationDAO_1 = require("./../app/repos/TranslationDAO");
 var UserDAO_1 = require("./../app/repos/UserDAO");
 var VendorDAO_1 = require("./../app/repos/VendorDAO");
+var PriceRangeDAO_1 = require("../app/repos/PriceRangeDAO");
 exports.DAOList = {
     access_data: new AccessDAO_1.AccessDAO(),
     address: new AddressDAO_1.AddressDAO(),
@@ -68,4 +69,5 @@ exports.DAOList = {
     translation: new TranslationDAO_1.TranslationDAO(),
     user: new UserDAO_1.UserDAO(),
     vendor: new VendorDAO_1.VendorDAO(),
+    price_range: new PriceRangeDAO_1.PriceRangeDAO()
 };

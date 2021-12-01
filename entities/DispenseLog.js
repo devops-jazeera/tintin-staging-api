@@ -150,6 +150,10 @@ var DispenseLog = /** @class */ (function () {
         __metadata("design:type", Number)
     ], DispenseLog.prototype, "syncstatus", void 0);
     __decorate([
+        typeorm_1.Column({ name: "mobile_number" }),
+        __metadata("design:type", String)
+    ], DispenseLog.prototype, "mobileNumber", void 0);
+    __decorate([
         typeorm_1.JoinColumn({ name: "color_code", referencedColumnName: "code" }),
         typeorm_1.ManyToOne(function (type) { return ColorMaster_1.ColorMaster; }, function (color) { return color.code; }),
         __metadata("design:type", ColorMaster_1.ColorMaster)

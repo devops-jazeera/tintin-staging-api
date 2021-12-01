@@ -94,16 +94,19 @@ var BaseSizeColorsDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 3, , 4]);
                         return [4 /*yield*/, this.daoCopy.save(data)];
                     case 1:
                         _a.sent();
-                        return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.dao.save(data)];
                     case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -125,10 +128,16 @@ var BaseSizeColorsDAO = /** @class */ (function () {
     };
     BaseSizeColorsDAO.prototype.delete = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var ids;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.delete(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        console.log("DELETE");
+                        return [4 /*yield*/, data.map(function (v) { return v.id; })];
+                    case 1:
+                        ids = _a.sent();
+                        return [4 /*yield*/, this.dao.delete({ id: typeorm_1.In(ids) })];
+                    case 2: return [2 /*return*/, _a.sent()];
                 }
             });
         });

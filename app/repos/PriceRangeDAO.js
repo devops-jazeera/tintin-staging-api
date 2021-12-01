@@ -36,87 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var CatalogueMaster_1 = require("../../entities/CatalogueMaster");
-var ColorMaster_1 = require("../../entities/ColorMaster");
-var ColorMasterCopy_1 = require("../../entities/ColorMasterCopy");
-var Vendor_1 = require("../../entities/Vendor");
-var ColorMasterDAO = /** @class */ (function () {
-    function ColorMasterDAO() {
-        this.dao = typeorm_1.getRepository(ColorMaster_1.ColorMaster);
-        this.daoCopy = typeorm_1.getRepository(ColorMasterCopy_1.ColorMasterCopy);
-        this.catalogue = typeorm_1.getRepository(CatalogueMaster_1.CatalogueMaster);
-        this.vendor = typeorm_1.getRepository(Vendor_1.Vendor);
+var PriceRange_1 = require("../../entities/PriceRange");
+var PriceRangeDAO = /** @class */ (function () {
+    function PriceRangeDAO() {
+        this.dao = typeorm_1.getRepository(PriceRange_1.PriceRange);
     }
-    ColorMasterDAO.prototype.search = function (data) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.createQueryBuilder("colors").where(data).orderBy("colors.id", "ASC").getMany()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    // async save(data: any) {
-    //   try{
-    //     if(data.catalogue && data.catalogue.id){
-    //       await this.catalogue.save(data.catalogue)
-    //     }else{delete data.catalogue}
-    //     if(data.vendor && data.vendor.id){
-    //       await this.vendor.save(data.vendor)
-    //     }else{delete data.vendor}
-    //     await this.dao.save(data);
-    //   }catch(err){
-    //     console.log(err);
-    //   }
-    // }
-    ColorMasterDAO.prototype.save = function (data) {
+    PriceRangeDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             var err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 9, , 10]);
-                        if (!(data.catalogue && data.catalogue.id)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.catalogue.save(data.catalogue)];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        delete data.catalogue;
-                        _a.label = 3;
-                    case 3:
-                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 5];
-                        return [4 /*yield*/, this.vendor.save(data.vendor)];
-                    case 4:
-                        _a.sent();
-                        return [3 /*break*/, 6];
-                    case 5:
-                        delete data.vendor;
-                        _a.label = 6;
-                    case 6: return [4 /*yield*/, this.daoCopy.save(data)];
-                    case 7:
-                        _a.sent();
+                        _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, this.dao.save(data)];
-                    case 8:
-                        _a.sent();
-                        return [3 /*break*/, 10];
-                    case 9:
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2:
                         err_1 = _a.sent();
-                        console.log(err_1);
-                        return [3 /*break*/, 10];
-                    case 10: return [2 /*return*/];
+                        throw err_1;
+                    case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    ColorMasterDAO.prototype.entity = function (id) {
+    PriceRangeDAO.prototype.entity = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.dao.findOne(id, {
                             join: {
-                                alias: "colors",
+                                alias: "accessData",
                                 innerJoinAndSelect: {},
                             },
                         })];
@@ -125,7 +73,7 @@ var ColorMasterDAO = /** @class */ (function () {
             });
         });
     };
-    ColorMasterDAO.prototype.delete = function (data) {
+    PriceRangeDAO.prototype.delete = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -135,13 +83,13 @@ var ColorMasterDAO = /** @class */ (function () {
             });
         });
     };
-    ColorMasterDAO.prototype.findOne = function (data) {
+    PriceRangeDAO.prototype.findOne = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.dao.findOne(data, {
                             join: {
-                                alias: "colors",
+                                alias: "accessData",
                                 innerJoinAndSelect: {},
                             },
                         })];
@@ -150,7 +98,7 @@ var ColorMasterDAO = /** @class */ (function () {
             });
         });
     };
-    return ColorMasterDAO;
+    return PriceRangeDAO;
 }());
-exports.ColorMasterDAO = ColorMasterDAO;
-Object.seal(ColorMasterDAO);
+exports.PriceRangeDAO = PriceRangeDAO;
+Object.seal(PriceRangeDAO);

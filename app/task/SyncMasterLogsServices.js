@@ -129,35 +129,39 @@ var SyncMasterLogsServices = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 7, , 8]);
+                        _a.trys.push([0, 9, , 10]);
                         return [4 /*yield*/, this.getDAOService(table.tableName)];
                     case 1:
                         daoObj = _a.sent();
-                        log.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
-                        if (!daoObj) return [3 /*break*/, 6];
+                        log.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + ", \"operation:" + table.operation + " \" \"*****************************");
+                        if (!daoObj) return [3 /*break*/, 8];
                         return [4 /*yield*/, this.chunkArray(table.data, 1000)];
                     case 2:
                         chunck_data = _a.sent();
                         _i = 0, chunck_data_1 = chunck_data;
                         _a.label = 3;
                     case 3:
-                        if (!(_i < chunck_data_1.length)) return [3 /*break*/, 6];
+                        if (!(_i < chunck_data_1.length)) return [3 /*break*/, 8];
                         chunck = chunck_data_1[_i];
                         log.info(chunck.length);
-                        return [4 /*yield*/, daoObj.save(chunck)
-                            // log.info("After Save DATA IS:::::::::::::::::::::::::::::::::" + JSON.stringify(table.data));
-                        ];
+                        if (!(table.operation == 'DELETE')) return [3 /*break*/, 5];
+                        log.info("*****************************DAO \"operation:" + table.operation + " \" \"*****************************");
+                        return [4 /*yield*/, daoObj.delete(chunck)];
                     case 4:
                         _a.sent();
-                        _a.label = 5;
-                    case 5:
+                        return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, daoObj.save(chunck)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7:
                         _i++;
                         return [3 /*break*/, 3];
-                    case 6: return [3 /*break*/, 8];
-                    case 7:
+                    case 8: return [3 /*break*/, 10];
+                    case 9:
                         e_2 = _a.sent();
                         throw e_2;
-                    case 8: return [2 /*return*/];
+                    case 10: return [2 /*return*/];
                 }
             });
         });

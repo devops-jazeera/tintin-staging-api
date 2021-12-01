@@ -49,6 +49,10 @@ var Vendor = /** @class */ (function () {
         __metadata("design:type", Date)
     ], Vendor.prototype, "inserted_at", void 0);
     __decorate([
+        typeorm_1.Column({ name: "vat" }),
+        __metadata("design:type", String)
+    ], Vendor.prototype, "vat", void 0);
+    __decorate([
         typeorm_1.Column({ name: "email" }),
         __metadata("design:type", String)
     ], Vendor.prototype, "email", void 0);
