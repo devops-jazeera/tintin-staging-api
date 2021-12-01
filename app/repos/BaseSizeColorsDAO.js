@@ -90,23 +90,28 @@ var BaseSizeColorsDAO = /** @class */ (function () {
     // }
     BaseSizeColorsDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var err_1;
+            var keys, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, this.daoCopy.save(data)];
+                        _a.trys.push([0, 5, , 6]);
+                        if (!(data.length > 0)) return [3 /*break*/, 4];
+                        keys = Object.keys(data[0]);
+                        if (!keys.includes('colorId')) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.dao.save(data)];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.dao.save(data)];
-                    case 2:
-                        _a.sent();
                         return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, this.daoCopy.save(data)];
                     case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });

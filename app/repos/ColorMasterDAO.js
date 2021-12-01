@@ -72,40 +72,28 @@ var ColorMasterDAO = /** @class */ (function () {
     // }
     ColorMasterDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var err_1;
+            var keys, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 9, , 10]);
-                        if (!(data.catalogue && data.catalogue.id)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.catalogue.save(data.catalogue)];
+                        _a.trys.push([0, 5, , 6]);
+                        if (!(data.length > 0)) return [3 /*break*/, 4];
+                        keys = Object.keys(data[0]);
+                        if (!keys.includes('nameEn')) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.dao.save(data)];
                     case 1:
                         _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        delete data.catalogue;
-                        _a.label = 3;
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, this.daoCopy.save(data)];
                     case 3:
-                        if (!(data.vendor && data.vendor.id)) return [3 /*break*/, 5];
-                        return [4 /*yield*/, this.vendor.save(data.vendor)];
-                    case 4:
                         _a.sent();
-                        return [3 /*break*/, 6];
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
                     case 5:
-                        delete data.vendor;
-                        _a.label = 6;
-                    case 6: return [4 /*yield*/, this.daoCopy.save(data)];
-                    case 7:
-                        _a.sent();
-                        return [4 /*yield*/, this.dao.save(data)];
-                    case 8:
-                        _a.sent();
-                        return [3 /*break*/, 10];
-                    case 9:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 10];
-                    case 10: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });
