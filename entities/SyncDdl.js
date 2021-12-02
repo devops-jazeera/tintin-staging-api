@@ -24,7 +24,7 @@ var SyncDdl = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], SyncDdl.prototype, "updatedOn", void 0);
+    ], SyncDdl.prototype, "updated_on", void 0);
     SyncDdl = __decorate([
         typeorm_1.Entity("sync_ddl")
     ], SyncDdl);

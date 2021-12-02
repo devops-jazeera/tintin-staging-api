@@ -24,19 +24,19 @@ var ShadePasting = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "vendor_id" }),
         __metadata("design:type", String)
-    ], ShadePasting.prototype, "vendorId", void 0);
+    ], ShadePasting.prototype, "vendor_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "product_id" }),
         __metadata("design:type", String)
-    ], ShadePasting.prototype, "productId", void 0);
+    ], ShadePasting.prototype, "product_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "base_id" }),
         __metadata("design:type", String)
-    ], ShadePasting.prototype, "baseId", void 0);
+    ], ShadePasting.prototype, "base_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "pigment_set_id" }),
         __metadata("design:type", String)
-    ], ShadePasting.prototype, "pgSetId", void 0);
+    ], ShadePasting.prototype, "pgSet_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "unit" }),
         __metadata("design:type", Number)
@@ -60,27 +60,27 @@ var ShadePasting = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "created_on" }),
         __metadata("design:type", Date)
-    ], ShadePasting.prototype, "createdOn", void 0);
+    ], ShadePasting.prototype, "created_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "created_by" }),
         __metadata("design:type", String)
-    ], ShadePasting.prototype, "createdBy", void 0);
+    ], ShadePasting.prototype, "created_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], ShadePasting.prototype, "updatedOn", void 0);
+    ], ShadePasting.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], ShadePasting.prototype, "updatedBy", void 0);
+    ], ShadePasting.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "deleted_on" }),
         __metadata("design:type", Date)
-    ], ShadePasting.prototype, "deletedOn", void 0);
+    ], ShadePasting.prototype, "deleted_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "deleted_by" }),
         __metadata("design:type", String)
-    ], ShadePasting.prototype, "deletedBy", void 0);
+    ], ShadePasting.prototype, "deleted_by", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "vendor_id" }),
         typeorm_1.ManyToOne(function (type) { return Vendor_1.Vendor; }),
@@ -102,7 +102,7 @@ var ShadePasting = /** @class */ (function () {
         __metadata("design:type", PigmentSet_1.PigmentSet)
     ], ShadePasting.prototype, "pigmentSet", void 0);
     ShadePasting = __decorate([
-        typeorm_1.Entity('shade_pasting')
+        typeorm_1.Entity("shade_pasting")
     ], ShadePasting);
     return ShadePasting;
 }());

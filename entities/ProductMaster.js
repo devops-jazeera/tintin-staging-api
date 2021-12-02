@@ -24,71 +24,71 @@ var ProductMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "code" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "productCode", void 0);
+    ], ProductMaster.prototype, "code", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_en" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "nameEn", void 0);
+    ], ProductMaster.prototype, "name_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "nameAr", void 0);
+    ], ProductMaster.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "vendor_id" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "vendorId", void 0);
+    ], ProductMaster.prototype, "vendor_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "systemCode", void 0);
+    ], ProductMaster.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "description_short_en" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "descriptionShortEn", void 0);
+    ], ProductMaster.prototype, "description_short_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "description_short_ar" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "descriptionShortAr", void 0);
+    ], ProductMaster.prototype, "description_short_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "product_details_en" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "productDetailsEn", void 0);
+    ], ProductMaster.prototype, "product_details_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "product_details_ar" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "productDetailsAr", void 0);
+    ], ProductMaster.prototype, "product_deetails_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "specs_en" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "specsEn", void 0);
+    ], ProductMaster.prototype, "specs_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "specs_ar" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "specsAr", void 0);
+    ], ProductMaster.prototype, "specs_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "can_photo_alt_en" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "canPhotoAltEn", void 0);
+    ], ProductMaster.prototype, "can_photo_alt_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "can_photo_alt_ar" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "canPhotoAltAr", void 0);
+    ], ProductMaster.prototype, "can_photo_alt_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "main_photo_alt_en" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "mainPhotoAltEn", void 0);
+    ], ProductMaster.prototype, "main_photo_alt_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "main_photo_alt_ar" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "mainPhotoAltAr", void 0);
+    ], ProductMaster.prototype, "main_photo_alt_r", void 0);
     __decorate([
         typeorm_1.Column({ name: "int_ext" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "intExt", void 0);
+    ], ProductMaster.prototype, "int_ext", void 0);
     __decorate([
         typeorm_1.Column({ name: "product_type" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "productType", void 0);
+    ], ProductMaster.prototype, "product_type", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -96,19 +96,19 @@ var ProductMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "inserted_by" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "insertedBy", void 0);
+    ], ProductMaster.prototype, "inserted_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], ProductMaster.prototype, "insertedAt", void 0);
+    ], ProductMaster.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], ProductMaster.prototype, "updatedBy", void 0);
+    ], ProductMaster.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], ProductMaster.prototype, "updatedOn", void 0);
+    ], ProductMaster.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "vendor_id" }),
         typeorm_1.OneToOne(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),

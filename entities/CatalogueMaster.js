@@ -26,7 +26,7 @@ var CatalogueMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], CatalogueMaster.prototype, "nameAr", void 0);
+    ], CatalogueMaster.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -34,23 +34,23 @@ var CatalogueMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "compcode" }),
         __metadata("design:type", String)
-    ], CatalogueMaster.prototype, "compCode", void 0);
+    ], CatalogueMaster.prototype, "compcode", void 0);
     __decorate([
         typeorm_1.Column({ name: "created_by" }),
         __metadata("design:type", String)
-    ], CatalogueMaster.prototype, "createdBy", void 0);
+    ], CatalogueMaster.prototype, "created_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "created_on" }),
         __metadata("design:type", Date)
-    ], CatalogueMaster.prototype, "createdOn", void 0);
+    ], CatalogueMaster.prototype, "created_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], CatalogueMaster.prototype, "updatedBy", void 0);
+    ], CatalogueMaster.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], CatalogueMaster.prototype, "updatedOn", void 0);
+    ], CatalogueMaster.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "code" }),
         __metadata("design:type", String)

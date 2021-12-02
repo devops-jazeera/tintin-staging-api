@@ -23,43 +23,43 @@ var BaseSizeColors = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "color_id", nullable: true }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "colorId", void 0);
+    ], BaseSizeColors.prototype, "color_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "product_id" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "productId", void 0);
+    ], BaseSizeColors.prototype, "product_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "product_code" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "productCode", void 0);
+    ], BaseSizeColors.prototype, "product_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "base_code" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "baseCode", void 0);
+    ], BaseSizeColors.prototype, "base_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "base_color" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "baseColor", void 0);
+    ], BaseSizeColors.prototype, "base_color", void 0);
     __decorate([
         typeorm_1.Column({ name: "color_code" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "colorCode", void 0);
+    ], BaseSizeColors.prototype, "color_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "size_code" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "sizeCode", void 0);
+    ], BaseSizeColors.prototype, "size_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "base_price" }),
         __metadata("design:type", Number)
-    ], BaseSizeColors.prototype, "basePrice", void 0);
+    ], BaseSizeColors.prototype, "base_price", void 0);
     __decorate([
         typeorm_1.Column({ name: "catalogue_code" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "catalogueCode", void 0);
+    ], BaseSizeColors.prototype, "catalogue_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "colarant_price" }),
         __metadata("design:type", Number)
-    ], BaseSizeColors.prototype, "colarantPrice", void 0);
+    ], BaseSizeColors.prototype, "colarant_price", void 0);
     __decorate([
         typeorm_1.Column({ name: "c1" }),
         __metadata("design:type", String)
@@ -115,11 +115,11 @@ var BaseSizeColors = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "systemCode", void 0);
+    ], BaseSizeColors.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "shot_to_ml_formula" }),
         __metadata("design:type", Number)
-    ], BaseSizeColors.prototype, "shotToMLFormula", void 0);
+    ], BaseSizeColors.prototype, "shot_to_ml_formula", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -127,23 +127,23 @@ var BaseSizeColors = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "updatedBy", void 0);
+    ], BaseSizeColors.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], BaseSizeColors.prototype, "updatedAt", void 0);
+    ], BaseSizeColors.prototype, "updated_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], BaseSizeColors.prototype, "insertedAt", void 0);
+    ], BaseSizeColors.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "deleted_at" }),
         __metadata("design:type", Date)
-    ], BaseSizeColors.prototype, "deletedAt", void 0);
+    ], BaseSizeColors.prototype, "deleted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "vid" }),
         __metadata("design:type", String)
-    ], BaseSizeColors.prototype, "vendorId", void 0);
+    ], BaseSizeColors.prototype, "vid", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "color_code", referencedColumnName: "code" }),
         typeorm_1.ManyToOne(function (type) { return ColorMaster_1.ColorMaster; }, function (color) { return color.code; }),

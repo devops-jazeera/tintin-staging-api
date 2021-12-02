@@ -22,11 +22,11 @@ var DatabaseMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "vendor_id" }),
         __metadata("design:type", String)
-    ], DatabaseMaster.prototype, "vendorId", void 0);
+    ], DatabaseMaster.prototype, "vendor_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "pigment_set_id" }),
         __metadata("design:type", String)
-    ], DatabaseMaster.prototype, "pigmentSetId", void 0);
+    ], DatabaseMaster.prototype, "pigment_set_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "vid" }),
         __metadata("design:type", String)
@@ -38,11 +38,11 @@ var DatabaseMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], DatabaseMaster.prototype, "updatedBy", void 0);
+    ], DatabaseMaster.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], DatabaseMaster.prototype, "updatedOn", void 0);
+    ], DatabaseMaster.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
@@ -54,15 +54,15 @@ var DatabaseMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "shot_conversion" }),
         __metadata("design:type", Number)
-    ], DatabaseMaster.prototype, "shotConversion", void 0);
+    ], DatabaseMaster.prototype, "shot_conversion", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_en" }),
         __metadata("design:type", String)
-    ], DatabaseMaster.prototype, "nameEn", void 0);
+    ], DatabaseMaster.prototype, "name_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], DatabaseMaster.prototype, "nameAr", void 0);
+    ], DatabaseMaster.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "vendor_id" }),
         typeorm_1.ManyToOne(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),

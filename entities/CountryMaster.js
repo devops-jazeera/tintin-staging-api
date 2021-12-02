@@ -21,15 +21,15 @@ var CountryMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "country_code" }),
         __metadata("design:type", String)
-    ], CountryMaster.prototype, "countryCode", void 0);
+    ], CountryMaster.prototype, "country_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_en" }),
         __metadata("design:type", String)
-    ], CountryMaster.prototype, "nameEn", void 0);
+    ], CountryMaster.prototype, "name_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], CountryMaster.prototype, "nameAr", void 0);
+    ], CountryMaster.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -37,11 +37,11 @@ var CountryMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], CountryMaster.prototype, "insertedAt", void 0);
+    ], CountryMaster.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], CountryMaster.prototype, "updatedOn", void 0);
+    ], CountryMaster.prototype, "updated_at", void 0);
     __decorate([
         typeorm_1.OneToMany(function (type) { return AreaMaster_1.AreaMaster; }, function (area) { return area.countryMaster; }),
         __metadata("design:type", AreaMaster_1.AreaMaster)

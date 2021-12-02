@@ -20,7 +20,7 @@ var SyncError = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "store_id" }),
         __metadata("design:type", String)
-    ], SyncError.prototype, "storeId", void 0);
+    ], SyncError.prototype, "store_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "type" }),
         __metadata("design:type", String)
@@ -28,15 +28,15 @@ var SyncError = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "error_msg" }),
         __metadata("design:type", String)
-    ], SyncError.prototype, "errorMsg", void 0);
+    ], SyncError.prototype, "error_msg", void 0);
     __decorate([
         typeorm_1.Column({ name: "error_desc" }),
         __metadata("design:type", String)
-    ], SyncError.prototype, "errorDesc", void 0);
+    ], SyncError.prototype, "error_desc", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], SyncError.prototype, "updatedOn", void 0);
+    ], SyncError.prototype, "updated_on", void 0);
     SyncError = __decorate([
         typeorm_1.Entity("sync_error")
     ], SyncError);

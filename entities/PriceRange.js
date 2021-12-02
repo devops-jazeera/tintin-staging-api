@@ -40,19 +40,19 @@ var PriceRange = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "created_by" }),
         __metadata("design:type", String)
-    ], PriceRange.prototype, "createdBy", void 0);
+    ], PriceRange.prototype, "created_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "modified_by" }),
         __metadata("design:type", String)
-    ], PriceRange.prototype, "modifiedBy", void 0);
+    ], PriceRange.prototype, "modified_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "created_on" }),
         __metadata("design:type", String)
-    ], PriceRange.prototype, "createdOn", void 0);
+    ], PriceRange.prototype, "created_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "modified_on" }),
         __metadata("design:type", String)
-    ], PriceRange.prototype, "modifiedOn", void 0);
+    ], PriceRange.prototype, "modified_on", void 0);
     PriceRange = __decorate([
         typeorm_1.Entity("price_range")
     ], PriceRange);

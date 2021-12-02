@@ -25,7 +25,7 @@ var Profile = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "country_code" }),
         __metadata("design:type", String)
-    ], Profile.prototype, "countryCode", void 0);
+    ], Profile.prototype, "country_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "mobile" }),
         __metadata("design:type", String)
@@ -65,23 +65,23 @@ var Profile = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "created_by" }),
         __metadata("design:type", String)
-    ], Profile.prototype, "createdBy", void 0);
+    ], Profile.prototype, "created_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "created_on" }),
         __metadata("design:type", Date)
-    ], Profile.prototype, "createdOn", void 0);
+    ], Profile.prototype, "created_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], Profile.prototype, "updatedBy", void 0);
+    ], Profile.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], Profile.prototype, "updatedOn", void 0);
+    ], Profile.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], Profile.prototype, "systemCode", void 0);
+    ], Profile.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "vid" }),
         typeorm_1.ManyToOne(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),

@@ -120,7 +120,7 @@ var TintingMachine = /** @class */ (function () {
     ], TintingMachine.prototype, "countryMaster", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "country_id" }),
-        typeorm_1.ManyToOne(function (type) { return AreaMaster_1.AreaMaster; }, function (area) { return area.countryId; }),
+        typeorm_1.ManyToOne(function (type) { return AreaMaster_1.AreaMaster; }, function (area) { return area.country_id; }),
         __metadata("design:type", AreaMaster_1.AreaMaster)
     ], TintingMachine.prototype, "areaMaster", void 0);
     __decorate([

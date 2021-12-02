@@ -22,15 +22,15 @@ var MenuAccess = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "read_access" }),
         __metadata("design:type", Boolean)
-    ], MenuAccess.prototype, "readAccess", void 0);
+    ], MenuAccess.prototype, "read_access", void 0);
     __decorate([
         typeorm_1.Column({ name: "write_access" }),
         __metadata("design:type", Boolean)
-    ], MenuAccess.prototype, "writeAccess", void 0);
+    ], MenuAccess.prototype, "writ_access", void 0);
     __decorate([
         typeorm_1.Column({ name: "delete_access" }),
         __metadata("design:type", Boolean)
-    ], MenuAccess.prototype, "deleteAccess", void 0);
+    ], MenuAccess.prototype, "delete_access", void 0);
     __decorate([
         typeorm_1.Column({ name: "vid" }),
         __metadata("design:type", String)
@@ -42,11 +42,11 @@ var MenuAccess = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], MenuAccess.prototype, "updatedBy", void 0);
+    ], MenuAccess.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], MenuAccess.prototype, "updatedOn", void 0);
+    ], MenuAccess.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "role_id" }),
         typeorm_1.ManyToOne(function (type) { return MenuRole_1.MenuRole; }),

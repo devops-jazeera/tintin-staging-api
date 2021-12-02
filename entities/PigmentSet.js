@@ -25,7 +25,7 @@ var PigmentSet = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], PigmentSet.prototype, "nameAr", void 0);
+    ], PigmentSet.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "code" }),
         __metadata("design:type", String)
@@ -41,11 +41,11 @@ var PigmentSet = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], PigmentSet.prototype, "updatedBy", void 0);
+    ], PigmentSet.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], PigmentSet.prototype, "updatedOn", void 0);
+    ], PigmentSet.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.OneToMany(function (type) { return Pigment_1.Pigment; }, function (pigment) { return pigment.pigmentSet; }),
         __metadata("design:type", Array)

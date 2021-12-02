@@ -25,7 +25,7 @@ var Branch = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "country_code" }),
         __metadata("design:type", String)
-    ], Branch.prototype, "countryCode", void 0);
+    ], Branch.prototype, "country_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "phone" }),
         __metadata("design:type", String)
@@ -61,7 +61,7 @@ var Branch = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "is_main" }),
         __metadata("design:type", Boolean)
-    ], Branch.prototype, "isMain", void 0);
+    ], Branch.prototype, "is_main", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -73,11 +73,11 @@ var Branch = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], Branch.prototype, "updatedBy", void 0);
+    ], Branch.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], Branch.prototype, "updatedOn", void 0);
+    ], Branch.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "address_id" }),
         typeorm_1.ManyToOne(function (type) { return Address_1.Address; }),

@@ -21,15 +21,15 @@ var AreaMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "country_id" }),
         __metadata("design:type", String)
-    ], AreaMaster.prototype, "countryId", void 0);
+    ], AreaMaster.prototype, "country_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "region_name" }),
         __metadata("design:type", String)
-    ], AreaMaster.prototype, "regionName", void 0);
+    ], AreaMaster.prototype, "region_name", void 0);
     __decorate([
         typeorm_1.Column({ name: "region_name_ar" }),
         __metadata("design:type", String)
-    ], AreaMaster.prototype, "regionNameAr", void 0);
+    ], AreaMaster.prototype, "region_name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "city" }),
         __metadata("design:type", String)
@@ -37,7 +37,7 @@ var AreaMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "city_ar" }),
         __metadata("design:type", String)
-    ], AreaMaster.prototype, "cityAr", void 0);
+    ], AreaMaster.prototype, "city_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "district" }),
         __metadata("design:type", String)
@@ -45,7 +45,7 @@ var AreaMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "district_ar" }),
         __metadata("design:type", String)
-    ], AreaMaster.prototype, "districtAr", void 0);
+    ], AreaMaster.prototype, "district_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "vid" }),
         __metadata("design:type", String)
@@ -57,15 +57,15 @@ var AreaMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], AreaMaster.prototype, "updatedBy", void 0);
+    ], AreaMaster.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], AreaMaster.prototype, "insertedAt", void 0);
+    ], AreaMaster.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], AreaMaster.prototype, "updatedOn", void 0);
+    ], AreaMaster.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "country_id" }),
         typeorm_1.ManyToOne(function (type) { return CountryMaster_1.CountryMaster; }, function (country) { return country.areaCountryMaster; }),

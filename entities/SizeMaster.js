@@ -21,7 +21,7 @@ var SizeMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_en" }),
         __metadata("design:type", String)
-    ], SizeMaster.prototype, "name", void 0);
+    ], SizeMaster.prototype, "name_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "code" }),
         __metadata("design:type", String)
@@ -29,7 +29,7 @@ var SizeMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], SizeMaster.prototype, "nameAr", void 0);
+    ], SizeMaster.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "unit" }),
         __metadata("design:type", String)
@@ -45,7 +45,7 @@ var SizeMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], SizeMaster.prototype, "systemCode", void 0);
+    ], SizeMaster.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -53,19 +53,19 @@ var SizeMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], SizeMaster.prototype, "insertedOn", void 0);
+    ], SizeMaster.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], SizeMaster.prototype, "updatedBy", void 0);
+    ], SizeMaster.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], SizeMaster.prototype, "updatedOn", void 0);
+    ], SizeMaster.prototype, "updated_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "deleted_at" }),
         __metadata("design:type", Date)
-    ], SizeMaster.prototype, "deletedAt", void 0);
+    ], SizeMaster.prototype, "deleted_at", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "vid" }),
         typeorm_1.OneToOne(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),

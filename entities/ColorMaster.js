@@ -22,11 +22,11 @@ var ColorMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_en" }),
         __metadata("design:type", String)
-    ], ColorMaster.prototype, "nameEn", void 0);
+    ], ColorMaster.prototype, "name_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], ColorMaster.prototype, "nameAr", void 0);
+    ], ColorMaster.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "code" }),
         __metadata("design:type", String)
@@ -62,7 +62,7 @@ var ColorMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "img_id" }),
         __metadata("design:type", Number)
-    ], ColorMaster.prototype, "imgId", void 0);
+    ], ColorMaster.prototype, "img_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "productcode" }),
         __metadata("design:type", String)
@@ -70,7 +70,7 @@ var ColorMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], ColorMaster.prototype, "systemCode", void 0);
+    ], ColorMaster.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -78,23 +78,23 @@ var ColorMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], ColorMaster.prototype, "updatedBy", void 0);
+    ], ColorMaster.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], ColorMaster.prototype, "updatedOn", void 0);
+    ], ColorMaster.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], ColorMaster.prototype, "insertedAt", void 0);
+    ], ColorMaster.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "deleted_at" }),
         __metadata("design:type", Date)
-    ], ColorMaster.prototype, "deletedAt", void 0);
+    ], ColorMaster.prototype, "deleted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "catalogue_id" }),
         __metadata("design:type", String)
-    ], ColorMaster.prototype, "catalogueId", void 0);
+    ], ColorMaster.prototype, "catalogue_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "vid" }),
         __metadata("design:type", String)

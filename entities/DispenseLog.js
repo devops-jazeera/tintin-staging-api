@@ -24,15 +24,15 @@ var DispenseLog = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "product_code" }),
         __metadata("design:type", String)
-    ], DispenseLog.prototype, "productCode", void 0);
+    ], DispenseLog.prototype, "product_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "base_code" }),
         __metadata("design:type", String)
-    ], DispenseLog.prototype, "baseCode", void 0);
+    ], DispenseLog.prototype, "base_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "color_code" }),
         __metadata("design:type", String)
-    ], DispenseLog.prototype, "colorCode", void 0);
+    ], DispenseLog.prototype, "color_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "invoiceid" }),
         __metadata("design:type", String)
@@ -40,15 +40,15 @@ var DispenseLog = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "size_code" }),
         __metadata("design:type", String)
-    ], DispenseLog.prototype, "sizeCode", void 0);
+    ], DispenseLog.prototype, "size_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "base_price" }),
         __metadata("design:type", Number)
-    ], DispenseLog.prototype, "basePrice", void 0);
+    ], DispenseLog.prototype, "base_price", void 0);
     __decorate([
         typeorm_1.Column({ name: "colarant_price" }),
         __metadata("design:type", Number)
-    ], DispenseLog.prototype, "colarantPrice", void 0);
+    ], DispenseLog.prototype, "colarant_price", void 0);
     __decorate([
         typeorm_1.Column({ name: "quantity" }),
         __metadata("design:type", Number)
@@ -104,11 +104,11 @@ var DispenseLog = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], DispenseLog.prototype, "systemCode", void 0);
+    ], DispenseLog.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "comapny_code" }),
         __metadata("design:type", Number)
-    ], DispenseLog.prototype, "comapnyCode", void 0);
+    ], DispenseLog.prototype, "comapny_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "volume" }),
         __metadata("design:type", Number)
@@ -120,7 +120,7 @@ var DispenseLog = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "grand_total" }),
         __metadata("design:type", Number)
-    ], DispenseLog.prototype, "grandTotal", void 0);
+    ], DispenseLog.prototype, "grand_total", void 0);
     __decorate([
         typeorm_1.Column({ name: "remarks" }),
         __metadata("design:type", String)
@@ -128,11 +128,11 @@ var DispenseLog = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "store_id" }),
         __metadata("design:type", String)
-    ], DispenseLog.prototype, "storeId", void 0);
+    ], DispenseLog.prototype, "store_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "dealer_id" }),
         __metadata("design:type", String)
-    ], DispenseLog.prototype, "dealerId", void 0);
+    ], DispenseLog.prototype, "dealer_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "c7" }),
         __metadata("design:type", Number)
@@ -144,7 +144,7 @@ var DispenseLog = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "created_at" }),
         __metadata("design:type", Date)
-    ], DispenseLog.prototype, "createdAt", void 0);
+    ], DispenseLog.prototype, "created_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "syncstatus" }),
         __metadata("design:type", Number)
@@ -152,7 +152,7 @@ var DispenseLog = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "mobile_number" }),
         __metadata("design:type", String)
-    ], DispenseLog.prototype, "mobileNumber", void 0);
+    ], DispenseLog.prototype, "mobile_number", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "color_code", referencedColumnName: "code" }),
         typeorm_1.ManyToOne(function (type) { return ColorMaster_1.ColorMaster; }, function (color) { return color.code; }),

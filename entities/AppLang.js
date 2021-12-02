@@ -32,11 +32,11 @@ var AppLang = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], AppLang.prototype, "updatedBy", void 0);
+    ], AppLang.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], AppLang.prototype, "updatedOn", void 0);
+    ], AppLang.prototype, "updated_on", void 0);
     AppLang = __decorate([
         typeorm_1.Entity("app_lang")
     ], AppLang);

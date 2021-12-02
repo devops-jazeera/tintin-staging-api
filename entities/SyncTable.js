@@ -21,15 +21,15 @@ var SyncTable = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "map_table" }),
         __metadata("design:type", String)
-    ], SyncTable.prototype, "mapTable", void 0);
+    ], SyncTable.prototype, "map_table", void 0);
     __decorate([
         typeorm_1.Column({ name: "map_pk" }),
         __metadata("design:type", String)
-    ], SyncTable.prototype, "mapPk", void 0);
+    ], SyncTable.prototype, "map_pk", void 0);
     __decorate([
         typeorm_1.Column({ name: "sync_column" }),
         __metadata("design:type", String)
-    ], SyncTable.prototype, "syncColumn", void 0);
+    ], SyncTable.prototype, "sync_column", void 0);
     __decorate([
         typeorm_1.Column({ name: "cond" }),
         __metadata("design:type", String)
@@ -37,7 +37,7 @@ var SyncTable = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "last_update" }),
         __metadata("design:type", Date)
-    ], SyncTable.prototype, "lastUpdate", void 0);
+    ], SyncTable.prototype, "last_update", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -49,15 +49,15 @@ var SyncTable = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "group_on" }),
         __metadata("design:type", String)
-    ], SyncTable.prototype, "groupOn", void 0);
+    ], SyncTable.prototype, "group_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], SyncTable.prototype, "updatedBy", void 0);
+    ], SyncTable.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], SyncTable.prototype, "updatedOn", void 0);
+    ], SyncTable.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "source_id" }),
         typeorm_1.ManyToOne(function (type) { return SyncSource_1.SyncSource; }),

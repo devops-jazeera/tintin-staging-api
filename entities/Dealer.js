@@ -26,15 +26,15 @@ var Dealer = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], Dealer.prototype, "nameAr", void 0);
+    ], Dealer.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "store_id" }),
         __metadata("design:type", String)
-    ], Dealer.prototype, "storeId", void 0);
+    ], Dealer.prototype, "store_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "country_code" }),
         __metadata("design:type", String)
-    ], Dealer.prototype, "countryCode", void 0);
+    ], Dealer.prototype, "country_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "mobile" }),
         __metadata("design:type", String)
@@ -50,7 +50,7 @@ var Dealer = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "address_id" }),
         __metadata("design:type", String)
-    ], Dealer.prototype, "addressId", void 0);
+    ], Dealer.prototype, "address_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "vid" }),
         __metadata("design:type", String)
@@ -62,11 +62,11 @@ var Dealer = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], Dealer.prototype, "updatedBy", void 0);
+    ], Dealer.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], Dealer.prototype, "updatedOn", void 0);
+    ], Dealer.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "vendor_id" }),
         typeorm_1.ManyToOne(function (type) { return Vendor_1.Vendor; }),

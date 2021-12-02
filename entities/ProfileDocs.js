@@ -28,23 +28,23 @@ var ProfileDocs = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "first_name" }),
         __metadata("design:type", String)
-    ], ProfileDocs.prototype, "firstName", void 0);
+    ], ProfileDocs.prototype, "first_name", void 0);
     __decorate([
         typeorm_1.Column({ name: "last_name" }),
         __metadata("design:type", String)
-    ], ProfileDocs.prototype, "lastName", void 0);
+    ], ProfileDocs.prototype, "last_name", void 0);
     __decorate([
         typeorm_1.Column({ name: "doc_type" }),
         __metadata("design:type", String)
-    ], ProfileDocs.prototype, "docType", void 0);
+    ], ProfileDocs.prototype, "doc_type", void 0);
     __decorate([
         typeorm_1.Column({ name: "doc_number" }),
         __metadata("design:type", String)
-    ], ProfileDocs.prototype, "docNumber", void 0);
+    ], ProfileDocs.prototype, "doc_number", void 0);
     __decorate([
         typeorm_1.Column({ name: "exp_date" }),
         __metadata("design:type", Date)
-    ], ProfileDocs.prototype, "expDate", void 0);
+    ], ProfileDocs.prototype, "exp_date", void 0);
     __decorate([
         typeorm_1.Column({ name: "dob" }),
         __metadata("design:type", Date)
@@ -56,11 +56,11 @@ var ProfileDocs = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], ProfileDocs.prototype, "updatedBy", void 0);
+    ], ProfileDocs.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], ProfileDocs.prototype, "updatedOn", void 0);
+    ], ProfileDocs.prototype, "update_on", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "profile_id" }),
         typeorm_1.ManyToOne(function (type) { return Profile_1.Profile; }),

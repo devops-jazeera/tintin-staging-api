@@ -71,8 +71,8 @@ var Technician = /** @class */ (function () {
         __metadata("design:type", Address_1.Address)
     ], Technician.prototype, "address", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "country_code", referencedColumnName: "codeData" }),
-        typeorm_1.ManyToOne(function (type) { return AccessData_1.AccessData; }, function (accessData) { return accessData.codeData; }),
+        typeorm_1.JoinColumn({ name: "country_code", referencedColumnName: "code" }),
+        typeorm_1.ManyToOne(function (type) { return AccessData_1.AccessData; }, function (accessData) { return accessData.code; }),
         __metadata("design:type", AccessData_1.AccessData)
     ], Technician.prototype, "countryMaster", void 0);
     __decorate([

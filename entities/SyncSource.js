@@ -44,15 +44,15 @@ var SyncSource = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "sync_ddl" }),
         __metadata("design:type", String)
-    ], SyncSource.prototype, "syncddl", void 0);
+    ], SyncSource.prototype, "sync_ddl", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], SyncSource.prototype, "updatedBy", void 0);
+    ], SyncSource.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], SyncSource.prototype, "updatedOn", void 0);
+    ], SyncSource.prototype, "updated_on", void 0);
     SyncSource = __decorate([
         typeorm_1.Entity("sync_source")
     ], SyncSource);

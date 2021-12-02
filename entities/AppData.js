@@ -36,11 +36,11 @@ var AppData = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], AppData.prototype, "updatedBy", void 0);
+    ], AppData.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], AppData.prototype, "updatedOn", void 0);
+    ], AppData.prototype, "updated_on", void 0);
     AppData = __decorate([
         typeorm_1.Entity("app_data")
     ], AppData);

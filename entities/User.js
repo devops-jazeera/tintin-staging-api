@@ -28,7 +28,7 @@ var User = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "country_code" }),
         __metadata("design:type", String)
-    ], User.prototype, "countryCode", void 0);
+    ], User.prototype, "country_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "mobile" }),
         __metadata("design:type", String)
@@ -60,19 +60,19 @@ var User = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "created_by" }),
         __metadata("design:type", String)
-    ], User.prototype, "createdBy", void 0);
+    ], User.prototype, "created_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "created_on" }),
         __metadata("design:type", Date)
-    ], User.prototype, "createdOn", void 0);
+    ], User.prototype, "created_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], User.prototype, "updatedBy", void 0);
+    ], User.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], User.prototype, "updatedOn", void 0);
+    ], User.prototype, "updated_on", void 0);
     User = __decorate([
         typeorm_1.Entity("profile")
     ], User);

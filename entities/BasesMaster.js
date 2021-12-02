@@ -24,11 +24,11 @@ var BasesMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_en" }),
         __metadata("design:type", String)
-    ], BasesMaster.prototype, "nameEn", void 0);
+    ], BasesMaster.prototype, "name_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], BasesMaster.prototype, "nameAr", void 0);
+    ], BasesMaster.prototype, "name_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "code" }),
         __metadata("design:type", String)
@@ -36,7 +36,7 @@ var BasesMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "product_id" }),
         __metadata("design:type", String)
-    ], BasesMaster.prototype, "productId", void 0);
+    ], BasesMaster.prototype, "product_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -44,27 +44,27 @@ var BasesMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], BasesMaster.prototype, "updatedBy", void 0);
+    ], BasesMaster.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], BasesMaster.prototype, "updatedAt", void 0);
+    ], BasesMaster.prototype, "updated_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], BasesMaster.prototype, "insertedAt", void 0);
+    ], BasesMaster.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "deleted_at" }),
         __metadata("design:type", Date)
-    ], BasesMaster.prototype, "deletedAt", void 0);
+    ], BasesMaster.prototype, "deleted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], BasesMaster.prototype, "systemCode", void 0);
+    ], BasesMaster.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "vendor_id" }),
         __metadata("design:type", String)
-    ], BasesMaster.prototype, "vendorId", void 0);
+    ], BasesMaster.prototype, "vendor_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "price" }),
         __metadata("design:type", Number)

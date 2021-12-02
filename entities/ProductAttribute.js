@@ -21,19 +21,19 @@ var ProductAttribute = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_en" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "nameEn", void 0);
+    ], ProductAttribute.prototype, "name_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "nameAr", void 0);
+    ], ProductAttribute.prototype, "nam_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "description_en" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "descriptionEn", void 0);
+    ], ProductAttribute.prototype, "description_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "description_ar" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "descriptionAr", void 0);
+    ], ProductAttribute.prototype, "description_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "vendor_id" }),
         __metadata("design:type", String)
@@ -50,11 +50,11 @@ var ProductAttribute = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "product_code" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "productCode", void 0);
+    ], ProductAttribute.prototype, "product_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "systemCode", void 0);
+    ], ProductAttribute.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
@@ -62,43 +62,43 @@ var ProductAttribute = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "product_id" }),
         __metadata("design:type", Number)
-    ], ProductAttribute.prototype, "productId", void 0);
+    ], ProductAttribute.prototype, "product_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "company_code" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "companyCode", void 0);
+    ], ProductAttribute.prototype, "company_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "mainphoto_description_en" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "mainPhotoDecsEn", void 0);
+    ], ProductAttribute.prototype, "mainphoto_description_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "mainphoto_description_ar" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "mainPhotoDescAr", void 0);
+    ], ProductAttribute.prototype, "mainphoto_description_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "title_en" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "titleEn", void 0);
+    ], ProductAttribute.prototype, "title_en", void 0);
     __decorate([
         typeorm_1.Column({ name: "title_ar" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "titleAr", void 0);
+    ], ProductAttribute.prototype, "title_ar", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], ProductAttribute.prototype, "updatedBy", void 0);
+    ], ProductAttribute.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], ProductAttribute.prototype, "updatedAt", void 0);
+    ], ProductAttribute.prototype, "updated_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], ProductAttribute.prototype, "insertedAt", void 0);
+    ], ProductAttribute.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "deleted_at" }),
         __metadata("design:type", Date)
-    ], ProductAttribute.prototype, "deletedAt", void 0);
+    ], ProductAttribute.prototype, "deleted_at", void 0);
     ProductAttribute = __decorate([
         typeorm_1.Entity("product_attributes")
     ], ProductAttribute);

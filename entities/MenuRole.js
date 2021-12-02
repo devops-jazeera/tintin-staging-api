@@ -28,11 +28,11 @@ var MenuRole = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], MenuRole.prototype, "updatedBy", void 0);
+    ], MenuRole.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], MenuRole.prototype, "updatedOn", void 0);
+    ], MenuRole.prototype, "updated_on", void 0);
     MenuRole = __decorate([
         typeorm_1.Entity("menu_role")
     ], MenuRole);

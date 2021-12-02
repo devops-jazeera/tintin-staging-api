@@ -16,7 +16,7 @@ var AccessData = /** @class */ (function () {
     __decorate([
         typeorm_1.PrimaryColumn({ name: "name" }),
         __metadata("design:type", String)
-    ], AccessData.prototype, "nameEn", void 0);
+    ], AccessData.prototype, "name", void 0);
     __decorate([
         typeorm_1.Column({ name: "code" }),
         __metadata("design:type", String)
@@ -24,11 +24,11 @@ var AccessData = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "data" }),
         __metadata("design:type", String)
-    ], AccessData.prototype, "codeData", void 0);
+    ], AccessData.prototype, "data", void 0);
     __decorate([
         typeorm_1.Column({ name: "val" }),
         __metadata("design:type", String)
-    ], AccessData.prototype, "value", void 0);
+    ], AccessData.prototype, "val", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)

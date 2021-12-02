@@ -26,7 +26,7 @@ var MenuLink = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], MenuLink.prototype, "nameAr", void 0);
+    ], MenuLink.prototype, "name_a", void 0);
     __decorate([
         typeorm_1.Column({ name: "link" }),
         __metadata("design:type", String)
@@ -42,15 +42,15 @@ var MenuLink = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], MenuLink.prototype, "updatedBy", void 0);
+    ], MenuLink.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], MenuLink.prototype, "updatedOn", void 0);
+    ], MenuLink.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "parent_id" }),
         __metadata("design:type", String)
-    ], MenuLink.prototype, "parentId", void 0);
+    ], MenuLink.prototype, "parent_id", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "parent_id" }),
         typeorm_1.ManyToOne(function (type) { return MenuLink_1; }),

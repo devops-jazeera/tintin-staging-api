@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var FileData = /** @class */ (function () {
     function FileData() {
-        this.isSecure = false;
+        this.is_secure = false;
     }
     __decorate([
         typeorm_1.PrimaryColumn({ name: "id" }),
@@ -29,7 +29,7 @@ var FileData = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "is_secure" }),
         __metadata("design:type", Boolean)
-    ], FileData.prototype, "isSecure", void 0);
+    ], FileData.prototype, "is_secure", void 0);
     __decorate([
         typeorm_1.Column({ name: "ref" }),
         __metadata("design:type", String)
@@ -37,7 +37,7 @@ var FileData = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "ref_type" }),
         __metadata("design:type", String)
-    ], FileData.prototype, "refType", void 0);
+    ], FileData.prototype, "ref_type", void 0);
     __decorate([
         typeorm_1.Column({ name: "url" }),
         __metadata("design:type", String)

@@ -24,7 +24,7 @@ var Address = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "land_mark" }),
         __metadata("design:type", String)
-    ], Address.prototype, "landMark", void 0);
+    ], Address.prototype, "land_mark", void 0);
     __decorate([
         typeorm_1.Column({ name: "city" }),
         __metadata("design:type", String)
@@ -40,7 +40,7 @@ var Address = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "zip_code" }),
         __metadata("design:type", Number)
-    ], Address.prototype, "zipCode", void 0);
+    ], Address.prototype, "zip_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "lng" }),
         __metadata("design:type", String)
@@ -52,7 +52,7 @@ var Address = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "isd" }),
         __metadata("design:type", String)
-    ], Address.prototype, "countryCode", void 0);
+    ], Address.prototype, "isd", void 0);
     Address = __decorate([
         typeorm_1.Entity("address")
     ], Address);

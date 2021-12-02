@@ -40,11 +40,11 @@ var SmtpConfig = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], SmtpConfig.prototype, "updatedBy", void 0);
+    ], SmtpConfig.prototype, "updated_by", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], SmtpConfig.prototype, "updatedOn", void 0);
+    ], SmtpConfig.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)

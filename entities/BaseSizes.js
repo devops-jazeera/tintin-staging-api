@@ -23,67 +23,67 @@ var BaseSizes = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "price_ap" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "priceap", void 0);
+    ], BaseSizes.prototype, "price_ap", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_ap2" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "priceap2", void 0);
+    ], BaseSizes.prototype, "price_ap2", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_app" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "priceapp", void 0);
+    ], BaseSizes.prototype, "price_app", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_p1" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "pricep1", void 0);
+    ], BaseSizes.prototype, "price_p1", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_p2" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "pricep2", void 0);
+    ], BaseSizes.prototype, "price_p2", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_p3" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "pricep3", void 0);
+    ], BaseSizes.prototype, "price_p3", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_p4" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "pricep4", void 0);
+    ], BaseSizes.prototype, "price_p4", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_p5" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "pricep5", void 0);
+    ], BaseSizes.prototype, "price_p5", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_p6" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "pricep6", void 0);
+    ], BaseSizes.prototype, "price_p6", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_p7" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "pricep7", void 0);
+    ], BaseSizes.prototype, "price_p7", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_ip" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "priceip", void 0);
+    ], BaseSizes.prototype, "price_ip", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_ap10m" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "priceap10m", void 0);
+    ], BaseSizes.prototype, "price_ap10m", void 0);
     __decorate([
         typeorm_1.Column({ name: "price_ap10per" }),
         __metadata("design:type", Number)
-    ], BaseSizes.prototype, "priceap10per", void 0);
+    ], BaseSizes.prototype, "price_ap10per", void 0);
     __decorate([
         typeorm_1.Column({ name: "base_id" }),
         __metadata("design:type", String)
-    ], BaseSizes.prototype, "baseId", void 0);
+    ], BaseSizes.prototype, "base_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "size_id" }),
         __metadata("design:type", String)
-    ], BaseSizes.prototype, "sizeId", void 0);
+    ], BaseSizes.prototype, "size_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "product_id" }),
         __metadata("design:type", String)
-    ], BaseSizes.prototype, "productId", void 0);
+    ], BaseSizes.prototype, "product_id", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "base_id" }),
         typeorm_1.ManyToOne(function (type) { return BasesMaster_1.BasesMaster; }, function (bm) { return bm.id; }),
@@ -102,19 +102,19 @@ var BaseSizes = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], BaseSizes.prototype, "insertedAt", void 0);
+    ], BaseSizes.prototype, "inserted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], BaseSizes.prototype, "updatedAt", void 0);
+    ], BaseSizes.prototype, "updated_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "deleted_at" }),
         __metadata("design:type", Date)
-    ], BaseSizes.prototype, "deletedAt", void 0);
+    ], BaseSizes.prototype, "deleted_at", void 0);
     __decorate([
         typeorm_1.Column({ name: "vendor_id" }),
         __metadata("design:type", String)
-    ], BaseSizes.prototype, "vendorId", void 0);
+    ], BaseSizes.prototype, "vendor_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
