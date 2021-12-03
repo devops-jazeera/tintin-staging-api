@@ -155,7 +155,7 @@ var BaseSizeColors = /** @class */ (function () {
         __metadata("design:type", BasesMaster_1.BasesMaster)
     ], BaseSizeColors.prototype, "base", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "system_code", referencedColumnName: "systemCode" }),
+        typeorm_1.JoinColumn({ name: "system_code", referencedColumnName: "system_code" }),
         typeorm_1.ManyToOne(function (type) { return DatabaseMaster_1.DatabaseMaster; }, function (db) { return db.system_code; }),
         __metadata("design:type", DatabaseMaster_1.DatabaseMaster)
     ], BaseSizeColors.prototype, "dbMaster", void 0);
