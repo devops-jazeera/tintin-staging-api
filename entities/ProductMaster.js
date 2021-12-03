@@ -120,7 +120,7 @@ var ProductMaster = /** @class */ (function () {
     ], ProductMaster.prototype, "bases", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "system_code", referencedColumnName: "systemCode" }),
-        typeorm_1.OneToOne(function (type) { return DatabaseMaster_1.DatabaseMaster; }, function (db) { return db.systemCode; }),
+        typeorm_1.OneToOne(function (type) { return DatabaseMaster_1.DatabaseMaster; }, function (db) { return db.system_code; }),
         __metadata("design:type", DatabaseMaster_1.DatabaseMaster)
     ], ProductMaster.prototype, "dataBaseMaster", void 0);
     ProductMaster = __decorate([

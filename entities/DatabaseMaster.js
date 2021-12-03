@@ -46,7 +46,7 @@ var DatabaseMaster = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "system_code" }),
         __metadata("design:type", String)
-    ], DatabaseMaster.prototype, "systemCode", void 0);
+    ], DatabaseMaster.prototype, "system_code", void 0);
     __decorate([
         typeorm_1.Column({ name: "shot" }),
         __metadata("design:type", String)
