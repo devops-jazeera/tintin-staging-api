@@ -36,7 +36,7 @@ var ShadePasting = /** @class */ (function () {
     __decorate([
         typeorm_1.Column({ name: "pigment_set_id" }),
         __metadata("design:type", String)
-    ], ShadePasting.prototype, "pgSet_id", void 0);
+    ], ShadePasting.prototype, "pigment_set_id", void 0);
     __decorate([
         typeorm_1.Column({ name: "unit" }),
         __metadata("design:type", Number)
