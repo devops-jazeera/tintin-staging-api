@@ -126,18 +126,18 @@ var SyncMainService = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!this.isTranscationProceed) return [3 /*break*/, 11];
+                        if (!this.isTranscationProceed) return [3 /*break*/, 12];
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 9, , 10]);
+                        _a.trys.push([1, 10, , 11]);
                         Log_2.transaction.debug("(((((((((( SYNC START ))))))))))");
                         return [4 /*yield*/, this.checkInternet()];
                     case 2:
-                        if (!_a.sent()) return [3 /*break*/, 7];
+                        if (!_a.sent()) return [3 /*break*/, 8];
                         return [4 /*yield*/, this.syncTransactionsServices.getTransData('dispense_log')];
                     case 3:
                         transactionalData = _a.sent();
-                        if (!(transactionalData.length > 0)) return [3 /*break*/, 6];
+                        if (!(transactionalData.length > 0)) return [3 /*break*/, 7];
                         return [4 /*yield*/, this.kafkaService.publisher({
                                 topic: 'dispense_log',
                                 acks: 1,
@@ -145,30 +145,33 @@ var SyncMainService = /** @class */ (function () {
                             })];
                     case 4:
                         _a.sent();
+                        return [4 /*yield*/, this.updateLastSynced()];
+                    case 5:
+                        _a.sent();
                         transactionalData.map(function (v) {
                             v.syncstatus = 1;
                         });
                         return [4 /*yield*/, this.syncTransactionsServices.saveData('dispense_log', { savedIds: transactionalData })];
-                    case 5:
+                    case 6:
                         _a.sent();
-                        _a.label = 6;
-                    case 6: return [3 /*break*/, 8];
-                    case 7:
-                        Log_2.transaction.info(">>>>>>>>>>>>>>>>> No Internet connection <<<<<<<<<<<<<<<<<<<<");
-                        _a.label = 8;
+                        _a.label = 7;
+                    case 7: return [3 /*break*/, 9];
                     case 8:
-                        Log_2.transaction.debug("(((((((((( SYNC CLOSED ))))))))))");
-                        return [3 /*break*/, 10];
+                        Log_2.transaction.info(">>>>>>>>>>>>>>>>> No Internet connection <<<<<<<<<<<<<<<<<<<<");
+                        _a.label = 9;
                     case 9:
+                        Log_2.transaction.debug("(((((((((( SYNC CLOSED ))))))))))");
+                        return [3 /*break*/, 11];
+                    case 10:
                         error_2 = _a.sent();
                         // count = 1
                         this.isTranscationProceed = false;
                         Log_2.transaction.error("--------- TRANSACTION ERROR ---------");
                         Log_2.transaction.debug(error_2);
                         Log_2.transaction.error("--------- TRANSACTION ERROR ---------");
-                        return [3 /*break*/, 10];
-                    case 10: return [3 /*break*/, 0];
-                    case 11: return [2 /*return*/];
+                        return [3 /*break*/, 11];
+                    case 11: return [3 /*break*/, 0];
+                    case 12: return [2 /*return*/];
                 }
             });
         });
@@ -298,6 +301,9 @@ var SyncMainService = /** @class */ (function () {
                                                     })];
                                             case 11:
                                                 _d.sent();
+                                                return [4 /*yield*/, this.updateLastSynced()];
+                                            case 12:
+                                                _d.sent();
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  PUBLISHED SAVED DATA $$$$$$$$$$$$$$$$$$$$$$$$");
                                                 return [2 /*return*/];
                                         }
@@ -336,22 +342,24 @@ var SyncMainService = /** @class */ (function () {
             });
         });
     };
-    SyncMainService.prototype.updateLastSynced = function (reqData) {
+    SyncMainService.prototype.updateLastSynced = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var data, error_3;
+            var error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.callApi(this.url + "syncdata/lastsynced", this.token, reqData)];
+                        return [4 /*yield*/, this.kafkaService.publisher({
+                                topic: 'last_sync_update',
+                                acks: 1,
+                                messages: [{
+                                        value: JSON.stringify({
+                                            id: process.env.TINTING_STORE_ID
+                                        })
+                                    }]
+                            })];
                     case 1:
-                        data = _a.sent();
-                        if (data.error) {
-                            throw data.error.message;
-                        }
-                        else {
-                            return [2 /*return*/, data];
-                        }
+                        _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
                         error_3 = _a.sent();
