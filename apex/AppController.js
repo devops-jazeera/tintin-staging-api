@@ -34,49 +34,67 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var LoadController_1 = require("./LoadController");
 var CacheController_1 = require("./CacheController");
 // import { AppReport } from "./AppReport";
 var WebController_1 = require("./WebController");
+var fs = __importStar(require("fs"));
+var Log_1 = require("../utils/Log");
 var AppController = /** @class */ (function () {
     function AppController() {
         this.router = express_1.Router();
+        this.routes = fs.readdirSync(__dirname + "/../app/routes");
     }
-    // routes = fs.readdirSync(`${__dirname}/../app/routes`);
     AppController.prototype.getRouter = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, route;
-            return __generator(this, function (_k) {
-                switch (_k.label) {
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, route, _i, _k, path, action, ns;
+            return __generator(this, function (_l) {
+                switch (_l.label) {
                     case 0:
                         _b = (_a = this.router).use;
                         _c = ["/load"];
                         return [4 /*yield*/, new LoadController_1.LoadController().getRouter()];
                     case 1:
-                        _b.apply(_a, _c.concat([_k.sent()]));
+                        _b.apply(_a, _c.concat([_l.sent()]));
                         // this.router.use("/report", await new AppReport().getRouter());
                         _e = (_d = this.router).use;
                         _f = ["/cache"];
                         return [4 /*yield*/, new CacheController_1.CacheController().getRouter()];
                     case 2:
                         // this.router.use("/report", await new AppReport().getRouter());
-                        _e.apply(_d, _f.concat([_k.sent()]));
+                        _e.apply(_d, _f.concat([_l.sent()]));
                         _h = (_g = this.router).use;
                         _j = ["/web"];
                         return [4 /*yield*/, new WebController_1.WebController().getRouter()];
                     case 3:
-                        _h.apply(_g, _j.concat([_k.sent()]));
-                        // for (route of this.routes) {
-                        //   route = route.slice(0, -3);
-                        //   let path = `/${route.replace("Controller", "").toLowerCase()}`;
-                        //   let action = `../app/routes/${route}`;
-                        //   var ns = await import(action);
-                        //   log.info(path);
-                        //   this.router.use(path, new ns[route]().getRouter());
-                        // }
-                        return [2 /*return*/, this.router];
+                        _h.apply(_g, _j.concat([_l.sent()]));
+                        _i = 0, _k = this.routes;
+                        _l.label = 4;
+                    case 4:
+                        if (!(_i < _k.length)) return [3 /*break*/, 7];
+                        route = _k[_i];
+                        route = route.slice(0, -3);
+                        path = "/" + route.replace("Controller", "").toLowerCase();
+                        action = "../app/routes/" + route;
+                        return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(action)); })];
+                    case 5:
+                        ns = _l.sent();
+                        Log_1.log.info(path);
+                        this.router.use(path, new ns[route]().getRouter());
+                        _l.label = 6;
+                    case 6:
+                        _i++;
+                        return [3 /*break*/, 4];
+                    case 7: return [2 /*return*/, this.router];
                 }
             });
         });
