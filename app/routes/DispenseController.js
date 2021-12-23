@@ -68,8 +68,8 @@ var DispenseController = /** @class */ (function () {
                         if (!(platform === "win32" || platform === "win64")) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.connect_to_dll(reqData, platform)];
                     case 1:
-                        result = _a.sent(),
-                            response.send({ status: 1, data: result });
+                        result = _a.sent();
+                        response.send({ status: 1, data: result });
                         return [3 /*break*/, 3];
                     case 2: throw "platform is not windows";
                     case 3: return [3 /*break*/, 5];
@@ -91,30 +91,35 @@ var DispenseController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         new Uint16Array([1, 2, 3]).buffer;
-                        if (platform === "win32") {
-                            dllPath = path.resolve("C:/tinting-dll-files/x64/JazeeraFM.dll");
-                        }
-                        else {
-                            dllPath = path.resolve("C:/tinting-dll-files/x86/JazeeraFM.dll");
-                        }
-                        fmDispenser = new ffi.Library(dllPath, {
+                        if (!(platform === "win32")) return [3 /*break*/, 2];
+                        return [4 /*yield*/, path.resolve("C:/tinting-dll-files/x64/JazeeraFM.dll")];
+                    case 1:
+                        dllPath = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, path.resolve("C:/tinting-dll-files/x86/JazeeraFM.dll")];
+                    case 3:
+                        dllPath = _a.sent();
+                        _a.label = 4;
+                    case 4: return [4 /*yield*/, new ffi.Library(dllPath, {
                             'Init': ["int32", []],
                             'Shutdown': ["int32", []],
                             'DTD': ["String", ['float', 'string', 'string']]
-                        });
+                        })];
+                    case 5:
+                        fmDispenser = _a.sent();
                         // colorant='"PV","RU"';
                         // colorantqty='"9.0","1.4"';
                         colorant = data.colorant;
                         colorantqty = data.colorantqty;
                         can = data.can;
                         return [4 /*yield*/, fmDispenser.Init()];
-                    case 1:
+                    case 6:
                         _a.sent();
                         return [4 /*yield*/, fmDispenser.DTD(900.00, colorant, colorantqty)];
-                    case 2:
+                    case 7:
                         result = _a.sent();
                         return [4 /*yield*/, fmDispenser.Shutdown()];
-                    case 3:
+                    case 8:
                         _a.sent();
                         return [2 /*return*/, result];
                 }

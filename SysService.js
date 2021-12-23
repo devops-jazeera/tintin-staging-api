@@ -36,50 +36,55 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var SyncServiceHelper_1 = require("./sync/SyncServiceHelper");
-var App_1 = require("./utils/App");
 var syslogstr = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 var cmd = require("node-cmd");
 var cron = require("node-cron");
 var execSync = require("child_process").execSync;
+var shell = require('shelljs');
 var SysService = /** @class */ (function () {
     function SysService() {
     }
     SysService.ResetService = function (log) {
         return __awaiter(this, void 0, void 0, function () {
-            var cmdData, err_1;
+            var cmdData, status;
+            var _this = this;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        cmdData = null;
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, SysService.CmdService("sc query  tinting-offline", log)];
-                    case 2:
-                        cmdData = _a.sent();
-                        return [3 /*break*/, 4];
-                    case 3:
-                        err_1 = _a.sent();
-                        log.error(err_1);
-                        return [3 /*break*/, 4];
-                    case 4:
-                        if (!(cmdData && cmdData.includes("STOPPED"))) return [3 /*break*/, 7];
-                        return [4 /*yield*/, SysService.CmdService("net start tinting-offline", log)];
-                    case 5:
-                        _a.sent();
-                        return [4 /*yield*/, SysService.CmdService("net stop tinting-alt", log)];
-                    case 6:
-                        _a.sent();
-                        return [3 /*break*/, 10];
-                    case 7: return [4 /*yield*/, SysService.CmdService("net start tinting-alt", log)];
-                    case 8:
-                        _a.sent();
-                        return [4 /*yield*/, SysService.CmdService("net stop tinting-offline", log)];
-                    case 9:
-                        _a.sent();
-                        _a.label = 10;
-                    case 10: return [2 /*return*/];
+                cmdData = null;
+                try {
+                    // shell.exec('pm2 jlist tinting',async  (code, output) =>{
+                    //   console.log('Exit code:', code);
+                    //   var result = await JSON.parse(output)
+                    //   status =await  result.find(v => v.name =='tinting')?.pm2_env?.status
+                    //   console.log('Program output:', status);
+                    // });
+                    // cmdData = await SysService.CmdService("sc query  tinting-offline", log);
                 }
+                catch (err) {
+                    log.error(err);
+                }
+                // if (cmdData && cmdData.includes("STOPPED")) {
+                //   await SysService.CmdService("net start tinting-offline", log);
+                //   await SysService.CmdService("net stop tinting-alt", log);
+                // } else {
+                //   await SysService.CmdService("net start tinting-alt", log);
+                //   await SysService.CmdService("net stop tinting-offline", log);
+                // }
+                shell.exec('pm2 restart tinting', function (code, output) { return __awaiter(_this, void 0, void 0, function () {
+                    var result;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                console.log('Exit code:', code);
+                                return [4 /*yield*/, JSON.parse(output)];
+                            case 1:
+                                result = _a.sent();
+                                // status =await  result.find(v => v.name =='tinting')?.pm2_env?.status;
+                                console.log('Program output:', code, result);
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
             });
         });
     };
@@ -115,64 +120,56 @@ var SysService = /** @class */ (function () {
     };
     SysService.SelectedMacAddress = function (storeid, log) {
         return __awaiter(this, void 0, void 0, function () {
-            var data, _a, err_2;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var data, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
                         log.info(syslogstr);
-                        _b.label = 1;
+                        _a.label = 1;
                     case 1:
-                        _b.trys.push([1, 8, 9, 10]);
+                        _a.trys.push([1, 3, 4, 5]);
                         return [4 /*yield*/, SyncServiceHelper_1.SyncServiceHelper.StoreSource(storeid, log)];
                     case 2:
-                        data = _b.sent();
-                        if (!data) return [3 /*break*/, 6];
-                        if (!(data.mac_address == "own")) return [3 /*break*/, 5];
-                        _a = data;
-                        return [4 /*yield*/, App_1.App.getMacAddress()];
+                        data = _a.sent();
+                        if (data) {
+                            if (data.mac_address == "own") {
+                                //data.mac_address = await App.getMacAddress();
+                                //await SyncServiceHelper.UpdateCall("MAC", log, data.mac_address);
+                            }
+                            return [2 /*return*/, Promise.resolve(data.mac_address)];
+                        }
+                        else {
+                            return [2 /*return*/, Promise.resolve(null)];
+                        }
+                        return [3 /*break*/, 5];
                     case 3:
-                        _a.mac_address = _b.sent();
-                        return [4 /*yield*/, SyncServiceHelper_1.SyncServiceHelper.UpdateCall("MAC", log, data.mac_address)];
-                    case 4:
-                        _b.sent();
-                        _b.label = 5;
-                    case 5: return [2 /*return*/, Promise.resolve(data.mac_address)];
-                    case 6: return [2 /*return*/, Promise.resolve(null)];
-                    case 7: return [3 /*break*/, 10];
-                    case 8:
-                        err_2 = _b.sent();
-                        log.warn(err_2);
+                        err_1 = _a.sent();
+                        log.warn(err_1);
                         return [2 /*return*/, Promise.resolve(null)];
-                    case 9:
+                    case 4:
                         log.info(syslogstr);
                         return [7 /*endfinally*/];
-                    case 10: return [2 /*return*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
     };
     SysService.UpdateVersion = function (log) {
         return __awaiter(this, void 0, void 0, function () {
-            var fs, data, err_3;
+            var fs, data;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        fs = require("fs");
-                        data = fs.readFileSync("./package.json", "utf8");
-                        data = JSON.parse(data);
-                        log.info("Version: " + data.version);
-                        return [4 /*yield*/, SyncServiceHelper_1.SyncServiceHelper.UpdateCall("VERSION", log, data.version)];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        err_3 = _a.sent();
-                        log.error("Error on updating version");
-                        log.error(err_3);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                try {
+                    fs = require("fs");
+                    data = fs.readFileSync("./package.json", "utf8");
+                    data = JSON.parse(data);
+                    log.info("Version: " + data.version);
+                    // await SyncServiceHelper.UpdateCall("VERSION", log, data.version);
                 }
+                catch (err) {
+                    log.error("Error on updating version");
+                    log.error(err);
+                }
+                return [2 /*return*/];
             });
         });
     };
