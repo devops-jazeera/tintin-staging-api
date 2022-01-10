@@ -49,12 +49,6 @@ var KafkaService = /** @class */ (function () {
         this.producer = this.kafka.producer({
             maxWaitTimeInMs: 3000,
         });
-        this.consumer = this.kafka.consumer({
-            groupId: Config_1.kafkaOptions.clientId,
-            minBytes: 5,
-            maxBytes: 1e6,
-            maxWaitTimeInMs: 3000,
-        });
         this.admin = this.kafka.admin();
     }
     KafkaService.prototype.get_topics_list = function () {
@@ -137,15 +131,23 @@ var KafkaService = /** @class */ (function () {
     };
     KafkaService.prototype.subscriber = function (topic) {
         return __awaiter(this, void 0, void 0, function () {
+            var consumer;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.consumer.connect()];
+                    case 0:
+                        consumer = this.kafka.consumer({
+                            groupId: Config_1.kafkaOptions.clientId,
+                            minBytes: 5,
+                            maxBytes: 1e6,
+                            maxWaitTimeInMs: 3000,
+                        });
+                        return [4 /*yield*/, consumer.connect()];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.consumer.subscribe({ topic: topic, fromBeginning: true })];
+                        return [4 /*yield*/, consumer.subscribe({ topic: topic, fromBeginning: true })];
                     case 2:
                         _a.sent();
-                        return [2 /*return*/, this.consumer];
+                        return [2 /*return*/, consumer];
                 }
             });
         });

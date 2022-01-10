@@ -51,6 +51,7 @@ var cron = require("node-cron");
 var cmd = require("node-cmd");
 var Log_1 = require("../../utils/Log");
 var Log_2 = require("../../utils/Log");
+var Log_3 = require("../../utils/Log");
 var KafkaService_1 = require("../kafka/KafkaService");
 var UpdateService_1 = require("../updater/UpdateService");
 var typeorm_1 = require("typeorm");
@@ -66,8 +67,8 @@ var SyncMainService = /** @class */ (function () {
         this.kafkaService = new KafkaService_1.KafkaService();
         this.kafkaService.clientId = process.env.TINTING_STORE_ID;
         this.subscribe();
-        this.subscribeForUpdates();
-        this.subscribeForTableUpdates();
+        this.subscribeForUpdates(this.consumer);
+        this.subscribeForTableUpdates(this.tableConsumer);
     }
     SyncMainService.prototype.checkProcessRunning = function () {
         var _this = this;
@@ -242,12 +243,13 @@ var SyncMainService = /** @class */ (function () {
                                                 _i = 0, _b = batch.messages;
                                                 _d.label = 1;
                                             case 1:
-                                                if (!(_i < _b.length)) return [3 /*break*/, 10];
+                                                if (!(_i < _b.length)) return [3 /*break*/, 13];
                                                 message = _b[_i];
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
                                                 data = JSON.parse(message.value);
                                                 Log_1.master.info(data.length);
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ MASTER DATA $$$$$$$$$$$$$$$$$$$$$$$$");
+                                                if (!(data && data.length)) return [3 /*break*/, 9];
                                                 return [4 /*yield*/, this.groupBy(data, function (item) {
                                                         return [item.tableName];
                                                     })];
@@ -292,9 +294,6 @@ var SyncMainService = /** @class */ (function () {
                                                 resolveOffset(message.offset);
                                                 _d.label = 9;
                                             case 9:
-                                                _i++;
-                                                return [3 /*break*/, 1];
-                                            case 10:
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  PUBLISHING SAVED DATA $$$$$$$$$$$$$$$$$$$$$$$$");
                                                 return [4 /*yield*/, this.kafkaService.publisher({
                                                         topic: 'synced_data',
@@ -303,13 +302,17 @@ var SyncMainService = /** @class */ (function () {
                                                                 value: JSON.stringify(messages)
                                                             }]
                                                     })];
-                                            case 11:
+                                            case 10:
                                                 _d.sent();
                                                 return [4 /*yield*/, this.updateLastSynced()];
-                                            case 12:
+                                            case 11:
                                                 _d.sent();
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$  PUBLISHED SAVED DATA $$$$$$$$$$$$$$$$$$$$$$$$");
-                                                return [2 /*return*/];
+                                                _d.label = 12;
+                                            case 12:
+                                                _i++;
+                                                return [3 /*break*/, 1];
+                                            case 13: return [2 /*return*/];
                                         }
                                     });
                                 });
@@ -336,25 +339,28 @@ var SyncMainService = /** @class */ (function () {
             });
         });
     };
-    SyncMainService.prototype.subscribeForUpdates = function () {
+    SyncMainService.prototype.subscribeForUpdates = function (consumer) {
         return __awaiter(this, void 0, void 0, function () {
-            var topic, consumer, err_3;
+            var topic, err_3;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 3, , 4]);
                         topic = "UPDATE";
+                        if (!!consumer) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.kafkaService.subscriber(topic)];
                     case 1:
                         consumer = _a.sent();
+                        _a.label = 2;
+                    case 2:
                         consumer.run({
                             eachMessage: function (_a) {
                                 var message = _a.message;
                                 return __awaiter(_this, void 0, void 0, function () {
                                     var updateService;
                                     return __generator(this, function (_b) {
-                                        updateService = new UpdateService_1.UpdateService();
+                                        updateService = new UpdateService_1.UpdateService(Log_3.ulog);
                                         updateService.initializeUpdater();
                                         updateService.initUpdate();
                                         return [2 /*return*/];
@@ -362,40 +368,43 @@ var SyncMainService = /** @class */ (function () {
                                 });
                             }
                         });
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         err_3 = _a.sent();
                         setTimeout(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, this.subscribeForUpdates()];
+                                case 0: return [4 /*yield*/, this.subscribeForUpdates(consumer)];
                                 case 1:
                                     _a.sent();
                                     return [2 /*return*/];
                             }
                         }); }); }, 3000);
-                        Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
-                        Log_1.master.info(err_3);
-                        Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
-                        Log_1.master.error(err_3);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        Log_3.ulog.info("$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_3.ulog.info(err_3);
+                        Log_3.ulog.info("$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_3.ulog.error(err_3);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    SyncMainService.prototype.subscribeForTableUpdates = function () {
+    SyncMainService.prototype.subscribeForTableUpdates = function (tableConsumer) {
         return __awaiter(this, void 0, void 0, function () {
-            var topic, consumer, err_4;
+            var topic, err_4;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 3, , 4]);
                         topic = "TABLE_UPDATE";
+                        if (!!tableConsumer) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.kafkaService.subscriber(topic)];
                     case 1:
-                        consumer = _a.sent();
-                        consumer.run({
+                        tableConsumer = _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        tableConsumer.run({
                             eachMessage: function (_a) {
                                 var topic = _a.topic, message = _a.message;
                                 return __awaiter(_this, void 0, void 0, function () {
@@ -438,12 +447,12 @@ var SyncMainService = /** @class */ (function () {
                                 });
                             }
                         });
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         err_4 = _a.sent();
                         setTimeout(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, this.subscribeForTableUpdates()];
+                                case 0: return [4 /*yield*/, this.subscribeForTableUpdates(tableConsumer)];
                                 case 1:
                                     _a.sent();
                                     return [2 /*return*/];
@@ -453,8 +462,8 @@ var SyncMainService = /** @class */ (function () {
                         Log_1.master.info(err_4);
                         Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ TABLE UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
                         Log_1.master.error(err_4);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

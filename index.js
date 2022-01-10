@@ -56,7 +56,6 @@ var http = require("http");
 var Store_1 = require("./utils/Store");
 var SysService_1 = require("./SysService");
 var SyncMainService_1 = require("./app/task/SyncMainService");
-var UpdateService_1 = require("./app/updater/UpdateService");
 var port = 5002;
 var TINTING_STORE_ID = process.env ? process.env.TINTING_STORE_ID : null;
 var count = 0;
@@ -64,7 +63,7 @@ Config.setEnvConfig();
 process.env.TZ = "UTC";
 var conn = null;
 var run = function () { return __awaiter(_this, void 0, void 0, function () {
-    var appExpress, express, httpServer, CallSync, lastSyncDate, diff, updateService, error_1;
+    var appExpress, express, httpServer, CallSync, lastSyncDate, diff, error_1;
     var _this = this;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -141,8 +140,9 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                             lastSyncDate = null;
                             diff = null;
                             Store_1.StoreInIt();
-                            updateService = new UpdateService_1.UpdateService();
-                            updateService.initializeUpdater();
+                            // sync();
+                            // const updateService = new UpdateService();
+                            // updateService.initializeUpdater();
                         }
                     }
                     catch (error) {
