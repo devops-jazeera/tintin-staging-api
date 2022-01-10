@@ -56,6 +56,7 @@ var http = require("http");
 var Store_1 = require("./utils/Store");
 var SysService_1 = require("./SysService");
 var SyncMainService_1 = require("./app/task/SyncMainService");
+var UpdateService_1 = require("./app/updater/UpdateService");
 var port = 5002;
 var TINTING_STORE_ID = process.env ? process.env.TINTING_STORE_ID : null;
 var count = 0;
@@ -63,7 +64,7 @@ Config.setEnvConfig();
 process.env.TZ = "UTC";
 var conn = null;
 var run = function () { return __awaiter(_this, void 0, void 0, function () {
-    var appExpress, express, httpServer, CallSync, lastSyncDate, diff, error_1;
+    var appExpress, express, httpServer, CallSync, lastSyncDate, diff, updateService, error_1;
     var _this = this;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -97,14 +98,14 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                     //   });
                     // });
                     express.use("/api", function (req, res, next) {
-                        if (TINTING_STORE_ID) {
-                            var diff = syncTimeDiff();
-                            Log_1.log.warn("sync Time Diff:", diff);
-                            if (diff > 5) {
-                                Log_1.log.error("----->: sync time start : " + diff);
-                                sync();
-                            }
-                        }
+                        // if (TINTING_STORE_ID) {
+                        //   let diff = syncTimeDiff();
+                        //   log.warn("sync Time Diff:", diff);
+                        //   if (diff > 5) {
+                        //     log.error("----->: sync time start : " + diff);
+                        //     sync();
+                        //   }
+                        // }
                         next();
                     });
                     httpServer.listen(port, function (err) { return __awaiter(_this, void 0, void 0, function () {
@@ -140,7 +141,8 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                             lastSyncDate = null;
                             diff = null;
                             Store_1.StoreInIt();
-                            sync();
+                            updateService = new UpdateService_1.UpdateService();
+                            updateService.initializeUpdater();
                         }
                     }
                     catch (error) {
@@ -168,18 +170,21 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
     });
 }); };
 run();
-var sync = function () { return __awaiter(_this, void 0, void 0, function () {
-    var child_process, fs, syncFileUpdate;
-    return __generator(this, function (_a) {
-        child_process = require("child_process");
-        fs = require("fs");
-        syncFileUpdate = __dirname + "/update.ts";
-        syncFileUpdate = fs.existsSync(syncFileUpdate) ? __dirname + "/update.ts" : __dirname + "/update.js";
-        child_process.fork(syncFileUpdate);
-        Log_1.log.warn("syncFileUpdate:", syncFileUpdate);
-        return [2 /*return*/];
-    });
-}); };
+// var sync = async () => {
+//   const child_process = require("child_process");
+//   const fs = require("fs");
+//   let syncFileUpdate = `${__dirname}/update.ts`;
+//   syncFileUpdate = fs.existsSync(syncFileUpdate) ? `${__dirname}/update.ts` : `${__dirname}/update.js`;
+//   child_process.fork(syncFileUpdate);
+//   log.warn("syncFileUpdate:", syncFileUpdate);
+//   // let macAddress = {
+//   //   systemAddress: await App.getMacAddress(),
+//   //   storeId: TINTING_STORE_ID,
+//   //   selectAddress: await SysService.SelectedMacAddress(TINTING_STORE_ID, log),
+//   // };
+//   // console.log(JSON.stringify(macAddress));
+//   // log.warn(JSON.stringify(macAddress));
+// };
 var syncTimeDiff = function () {
     try {
         var lastSyncDate = Store_1.getItem("syncdate", "index -> cron");

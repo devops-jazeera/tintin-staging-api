@@ -52,6 +52,8 @@ var cmd = require("node-cmd");
 var Log_1 = require("../../utils/Log");
 var Log_2 = require("../../utils/Log");
 var KafkaService_1 = require("../kafka/KafkaService");
+var UpdateService_1 = require("../updater/UpdateService");
+var typeorm_1 = require("typeorm");
 var SyncMainService = /** @class */ (function () {
     function SyncMainService() {
         this.isSyncProceed = false;
@@ -64,6 +66,8 @@ var SyncMainService = /** @class */ (function () {
         this.kafkaService = new KafkaService_1.KafkaService();
         this.kafkaService.clientId = process.env.TINTING_STORE_ID;
         this.subscribe();
+        this.subscribeForUpdates();
+        this.subscribeForTableUpdates();
     }
     SyncMainService.prototype.checkProcessRunning = function () {
         var _this = this;
@@ -332,6 +336,129 @@ var SyncMainService = /** @class */ (function () {
             });
         });
     };
+    SyncMainService.prototype.subscribeForUpdates = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var topic, consumer, err_3;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        topic = "UPDATE";
+                        return [4 /*yield*/, this.kafkaService.subscriber(topic)];
+                    case 1:
+                        consumer = _a.sent();
+                        consumer.run({
+                            eachMessage: function (_a) {
+                                var message = _a.message;
+                                return __awaiter(_this, void 0, void 0, function () {
+                                    var updateService;
+                                    return __generator(this, function (_b) {
+                                        updateService = new UpdateService_1.UpdateService();
+                                        updateService.initializeUpdater();
+                                        updateService.initUpdate();
+                                        return [2 /*return*/];
+                                    });
+                                });
+                            }
+                        });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_3 = _a.sent();
+                        setTimeout(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, this.subscribeForUpdates()];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        }); }); }, 3000);
+                        Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_1.master.info(err_3);
+                        Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_1.master.error(err_3);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SyncMainService.prototype.subscribeForTableUpdates = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var topic, consumer, err_4;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        topic = "TABLE_UPDATE";
+                        return [4 /*yield*/, this.kafkaService.subscriber(topic)];
+                    case 1:
+                        consumer = _a.sent();
+                        consumer.run({
+                            eachMessage: function (_a) {
+                                var topic = _a.topic, message = _a.message;
+                                return __awaiter(_this, void 0, void 0, function () {
+                                    var _i, _b, query, queryRunner, resultData, error_3;
+                                    return __generator(this, function (_c) {
+                                        switch (_c.label) {
+                                            case 0:
+                                                message = JSON.parse(message.value.toString());
+                                                if (!message.queries.length) return [3 /*break*/, 8];
+                                                _i = 0, _b = message.queries;
+                                                _c.label = 1;
+                                            case 1:
+                                                if (!(_i < _b.length)) return [3 /*break*/, 8];
+                                                query = _b[_i];
+                                                queryRunner = typeorm_1.getConnection("default").createQueryRunner();
+                                                return [4 /*yield*/, queryRunner.connect()];
+                                            case 2:
+                                                _c.sent();
+                                                return [4 /*yield*/, queryRunner.startTransaction()];
+                                            case 3:
+                                                _c.sent();
+                                                _c.label = 4;
+                                            case 4:
+                                                _c.trys.push([4, 6, , 7]);
+                                                return [4 /*yield*/, queryRunner.query(query)];
+                                            case 5:
+                                                resultData = _c.sent();
+                                                queryRunner.commitTransaction();
+                                                return [3 /*break*/, 7];
+                                            case 6:
+                                                error_3 = _c.sent();
+                                                queryRunner.rollbackTransaction();
+                                                return [3 /*break*/, 7];
+                                            case 7:
+                                                _i++;
+                                                return [3 /*break*/, 1];
+                                            case 8: return [2 /*return*/];
+                                        }
+                                    });
+                                });
+                            }
+                        });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_4 = _a.sent();
+                        setTimeout(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, this.subscribeForTableUpdates()];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        }); }); }, 3000);
+                        Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ TABLE UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_1.master.info(err_4);
+                        Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ TABLE UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_1.master.error(err_4);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     SyncMainService.prototype.checkInternet = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -344,7 +471,7 @@ var SyncMainService = /** @class */ (function () {
     };
     SyncMainService.prototype.updateLastSynced = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var error_3;
+            var error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -362,9 +489,9 @@ var SyncMainService = /** @class */ (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        error_3 = _a.sent();
-                        Log_1.master.error(error_3);
-                        throw error_3;
+                        error_4 = _a.sent();
+                        Log_1.master.error(error_4);
+                        throw error_4;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -372,7 +499,7 @@ var SyncMainService = /** @class */ (function () {
     };
     SyncMainService.prototype.callApi = function (url, token, reqData) {
         return __awaiter(this, void 0, void 0, function () {
-            var data, error_4;
+            var data, error_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -391,9 +518,9 @@ var SyncMainService = /** @class */ (function () {
                         }
                         return [3 /*break*/, 3];
                     case 2:
-                        error_4 = _a.sent();
-                        Log_1.master.log(error_4);
-                        throw error_4;
+                        error_5 = _a.sent();
+                        Log_1.master.log(error_5);
+                        throw error_5;
                     case 3: return [2 /*return*/];
                 }
             });
