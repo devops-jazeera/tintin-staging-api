@@ -248,7 +248,7 @@ var SyncMainService = /** @class */ (function () {
                                                 Log_1.master.info(topic);
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ " + topic + " $$$$$$$$$$$$$$$$$$$$$$$$");
                                                 data = JSON.parse(message.value);
-                                                Log_1.master.info(data.length);
+                                                Log_1.master.info(data && data.length ? data.length : 0);
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ " + topic + " $$$$$$$$$$$$$$$$$$$$$$$$");
                                                 if (!(topic == process.env.TINTING_STORE_ID)) return [3 /*break*/, 3];
                                                 return [4 /*yield*/, this.masterDataSave(data)];
@@ -387,7 +387,7 @@ var SyncMainService = /** @class */ (function () {
                     Log_3.ulog.info(err);
                     Log_3.ulog.info("$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
                     Log_3.ulog.error(err);
-                    throw err;
+                    // throw err
                 }
                 return [2 /*return*/];
             });
@@ -437,7 +437,7 @@ var SyncMainService = /** @class */ (function () {
                         Log_3.ulog.info(err_3);
                         Log_3.ulog.info("$$$$$$$$$$$$$$$$$$$$$$$$ TABLE UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
                         Log_3.ulog.error(err_3);
-                        throw err_3;
+                        return [3 /*break*/, 10];
                     case 10: return [2 /*return*/];
                 }
             });
@@ -475,7 +475,7 @@ var SyncMainService = /** @class */ (function () {
                     case 2:
                         error_4 = _a.sent();
                         Log_1.master.error(error_4);
-                        throw error_4;
+                        return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -504,7 +504,7 @@ var SyncMainService = /** @class */ (function () {
                     case 2:
                         error_5 = _a.sent();
                         Log_1.master.log(error_5);
-                        throw error_5;
+                        return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
             });
