@@ -49,14 +49,85 @@ var DispenseController = /** @class */ (function () {
     function DispenseController() {
         this.componentName = "Dispense";
         this.router = express_1.Router();
+        //   public async connect_to_dll(data:any, platform:string){
+        //     var colorant;
+        //     var colorantqty;
+        //     var can;
+        //     new Uint16Array([1,2,3]).buffer;
+        //     var dllPath 
+        //     if(platform === "win32"){
+        //       dllPath =await path.resolve("C:/tinting-dll-files/x64/JazeeraFM.dll");
+        //     }else{
+        //       dllPath = await path.resolve("C:/tinting-dll-files/x86/JazeeraFM.dll");
+        //     }
+        //     const fmDispenser = await new ffi.Library(dllPath, {
+        //     'Init': ["int32", []],
+        //     'Shutdown': ["int32", []],
+        //     'DTD': ["String", ['float', 'string', 'string']]
+        //     });
+        //     // colorant='"PV","RU"';
+        //     // colorantqty='"9.0","1.4"';
+        //     colorant = data.colorant;
+        //     colorantqty = data.colorantqty;
+        //     can = data.can;
+        //     await fmDispenser.Init();
+        //     let result = await fmDispenser.DTD(900.00,colorant,colorantqty);
+        //     await fmDispenser.Shutdown();
+        //     return result;
+        // }
     }
     DispenseController.prototype.moduleName = function () {
         return this.constructor.name;
     };
     DispenseController.prototype.getRouter = function () {
         var _this = this;
+        this.router.post("/initialize", function (request, response) { return __awaiter(_this, void 0, void 0, function () {
+            var result, platform, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        result = void 0;
+                        platform = process.platform;
+                        if (!(platform === "win32" || platform === "win64")) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.initializeDispenser(platform)];
+                    case 1:
+                        result = _a.sent();
+                        response.send({ status: 1, data: result });
+                        return [3 /*break*/, 3];
+                    case 2: throw "platform is not windows";
+                    case 3: return [3 /*break*/, 5];
+                    case 4:
+                        error_1 = _a.sent();
+                        console.log(error_1);
+                        response.send({ status: 0, error: error_1 });
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
+                }
+            });
+        }); });
+        this.router.post("/shutdown", function (request, response) { return __awaiter(_this, void 0, void 0, function () {
+            var result, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.shutDownDispenser()];
+                    case 1:
+                        result = _a.sent();
+                        response.send({ status: 1, data: result });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        console.log(error_2);
+                        response.send({ status: 0, error: error_2 });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); });
         this.router.post("/", function (request, response) { return __awaiter(_this, void 0, void 0, function () {
-            var reqData, result, platform, error_1;
+            var reqData, result, platform, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -74,9 +145,9 @@ var DispenseController = /** @class */ (function () {
                     case 2: throw "platform is not windows";
                     case 3: return [3 /*break*/, 5];
                     case 4:
-                        error_1 = _a.sent();
-                        console.log(error_1);
-                        response.send({ status: 0, error: error_1 });
+                        error_3 = _a.sent();
+                        console.log(error_3);
+                        response.send({ status: 0, error: error_3 });
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
                 }
@@ -84,44 +155,97 @@ var DispenseController = /** @class */ (function () {
         }); });
         return this.router;
     };
-    DispenseController.prototype.connect_to_dll = function (data, platform) {
+    DispenseController.prototype.initializeDispenser = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var colorant, colorantqty, can, dllPath, fmDispenser, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var dllPath, _a, error_4;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
+                        _b.trys.push([0, 8, , 9]);
+                        if (!!this.dispenser) return [3 /*break*/, 7];
+                        dllPath = void 0;
                         new Uint16Array([1, 2, 3]).buffer;
                         if (!(platform === "win32")) return [3 /*break*/, 2];
                         return [4 /*yield*/, path.resolve("C:/tinting-dll-files/x64/JazeeraFM.dll")];
                     case 1:
-                        dllPath = _a.sent();
+                        dllPath = _b.sent();
                         return [3 /*break*/, 4];
                     case 2: return [4 /*yield*/, path.resolve("C:/tinting-dll-files/x86/JazeeraFM.dll")];
                     case 3:
-                        dllPath = _a.sent();
-                        _a.label = 4;
-                    case 4: return [4 /*yield*/, new ffi.Library(dllPath, {
-                            'Init': ["int32", []],
-                            'Shutdown': ["int32", []],
-                            'DTD': ["String", ['float', 'string', 'string']]
-                        })];
+                        dllPath = _b.sent();
+                        _b.label = 4;
+                    case 4:
+                        _a = this;
+                        return [4 /*yield*/, new ffi.Library(dllPath, {
+                                'Init': ["int32", []],
+                                'smW': ["int32", []],
+                                'Shutdown': ["int32", []],
+                                'DTD': ["String", ['float', 'string', 'string']]
+                            })];
                     case 5:
-                        fmDispenser = _a.sent();
+                        _a.dispenser = _b.sent();
                         // colorant='"PV","RU"';
                         // colorantqty='"9.0","1.4"';
+                        return [4 /*yield*/, this.dispenser.Init()];
+                    case 6:
+                        // colorant='"PV","RU"';
+                        // colorantqty='"9.0","1.4"';
+                        _b.sent();
+                        // await this.dispenser.smW();
+                        return [2 /*return*/, { message: "Dispenser Initialized" }];
+                    case 7: return [3 /*break*/, 9];
+                    case 8:
+                        error_4 = _b.sent();
+                        throw error_4;
+                    case 9: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DispenseController.prototype.shutDownDispenser = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        if (!this.dispenser) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.dispenser.Shutdown()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, { message: "Dispenser stopped" }];
+                    case 2: return [2 /*return*/, { message: "Dispenser already stopped" }];
+                    case 3: return [3 /*break*/, 5];
+                    case 4:
+                        error_5 = _a.sent();
+                        throw error_5;
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DispenseController.prototype.connect_to_dll = function (data, platform) {
+        return __awaiter(this, void 0, void 0, function () {
+            var colorant, colorantqty, can, result, error_6;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        if (!this.dispenser) return [3 /*break*/, 2];
+                        // new Uint16Array([1,2,3]).buffer;
                         colorant = data.colorant;
                         colorantqty = data.colorantqty;
                         can = data.can;
-                        return [4 /*yield*/, fmDispenser.Init()];
-                    case 6:
-                        _a.sent();
-                        return [4 /*yield*/, fmDispenser.DTD(900.00, colorant, colorantqty)];
-                    case 7:
+                        return [4 /*yield*/, this.dispenser.DTD(900.00, colorant, colorantqty)];
+                    case 1:
                         result = _a.sent();
-                        return [4 /*yield*/, fmDispenser.Shutdown()];
-                    case 8:
-                        _a.sent();
                         return [2 /*return*/, result];
+                    case 2: return [2 /*return*/, { message: "Dispenser not initalized" }];
+                    case 3: return [3 /*break*/, 5];
+                    case 4:
+                        error_6 = _a.sent();
+                        throw error_6;
+                    case 5: return [2 /*return*/];
                 }
             });
         });

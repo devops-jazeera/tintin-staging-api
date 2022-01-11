@@ -169,4 +169,3 @@ exports.getSyncUrl = function () {
     return exports.syncConfig;
 };
 
-
