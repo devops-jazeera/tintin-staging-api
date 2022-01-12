@@ -46,6 +46,7 @@ var SyncMasterLogsServices_1 = require("./SyncMasterLogsServices");
 var Config = __importStar(require("../../utils/Config"));
 var SyncTransactionsServices_1 = require("./SyncTransactionsServices");
 var axios = require("axios");
+var main = require("../../update");
 var dns = require("dns").promises;
 var cron = require("node-cron");
 var cmd = require("node-cmd");
@@ -53,7 +54,6 @@ var Log_1 = require("../../utils/Log");
 var Log_2 = require("../../utils/Log");
 var Log_3 = require("../../utils/Log");
 var KafkaService_1 = require("../kafka/KafkaService");
-var UpdateService_1 = require("../updater/UpdateService");
 var typeorm_1 = require("typeorm");
 var SyncMainService = /** @class */ (function () {
     function SyncMainService() {
@@ -379,14 +379,20 @@ var SyncMainService = /** @class */ (function () {
     };
     SyncMainService.prototype.subscribeForUpdates = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var updateService;
             return __generator(this, function (_a) {
                 try {
-                    updateService = new UpdateService_1.UpdateService(Log_3.ulog);
-                    updateService.initializeUpdater();
-                    updateService.initUpdate();
+                    // let topic = "UPDATE"
+                    // if(!consumer){
+                    //   consumer = await this.kafkaService.subscriber(topic);
+                    // }
+                    // consumer.run({
+                    //   eachMessage: async ({ message }) => {
+                    // const updateService = new UpdateService(ulog);
+                    // updateService.initializeUpdater();
+                    // updateService.initUpdate();
                     // }
                     // })
+                    main();
                 }
                 catch (err) {
                     // setTimeout(async ()=> {await this.subscribeForUpdates(consumer)} , 3000);

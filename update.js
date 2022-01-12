@@ -77,16 +77,16 @@ var UpdateSyncService = function () {
         Log_1.ulog.error(" autoupdater error: ");
         Log_1.ulog.error(err);
     }
-    cron.schedule("* * * * *", function () {
-        try {
-            Store_1.setItem("syncdate", new Date().toISOString(), "sync -> cron");
-            autoupdater.fire("check");
-        }
-        catch (error) {
-            Log_1.ulog.error(error);
-            Log_1.ulog.error("******* Error on Downlooad **********");
-        }
-    });
+    // cron.schedule("* * * * *", () => {
+    try {
+        Store_1.setItem("syncdate", new Date().toISOString(), "sync -> cron");
+        autoupdater.fire("check");
+    }
+    catch (error) {
+        Log_1.ulog.error(error);
+        Log_1.ulog.error("******* Error on Downlooad **********");
+    }
+    // });
 };
 var AdmZip = require("adm-zip");
 var fs = require("fs");
@@ -121,4 +121,4 @@ var main = function () {
         Log_1.ulog.error("Update Sync Service error ");
     }
 };
-main();
+module.exports = main;
