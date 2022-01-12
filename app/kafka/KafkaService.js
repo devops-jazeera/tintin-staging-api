@@ -129,17 +129,19 @@ var KafkaService = /** @class */ (function () {
             });
         });
     };
-    KafkaService.prototype.subscriber = function (topics) {
+    KafkaService.prototype.subscriber = function (topics, log) {
         return __awaiter(this, void 0, void 0, function () {
             var consumer, _i, topics_1, topic;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.kafka.consumer({
-                            groupId: Config_1.kafkaOptions.clientId,
-                            minBytes: 5,
-                            maxBytes: 1e6,
-                            maxWaitTimeInMs: 3000,
-                        })];
+                    case 0:
+                        log.info("*****************************SUNBSCRIBE***************************************");
+                        return [4 /*yield*/, this.kafka.consumer({
+                                groupId: Config_1.kafkaOptions.clientId,
+                                minBytes: 5,
+                                maxBytes: 1e6,
+                                maxWaitTimeInMs: 3000,
+                            })];
                     case 1:
                         consumer = _a.sent();
                         return [4 /*yield*/, consumer.connect()];

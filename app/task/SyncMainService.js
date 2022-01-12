@@ -60,8 +60,8 @@ var SyncMainService = /** @class */ (function () {
         this.isSyncProceed = false;
         this.isTranscationProceed = false;
         Config.setSyncUrl();
-        this.url = Config.getSyncUrl().url;
-        this.checkProcessRunning();
+        // this.url = Config.getSyncUrl().url;
+        // this.checkProcessRunning();
         this.syncManagerLogs = new SyncMasterLogsServices_1.SyncMasterLogsServices();
         this.syncTransactionsServices = new SyncTransactionsServices_1.SyncTransactionsServices();
         this.kafkaService = new KafkaService_1.KafkaService();
@@ -226,8 +226,8 @@ var SyncMainService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        topics = [process.env.TINTING_STORE_ID, 'UPADTE', 'TABLE_UPDATE'];
-                        return [4 /*yield*/, this.kafkaService.subscriber(topics)];
+                        topics = [process.env.TINTING_STORE_ID, 'UPDATE', 'TABLE_UPDATE'];
+                        return [4 /*yield*/, this.kafkaService.subscriber(topics, Log_1.master)];
                     case 1:
                         consumer = _a.sent();
                         consumer.run({
@@ -242,38 +242,45 @@ var SyncMainService = /** @class */ (function () {
                                                 _i = 0, _b = batch.messages;
                                                 _c.label = 1;
                                             case 1:
-                                                if (!(_i < _b.length)) return [3 /*break*/, 9];
+                                                if (!(_i < _b.length)) return [3 /*break*/, 11];
                                                 message = _b[_i];
                                                 topic = batch.topic;
                                                 Log_1.master.info(topic);
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ " + topic + " $$$$$$$$$$$$$$$$$$$$$$$$");
+                                                console.log(JSON.parse(message.value));
                                                 data = JSON.parse(message.value);
-                                                Log_1.master.info(data && data.length ? data.length : 0);
+                                                data = data ? data : null;
+                                                Log_1.master.info(data ? data : null);
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ " + topic + " $$$$$$$$$$$$$$$$$$$$$$$$");
-                                                if (!(topic == process.env.TINTING_STORE_ID)) return [3 /*break*/, 3];
+                                                if (!(topic == process.env.TINTING_STORE_ID)) return [3 /*break*/, 4];
+                                                if (!data) return [3 /*break*/, 3];
                                                 return [4 /*yield*/, this.masterDataSave(data)];
                                             case 2:
                                                 _c.sent();
-                                                return [3 /*break*/, 7];
-                                            case 3:
-                                                if (!(topic == 'UPDATE')) return [3 /*break*/, 5];
-                                                return [4 /*yield*/, this.subscribeForUpdates()];
+                                                _c.label = 3;
+                                            case 3: return [3 /*break*/, 9];
                                             case 4:
-                                                _c.sent();
-                                                return [3 /*break*/, 7];
+                                                if (!(topic == 'UPDATE')) return [3 /*break*/, 7];
+                                                if (!data) return [3 /*break*/, 6];
+                                                return [4 /*yield*/, this.subscribeForUpdates()];
                                             case 5:
-                                                if (!(topic == 'TABLE_UPDATE')) return [3 /*break*/, 7];
-                                                return [4 /*yield*/, this.subscribeForTableUpdates(data)];
-                                            case 6:
                                                 _c.sent();
-                                                _c.label = 7;
+                                                _c.label = 6;
+                                            case 6: return [3 /*break*/, 9];
                                             case 7:
-                                                resolveOffset(message.offset);
-                                                _c.label = 8;
+                                                if (!(topic == 'TABLE_UPDATE')) return [3 /*break*/, 9];
+                                                if (!data) return [3 /*break*/, 9];
+                                                return [4 /*yield*/, this.subscribeForTableUpdates(data)];
                                             case 8:
+                                                _c.sent();
+                                                _c.label = 9;
+                                            case 9:
+                                                resolveOffset(message.offset);
+                                                _c.label = 10;
+                                            case 10:
                                                 _i++;
                                                 return [3 /*break*/, 1];
-                                            case 9: return [2 /*return*/];
+                                            case 11: return [2 /*return*/];
                                         }
                                     });
                                 });
@@ -401,7 +408,7 @@ var SyncMainService = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 9, , 10]);
-                        if (!(message && message.queries.length)) return [3 /*break*/, 8];
+                        if (!(message && message.queries && message.queries.length)) return [3 /*break*/, 8];
                         _i = 0, _a = message.queries;
                         _b.label = 1;
                     case 1:

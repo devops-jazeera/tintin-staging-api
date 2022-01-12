@@ -19,7 +19,12 @@ var UpdateService = /** @class */ (function () {
             var zip = new AdmZip(__dirname + "/" + fileName);
             zip.extractAllTo("../", true);
             fs.unlinkSync(__dirname + "/" + fileName);
-            SysService_1.SysService.ResetService(_this.ulog);
+            try {
+                SysService_1.SysService.ResetService(_this.ulog);
+            }
+            catch (e) {
+                _this.ulog(JSON.stringify(e));
+            }
         };
         this.ulog = log;
     }
