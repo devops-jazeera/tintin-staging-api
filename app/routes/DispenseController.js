@@ -49,6 +49,38 @@ var DispenseController = /** @class */ (function () {
     function DispenseController() {
         this.componentName = "Dispense";
         this.router = express_1.Router();
+        // public async connect_to_dll(data:any, platform:string){
+        //   try {
+        //     var colorant;
+        //     var colorantqty;
+        //     var can;
+        //     new Uint16Array([1,2,3]).buffer;
+        //     var dllPath 
+        //     if(platform === "win32"){
+        //       dllPath = await path.resolve("C:/tinting-dll-files/x64/JazeeraFM.dll");
+        //     }else{
+        //       dllPath = await path.resolve("C:/tinting-dll-files/x86/JazeeraFM.dll");
+        //     }
+        //     const fmDispenser = await new ffi.Library(dllPath, {
+        //     'Init': ["int32", []],
+        //     'Shutdown': ["int32", []],
+        //     'DTD': ["String", ['float', 'string', 'string']]
+        //     });
+        //     // colorant='"PV","RU"';
+        //     // colorantqty='"9.0","1.4"';
+        //     colorant = data.colorant;
+        //     colorantqty = data.colorantqty;
+        //     can = data.can;
+        //     // await fmDispenser.Init();
+        //     let result = await fmDispenser.DTD(can,colorant,colorantqty);
+        //     if(result=='Dispense Failed'){
+        //     }
+        //     // await fmDispenser.Shutdown();
+        //     return result;
+        //   } catch (error) {
+        //     throw error;
+        //   }
+        // }
     }
     DispenseController.prototype.moduleName = function () {
         return this.constructor.name;
@@ -187,6 +219,7 @@ var DispenseController = /** @class */ (function () {
                         return [4 /*yield*/, this.dispenser.Shutdown()];
                     case 1:
                         _a.sent();
+                        this.dispenser = null;
                         return [2 /*return*/, { message: "Dispenser stopped" }];
                     case 2: return [2 /*return*/, { message: "Dispenser already stopped" }];
                     case 3: return [3 /*break*/, 5];
@@ -198,63 +231,37 @@ var DispenseController = /** @class */ (function () {
             });
         });
     };
-    // public async connect_to_dll(data:any, platform:string){
-    //   try {
-    //     if(this.dispenser){
-    //       var colorant;
-    //       var colorantqty;
-    //       var can;
-    //       // new Uint16Array([1,2,3]).buffer;
-    //       colorant = data.colorant;
-    //       colorantqty = data.colorantqty;
-    //       can = data.can;
-    //       let result = await this.dispenser.DTD(900.00,colorant,colorantqty);
-    //       return result;
-    //     } else {
-    //       return { message: "Dispenser not initalized"}
-    //     }
-    //   } catch (error) {
-    //     throw error;
-    //   }
-    // }
     DispenseController.prototype.connect_to_dll = function (data, platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var colorant, colorantqty, can, dllPath, fmDispenser, result, error_6;
+            var colorant, colorantqty, can, result, error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 7, , 8]);
-                        new Uint16Array([1, 2, 3]).buffer;
-                        if (!(platform === "win32")) return [3 /*break*/, 2];
-                        return [4 /*yield*/, path.resolve("C:/tinting-dll-files/x64/JazeeraFM.dll")];
-                    case 1:
-                        dllPath = _a.sent();
-                        return [3 /*break*/, 4];
-                    case 2: return [4 /*yield*/, path.resolve("C:/tinting-dll-files/x86/JazeeraFM.dll")];
-                    case 3:
-                        dllPath = _a.sent();
-                        _a.label = 4;
-                    case 4: return [4 /*yield*/, new ffi.Library(dllPath, {
-                            'Init': ["int32", []],
-                            'Shutdown': ["int32", []],
-                            'DTD': ["String", ['float', 'string', 'string']]
-                        })];
-                    case 5:
-                        fmDispenser = _a.sent();
-                        // colorant='"PV","RU"';
-                        // colorantqty='"9.0","1.4"';
+                        _a.trys.push([0, 8, , 9]);
+                        if (!this.dispenser) return [3 /*break*/, 6];
+                        // new Uint16Array([1,2,3]).buffer;
                         colorant = data.colorant;
                         colorantqty = data.colorantqty;
                         can = data.can;
-                        return [4 /*yield*/, fmDispenser.DTD(can, colorant, colorantqty)];
-                    case 6:
+                        return [4 /*yield*/, this.dispenser.DTD(900.00, colorant, colorantqty)];
+                    case 1:
                         result = _a.sent();
-                        // await fmDispenser.Shutdown();
+                        if (!(result == 'Dispense Success')) return [3 /*break*/, 2];
                         return [2 /*return*/, result];
-                    case 7:
+                    case 2: return [4 /*yield*/, this.dispenser.Init()];
+                    case 3:
+                        _a.sent();
+                        return [4 /*yield*/, this.dispenser.DTD(900.00, colorant, colorantqty)];
+                    case 4:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 5: return [3 /*break*/, 7];
+                    case 6: return [2 /*return*/, { message: "Dispenser not initalized" }];
+                    case 7: return [3 /*break*/, 9];
+                    case 8:
                         error_6 = _a.sent();
                         throw error_6;
-                    case 8: return [2 /*return*/];
+                    case 9: return [2 /*return*/];
                 }
             });
         });
