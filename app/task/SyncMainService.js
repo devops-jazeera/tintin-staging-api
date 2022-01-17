@@ -61,7 +61,7 @@ var SyncMainService = /** @class */ (function () {
         this.isTranscationProceed = false;
         Config.setSyncUrl();
         // this.url = Config.getSyncUrl().url;
-        // this.checkProcessRunning();
+        this.checkProcessRunning();
         this.syncManagerLogs = new SyncMasterLogsServices_1.SyncMasterLogsServices();
         this.syncTransactionsServices = new SyncTransactionsServices_1.SyncTransactionsServices();
         this.kafkaService = new KafkaService_1.KafkaService();
