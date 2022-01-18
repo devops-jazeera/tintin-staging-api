@@ -112,13 +112,13 @@ var DispenseController = /** @class */ (function () {
                 }
             });
         }); });
-        this.router.post("/shutdown", function (request, response) { return __awaiter(_this, void 0, void 0, function () {
+        this.router.post("/smw", function (request, response) { return __awaiter(_this, void 0, void 0, function () {
             var result, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.shutDownDispenser()];
+                        return [4 /*yield*/, this.showMaintenanceWindow()];
                     case 1:
                         result = _a.sent();
                         response.send({ status: 1, data: result });
@@ -132,8 +132,28 @@ var DispenseController = /** @class */ (function () {
                 }
             });
         }); });
+        this.router.post("/shutdown", function (request, response) { return __awaiter(_this, void 0, void 0, function () {
+            var result, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.shutDownDispenser()];
+                    case 1:
+                        result = _a.sent();
+                        response.send({ status: 1, data: result });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        console.log(error_3);
+                        response.send({ status: 0, error: error_3 });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); });
         this.router.post("/", function (request, response) { return __awaiter(_this, void 0, void 0, function () {
-            var reqData, result, platform, error_3;
+            var reqData, result, platform, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -151,9 +171,9 @@ var DispenseController = /** @class */ (function () {
                     case 2: throw "platform is not windows";
                     case 3: return [3 /*break*/, 5];
                     case 4:
-                        error_3 = _a.sent();
-                        console.log(error_3);
-                        response.send({ status: 0, error: error_3 });
+                        error_4 = _a.sent();
+                        console.log(error_4);
+                        response.send({ status: 0, error: error_4 });
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
                 }
@@ -163,7 +183,7 @@ var DispenseController = /** @class */ (function () {
     };
     DispenseController.prototype.initializeDispenser = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var dllPath, _a, error_4;
+            var dllPath, _a, error_5;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -201,8 +221,8 @@ var DispenseController = /** @class */ (function () {
                         return [2 /*return*/, { message: "Dispenser Initialized" }];
                     case 7: return [3 /*break*/, 9];
                     case 8:
-                        error_4 = _b.sent();
-                        throw error_4;
+                        error_5 = _b.sent();
+                        throw error_5;
                     case 9: return [2 /*return*/];
                 }
             });
@@ -210,7 +230,7 @@ var DispenseController = /** @class */ (function () {
     };
     DispenseController.prototype.shutDownDispenser = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var error_5;
+            var error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -224,8 +244,30 @@ var DispenseController = /** @class */ (function () {
                     case 2: return [2 /*return*/, { message: "Dispenser already stopped" }];
                     case 3: return [3 /*break*/, 5];
                     case 4:
-                        error_5 = _a.sent();
-                        throw error_5;
+                        error_6 = _a.sent();
+                        throw error_6;
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DispenseController.prototype.showMaintenanceWindow = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var error_7;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        if (!this.dispenser) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.dispenser.smW()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, { message: "Maintenance Window" }];
+                    case 2: throw { message: "Dispenser not Initialized" };
+                    case 3: return [3 /*break*/, 5];
+                    case 4:
+                        error_7 = _a.sent();
+                        throw error_7;
                     case 5: return [2 /*return*/];
                 }
             });
@@ -233,7 +275,7 @@ var DispenseController = /** @class */ (function () {
     };
     DispenseController.prototype.connect_to_dll = function (data, platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var colorant, colorantqty, can, result, error_6;
+            var colorant, colorantqty, can, result, error_8;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -259,8 +301,8 @@ var DispenseController = /** @class */ (function () {
                     case 6: return [2 /*return*/, { message: "Dispenser not initalized" }];
                     case 7: return [3 /*break*/, 9];
                     case 8:
-                        error_6 = _a.sent();
-                        throw error_6;
+                        error_8 = _a.sent();
+                        throw error_8;
                     case 9: return [2 /*return*/];
                 }
             });
