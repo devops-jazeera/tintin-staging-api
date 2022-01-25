@@ -143,6 +143,10 @@ var TintingMachine = /** @class */ (function () {
         typeorm_1.Column({ name: "machine_id" }),
         __metadata("design:type", String)
     ], TintingMachine.prototype, "machine_id", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "store_id" }),
+        __metadata("design:type", String)
+    ], TintingMachine.prototype, "store_id", void 0);
     TintingMachine = __decorate([
         typeorm_1.Entity("tinting_machine")
     ], TintingMachine);
