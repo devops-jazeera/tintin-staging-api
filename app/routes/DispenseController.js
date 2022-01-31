@@ -275,35 +275,52 @@ var DispenseController = /** @class */ (function () {
     };
     DispenseController.prototype.connect_to_dll = function (data, platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var colorant, colorantqty, can, result, error_8;
+            var colorant, colorantqty, can, canqty, i, result, error_8;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 8, , 9]);
-                        if (!this.dispenser) return [3 /*break*/, 6];
+                        _a.trys.push([0, 9, , 10]);
+                        if (!this.dispenser) return [3 /*break*/, 7];
                         // new Uint16Array([1,2,3]).buffer;
                         colorant = data.colorant;
                         colorantqty = data.colorantqty;
                         can = data.can;
-                        return [4 /*yield*/, this.dispenser.DTD(900.00, colorant, colorantqty)];
+                        // let result = await this.dispenser.DTD(900.00,colorant,colorantqty);
+                        // if(result=='Dispense Success'){
+                        //   return result;
+                        // }else{
+                        //     await this.dispenser.Init();
+                        //     result = await this.dispenser.DTD(900.00,colorant,colorantqty);
+                        //     return result;
+                        // }
+                        canqty = parseInt(data.canqty);
+                        i = canqty;
+                        _a.label = 1;
                     case 1:
+                        if (!(i > 0)) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.dispenser.DTD(can, colorant, colorantqty)];
+                    case 2:
                         result = _a.sent();
-                        if (!(result == 'Dispense Success')) return [3 /*break*/, 2];
-                        return [2 /*return*/, result];
-                    case 2: return [4 /*yield*/, this.dispenser.Init()];
+                        if (!(result != 'Dispense Success')) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.dispenser.Init()];
                     case 3:
                         _a.sent();
-                        return [4 /*yield*/, this.dispenser.DTD(900.00, colorant, colorantqty)];
+                        return [4 /*yield*/, this.dispenser.DTD(can, colorant, colorantqty)];
                     case 4:
                         result = _a.sent();
-                        return [2 /*return*/, result];
-                    case 5: return [3 /*break*/, 7];
-                    case 6: return [2 /*return*/, { message: "Dispenser not initalized" }];
-                    case 7: return [3 /*break*/, 9];
-                    case 8:
+                        if (result != 'Dispense Success')
+                            return [2 /*return*/, result];
+                        _a.label = 5;
+                    case 5:
+                        i--;
+                        return [3 /*break*/, 1];
+                    case 6: return [2 /*return*/, 'Dispensed Successfully'];
+                    case 7: return [2 /*return*/, { message: "Dispenser not initalized" }];
+                    case 8: return [3 /*break*/, 10];
+                    case 9:
                         error_8 = _a.sent();
                         throw error_8;
-                    case 9: return [2 /*return*/];
+                    case 10: return [2 /*return*/];
                 }
             });
         });

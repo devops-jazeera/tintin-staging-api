@@ -14,7 +14,10 @@
                           properties:
                             can:
                                 type: Integer
-                                example: 900  
+                                example: 900
+                            canqty:
+                                type: Integer
+                                example: 1 
                             colorant:
                                 type: string
                                 example: "'PV','RU'"

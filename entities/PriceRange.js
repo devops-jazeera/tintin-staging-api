@@ -53,6 +53,10 @@ var PriceRange = /** @class */ (function () {
         typeorm_1.Column({ name: "modified_on" }),
         __metadata("design:type", String)
     ], PriceRange.prototype, "modified_on", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "size" }),
+        __metadata("design:type", Number)
+    ], PriceRange.prototype, "size", void 0);
     PriceRange = __decorate([
         typeorm_1.Entity("price_range")
     ], PriceRange);

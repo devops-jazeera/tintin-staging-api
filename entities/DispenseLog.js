@@ -149,6 +149,10 @@ var DispenseLog = /** @class */ (function () {
         typeorm_1.Column({ name: "mobile_number" }),
         __metadata("design:type", String)
     ], DispenseLog.prototype, "mobileNumber", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "customer_name" }),
+        __metadata("design:type", String)
+    ], DispenseLog.prototype, "customerName", void 0);
     DispenseLog = __decorate([
         typeorm_1.Entity("dispense_log")
     ], DispenseLog);
