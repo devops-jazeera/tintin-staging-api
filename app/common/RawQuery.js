@@ -60,6 +60,25 @@ var RawQuery = /** @class */ (function () {
             });
         });
     };
+    RawQuery.MailOptionsData = function (code) {
+        return __awaiter(this, void 0, void 0, function () {
+            var data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, typeorm_1.getManager().query("select data from config where type='" + code + "' ")];
+                    case 1:
+                        data = _a.sent();
+                        if (data && data[0] && data[0].data) {
+                            return [2 /*return*/, data[0].data];
+                        }
+                        else {
+                            return [2 /*return*/, data];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     RawQuery.prototype.getCustomerOverDue = function (accountNum) {
         return __awaiter(this, void 0, void 0, function () {
             var query;

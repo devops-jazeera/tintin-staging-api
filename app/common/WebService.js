@@ -56,7 +56,7 @@ var WebService = /** @class */ (function () {
             return __generator(this, function (_a) {
                 try {
                     mailOptions = {
-                        from: Config.mailOptions.user,
+                        from: Config.mailOptions.from,
                         to: "admin@abcd.com",
                         subject: "Feed backlink",
                         html: App_1.App.HtmlRender("Feedback", {

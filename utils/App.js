@@ -392,7 +392,7 @@ var App = /** @class */ (function () {
             return __generator(this, function (_a) {
                 transporter = App.CreateEmailAccount();
                 Options = {
-                    from: Config.mailOptions.user,
+                    from: Config.mailOptions.from,
                     to: to,
                     subject: subject,
                     html: App.HtmlRender(htmlPage, {

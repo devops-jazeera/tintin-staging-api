@@ -69,7 +69,7 @@ var DatabackupController = /** @class */ (function () {
                         return [3 /*break*/, 5];
                     case 4: throw "platform is not supported";
                     case 5:
-                        response.send({ status: 1, data: result });
+                        response.send({ status: 1, data: "Backup Completed" });
                         return [3 /*break*/, 7];
                     case 6:
                         error_1 = _a.sent();

@@ -62,7 +62,7 @@ var MailHelper = /** @class */ (function () {
                 }
                 transporter = MailHelper.CreateEmailAccount(singleMailoprtion);
                 mailOptions = {
-                    from: singleMailoprtion.user ? singleMailoprtion.user : Config.mailOptions.user,
+                    from: singleMailoprtion.from ? singleMailoprtion.from : singleMailoprtion.user ? singleMailoprtion.user : Config.mailOptions.user,
                     to: to,
                     subject: subject,
                     html: HandlebarHelper_1.HandlebarHelper.HtmlRender(htmlPage, {
