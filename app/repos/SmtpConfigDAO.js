@@ -34,9 +34,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var SmtpConfig_1 = require("../../entities/SmtpConfig");
+var Config = __importStar(require("../../utils/Config"));
 var SmtpConfigDAO = /** @class */ (function () {
     function SmtpConfigDAO() {
         this.dao = typeorm_1.getRepository(SmtpConfig_1.SmtpConfig);
@@ -57,13 +65,16 @@ var SmtpConfigDAO = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 3, , 4]);
                         return [4 /*yield*/, this.dao.save(data)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                    case 2:
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, Config.setMailOptionsData()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                    case 3:
                         err_1 = _a.sent();
                         throw err_1;
-                    case 3: return [2 /*return*/];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

@@ -35,6 +35,7 @@ var UserDAO_1 = require("./../app/repos/UserDAO");
 var VendorDAO_1 = require("./../app/repos/VendorDAO");
 var PriceRangeDAO_1 = require("../app/repos/PriceRangeDAO");
 var StoresDAO_1 = require("../app/repos/StoresDAO");
+var SmtpConfigDAO_1 = require("../app/repos/SmtpConfigDAO");
 exports.DAOList = {
     access_data: new AccessDAO_1.AccessDAO(),
     address: new AddressDAO_1.AddressDAO(),
@@ -71,5 +72,6 @@ exports.DAOList = {
     user: new UserDAO_1.UserDAO(),
     vendor: new VendorDAO_1.VendorDAO(),
     price_range: new PriceRangeDAO_1.PriceRangeDAO(),
-    stores: new StoresDAO_1.StoresDAO()
+    stores: new StoresDAO_1.StoresDAO(),
+    config: new SmtpConfigDAO_1.SmtpConfigDAO(),
 };

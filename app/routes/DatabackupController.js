@@ -53,30 +53,24 @@ var DatabackupController = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 6, , 7]);
+                        _a.trys.push([0, 4, , 5]);
                         result = void 0;
                         platform = process.platform;
                         if (!(platform === "win32" || platform === "win64")) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.executeBatch()];
                     case 1:
                         result = _a.sent();
-                        return [3 /*break*/, 5];
-                    case 2:
-                        if (!(platform === "linux")) return [3 /*break*/, 4];
-                        return [4 /*yield*/, this.executeShellScript()];
+                        return [3 /*break*/, 3];
+                    case 2: throw "platform is not windows";
                     case 3:
-                        result = _a.sent();
+                        response.send({ status: 1, data: "Backup saved in C:\tinting-backup\ folder" });
                         return [3 /*break*/, 5];
-                    case 4: throw "platform is not supported";
-                    case 5:
-                        response.send({ status: 1, data: "Backup Completed" });
-                        return [3 /*break*/, 7];
-                    case 6:
+                    case 4:
                         error_1 = _a.sent();
                         console.log(error_1);
                         response.send({ status: 0, error: error_1 });
-                        return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
             });
         }); });
