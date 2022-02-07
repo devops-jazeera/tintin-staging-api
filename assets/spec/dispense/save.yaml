@@ -20,10 +20,10 @@
                                 example: 1 
                             colorant:
                                 type: string
-                                example: "'PV','RU'"
+                                example: "PV,RU"
                             colorantqty:
                                 type: string
-                                example: "'9.0','1.4'"
+                                example: "0.0003,0.0003"
                               
         responses:
             200:
