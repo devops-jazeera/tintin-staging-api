@@ -77,7 +77,8 @@ log4js_1.configure({
         },
     },
     categories: {
-        default: { appenders: ["app", "out", "error"], level: "debug" },
+        default: { appenders: ["app", "error"], level: "debug" },
+        out: { appenders: ["out"], level: "error" },
     },
 });
 exports.log = log4js_1.getLogger("app");

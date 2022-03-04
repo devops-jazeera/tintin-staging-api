@@ -113,6 +113,7 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                                 Log_1.log.error(err);
                                 throw err;
                             }
+                            console.log("\n        ***********************************************\n                server is listening on " + port + "\n        ***********************************************\n");
                             return [2 /*return*/, Log_1.log.log("info", "\n                    ***********************************************\n                            server is listening on " + port + "\n                    ***********************************************\n          ")];
                         });
                     }); });

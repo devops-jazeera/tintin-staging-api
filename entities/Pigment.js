@@ -56,13 +56,17 @@ var Pigment = /** @class */ (function () {
     ], Pigment.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "pigment_set_id" }),
-        __metadata("design:type", Boolean)
+        __metadata("design:type", String)
     ], Pigment.prototype, "pigment_set_id", void 0);
     __decorate([
         typeorm_1.JoinColumn({ name: "pigment_set_id" }),
         typeorm_1.ManyToOne(function (type) { return PigmentSet_1.PigmentSet; }),
         __metadata("design:type", PigmentSet_1.PigmentSet)
     ], Pigment.prototype, "pigmentSet", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "specific_gravity" }),
+        __metadata("design:type", Number)
+    ], Pigment.prototype, "specific_gravity", void 0);
     Pigment = __decorate([
         typeorm_1.Entity("pigment")
     ], Pigment);
