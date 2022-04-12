@@ -160,7 +160,7 @@ exports.DbEnvConfig = function () { return __awaiter(_this, void 0, void 0, func
     });
 }); };
 exports.kafkaOptions = {
-    brokers: ['3.125.168.5:9092'],
+    brokers: ['3.121.118.15:9092'],
     username: "", //test
     pass: "",
     clientId: process.env.TINTING_STORE_ID
