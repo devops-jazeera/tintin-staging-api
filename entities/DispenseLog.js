@@ -153,6 +153,10 @@ var DispenseLog = /** @class */ (function () {
         typeorm_1.Column({ name: "customer_name" }),
         __metadata("design:type", String)
     ], DispenseLog.prototype, "customerName", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "show_room_invoice" }),
+        __metadata("design:type", String)
+    ], DispenseLog.prototype, "showRoomInvoice", void 0);
     DispenseLog = __decorate([
         typeorm_1.Entity("dispense_log")
     ], DispenseLog);
