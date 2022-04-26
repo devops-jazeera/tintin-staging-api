@@ -247,7 +247,6 @@ var SyncMainService = /** @class */ (function () {
                                                 topic = batch.topic;
                                                 Log_1.master.info(topic);
                                                 Log_1.master.info("$$$$$$$$$$$$$$$$$$$$$$$$ " + topic + " $$$$$$$$$$$$$$$$$$$$$$$$");
-                                                console.log(JSON.parse(message.value));
                                                 data = JSON.parse(message.value);
                                                 data = data ? data : null;
                                                 Log_1.master.info(data ? data : null);
@@ -413,12 +412,12 @@ var SyncMainService = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _b.trys.push([0, 9, , 10]);
-                        if (!(message && message.queries && message.queries.length)) return [3 /*break*/, 8];
+                        _b.trys.push([0, 11, , 12]);
+                        if (!(message && message.queries && message.queries.length)) return [3 /*break*/, 10];
                         _i = 0, _a = message.queries;
                         _b.label = 1;
                     case 1:
-                        if (!(_i < _a.length)) return [3 /*break*/, 8];
+                        if (!(_i < _a.length)) return [3 /*break*/, 10];
                         query = _a[_i];
                         queryRunner = typeorm_1.getConnection("default").createQueryRunner();
                         return [4 /*yield*/, queryRunner.connect()];
@@ -429,29 +428,37 @@ var SyncMainService = /** @class */ (function () {
                         _b.sent();
                         _b.label = 4;
                     case 4:
-                        _b.trys.push([4, 6, , 7]);
+                        _b.trys.push([4, 7, , 9]);
                         return [4 /*yield*/, queryRunner.query(query)];
                     case 5:
                         resultData = _b.sent();
-                        queryRunner.commitTransaction();
-                        return [3 /*break*/, 7];
+                        return [4 /*yield*/, queryRunner.commitTransaction()];
                     case 6:
-                        error_3 = _b.sent();
-                        queryRunner.rollbackTransaction();
-                        return [3 /*break*/, 7];
+                        _b.sent();
+                        return [3 /*break*/, 9];
                     case 7:
+                        error_3 = _b.sent();
+                        Log_3.ulog.info("$$$$$$$$$$$$$$$$$$$$$$$$ TABLE UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_3.ulog.info(error_3);
+                        Log_3.ulog.info("$$$$$$$$$$$$$$$$$$$$$$$$ TABLE UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
+                        Log_3.ulog.error(error_3);
+                        return [4 /*yield*/, queryRunner.rollbackTransaction()];
+                    case 8:
+                        _b.sent();
+                        return [3 /*break*/, 9];
+                    case 9:
                         _i++;
                         return [3 /*break*/, 1];
-                    case 8: return [3 /*break*/, 10];
-                    case 9:
+                    case 10: return [3 /*break*/, 12];
+                    case 11:
                         err_3 = _b.sent();
                         // setTimeout(async ()=> {await this.subscribeForTableUpdates(message)} , 3000);
                         Log_3.ulog.info("$$$$$$$$$$$$$$$$$$$$$$$$ TABLE UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
                         Log_3.ulog.info(err_3);
                         Log_3.ulog.info("$$$$$$$$$$$$$$$$$$$$$$$$ TABLE UPDATE ERROR $$$$$$$$$$$$$$$$$$$$$$$$");
                         Log_3.ulog.error(err_3);
-                        return [3 /*break*/, 10];
-                    case 10: return [2 /*return*/];
+                        return [3 /*break*/, 12];
+                    case 12: return [2 /*return*/];
                 }
             });
         });
