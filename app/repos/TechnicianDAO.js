@@ -61,11 +61,11 @@ var TechnicianDAO = /** @class */ (function () {
     };
     TechnicianDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var err_1;
+            var addresses_1, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 14, , 15]);
+                        _a.trys.push([0, 16, , 17]);
                         if (!(data.address && data.address.id)) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.address.save(data.address)];
                     case 1:
@@ -101,15 +101,26 @@ var TechnicianDAO = /** @class */ (function () {
                     case 11:
                         delete data.vendor;
                         _a.label = 12;
-                    case 12: return [4 /*yield*/, this.dao.save(data)];
+                    case 12:
+                        addresses_1 = [];
+                        data.map(function (technician) {
+                            if (technician.address)
+                                addresses_1.push(technician.address);
+                        });
+                        if (!addresses_1.length) return [3 /*break*/, 14];
+                        return [4 /*yield*/, this.address.save(addresses_1)];
                     case 13:
                         _a.sent();
-                        return [3 /*break*/, 15];
-                    case 14:
+                        _a.label = 14;
+                    case 14: return [4 /*yield*/, this.dao.save(data)];
+                    case 15:
+                        _a.sent();
+                        return [3 /*break*/, 17];
+                    case 16:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 15];
-                    case 15: return [2 /*return*/];
+                        return [3 /*break*/, 17];
+                    case 17: return [2 /*return*/];
                 }
             });
         });

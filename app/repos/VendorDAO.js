@@ -59,11 +59,11 @@ var VendorDAO = /** @class */ (function () {
     };
     VendorDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var err_1;
+            var addresses_1, profiles_1, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 8, , 9]);
+                        _a.trys.push([0, 12, , 13]);
                         if (!(data.profile && data.profile.id)) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.profile.save(data.profile)];
                     case 1:
@@ -87,15 +87,34 @@ var VendorDAO = /** @class */ (function () {
                         else {
                             delete data.branch;
                         }
-                        return [4 /*yield*/, this.dao.save(data)];
+                        addresses_1 = [];
+                        profiles_1 = [];
+                        data.map(function (vendor) {
+                            if (vendor.address)
+                                addresses_1.push(vendor.address);
+                            if (vendor.profile)
+                                profiles_1.push(vendor.profile);
+                        });
+                        if (!addresses_1.length) return [3 /*break*/, 8];
+                        return [4 /*yield*/, this.address.save(addresses_1)];
                     case 7:
                         _a.sent();
-                        return [3 /*break*/, 9];
+                        _a.label = 8;
                     case 8:
+                        if (!profiles_1.length) return [3 /*break*/, 10];
+                        return [4 /*yield*/, this.profile.save(profiles_1)];
+                    case 9:
+                        _a.sent();
+                        _a.label = 10;
+                    case 10: return [4 /*yield*/, this.dao.save(data)];
+                    case 11:
+                        _a.sent();
+                        return [3 /*break*/, 13];
+                    case 12:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 9];
-                    case 9: return [2 /*return*/];
+                        return [3 /*break*/, 13];
+                    case 13: return [2 /*return*/];
                 }
             });
         });

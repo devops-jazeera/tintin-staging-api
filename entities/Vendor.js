@@ -10,9 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var Profile_1 = require("./Profile");
-var Branch_1 = require("./Branch");
-var Address_1 = require("./Address");
 var Vendor = /** @class */ (function () {
     function Vendor() {
     }
@@ -49,9 +46,9 @@ var Vendor = /** @class */ (function () {
         __metadata("design:type", Date)
     ], Vendor.prototype, "inserted_at", void 0);
     __decorate([
-        typeorm_1.Column({ name: "vat" }),
-        __metadata("design:type", String)
-    ], Vendor.prototype, "vat", void 0);
+        typeorm_1.Column({ name: "updated_on" }),
+        __metadata("design:type", Date)
+    ], Vendor.prototype, "updated_on", void 0);
     __decorate([
         typeorm_1.Column({ name: "email" }),
         __metadata("design:type", String)
@@ -61,24 +58,9 @@ var Vendor = /** @class */ (function () {
         __metadata("design:type", String)
     ], Vendor.prototype, "mobile", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: 'id' }),
-        typeorm_1.OneToMany(function (type) { return Profile_1.Profile; }, function (profile) { return profile.vendors; }, {
-            cascade: true,
-        }),
-        __metadata("design:type", Profile_1.Profile)
-    ], Vendor.prototype, "profile", void 0);
-    __decorate([
-        typeorm_1.JoinColumn({ name: "address_id" }),
-        typeorm_1.ManyToOne(function (type) { return Address_1.Address; }, {
-            cascade: true,
-        }),
-        __metadata("design:type", Address_1.Address)
-    ], Vendor.prototype, "address", void 0);
-    __decorate([
-        typeorm_1.JoinColumn({ name: "branch_id" }),
-        typeorm_1.ManyToOne(function (type) { return Branch_1.Branch; }),
-        __metadata("design:type", Branch_1.Branch)
-    ], Vendor.prototype, "branch", void 0);
+        typeorm_1.Column({ name: "vat" }),
+        __metadata("design:type", String)
+    ], Vendor.prototype, "vat", void 0);
     Vendor = __decorate([
         typeorm_1.Entity("vendor")
     ], Vendor);

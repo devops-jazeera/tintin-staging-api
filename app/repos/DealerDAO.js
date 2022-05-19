@@ -57,11 +57,11 @@ var DealerDAO = /** @class */ (function () {
     };
     DealerDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var err_1, err_2;
+            var err_1, addresses_1, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 11, , 12]);
+                        _a.trys.push([0, 13, , 14]);
                         if (!(data.vendor && data.vendor.id && data.vendor.name)) return [3 /*break*/, 5];
                         _a.label = 1;
                     case 1:
@@ -87,15 +87,26 @@ var DealerDAO = /** @class */ (function () {
                     case 8:
                         delete data.address;
                         _a.label = 9;
-                    case 9: return [4 /*yield*/, this.dao.save(data)];
+                    case 9:
+                        addresses_1 = [];
+                        data.map(function (dealer) {
+                            if (dealer.address)
+                                addresses_1.push(dealer.address);
+                        });
+                        if (!addresses_1.length) return [3 /*break*/, 11];
+                        return [4 /*yield*/, this.address.save(addresses_1)];
                     case 10:
                         _a.sent();
-                        return [3 /*break*/, 12];
-                    case 11:
+                        _a.label = 11;
+                    case 11: return [4 /*yield*/, this.dao.save(data)];
+                    case 12:
+                        _a.sent();
+                        return [3 /*break*/, 14];
+                    case 13:
                         err_2 = _a.sent();
                         console.log(err_2);
-                        return [3 /*break*/, 12];
-                    case 12: return [2 /*return*/];
+                        return [3 /*break*/, 14];
+                    case 14: return [2 /*return*/];
                 }
             });
         });

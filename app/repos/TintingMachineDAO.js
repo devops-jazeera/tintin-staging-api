@@ -68,11 +68,11 @@ var TintingMachineDAO = /** @class */ (function () {
     };
     TintingMachineDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var err_1;
+            var addresses_1, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 34, , 35]);
+                        _a.trys.push([0, 36, , 37]);
                         if (!(data.dealer && data.dealer.id)) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.dealer.save(data.dealer)];
                     case 1:
@@ -167,15 +167,27 @@ var TintingMachineDAO = /** @class */ (function () {
                     case 31:
                         delete data.districtMaster;
                         _a.label = 32;
-                    case 32: return [4 /*yield*/, this.dao.save(data)];
+                    case 32:
+                        console.log(data);
+                        addresses_1 = [];
+                        data.map(function (tm) {
+                            if (tm.address)
+                                addresses_1.push(tm.address);
+                        });
+                        if (!addresses_1.length) return [3 /*break*/, 34];
+                        return [4 /*yield*/, this.address.save(addresses_1)];
                     case 33:
                         _a.sent();
-                        return [3 /*break*/, 35];
-                    case 34:
+                        _a.label = 34;
+                    case 34: return [4 /*yield*/, this.dao.save(data)];
+                    case 35:
+                        _a.sent();
+                        return [3 /*break*/, 37];
+                    case 36:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 35];
-                    case 35: return [2 /*return*/];
+                        return [3 /*break*/, 37];
+                    case 37: return [2 /*return*/];
                 }
             });
         });
