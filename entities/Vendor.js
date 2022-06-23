@@ -61,6 +61,18 @@ var Vendor = /** @class */ (function () {
         typeorm_1.Column({ name: "vat" }),
         __metadata("design:type", String)
     ], Vendor.prototype, "vat", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "license_limit" }),
+        __metadata("design:type", Number)
+    ], Vendor.prototype, "license_limit", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "license_expiry_date" }),
+        __metadata("design:type", Date)
+    ], Vendor.prototype, "license_expiry_date", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "allow_machine_expiry" }),
+        __metadata("design:type", Boolean)
+    ], Vendor.prototype, "allow_machine_expiry", void 0);
     Vendor = __decorate([
         typeorm_1.Entity("vendor")
     ], Vendor);

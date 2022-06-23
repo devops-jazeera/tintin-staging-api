@@ -159,6 +159,14 @@ var BaseSizeColorsCopy = /** @class */ (function () {
         typeorm_1.ManyToOne(function (type) { return DatabaseMaster_1.DatabaseMaster; }, function (db) { return db.system_code; }),
         __metadata("design:type", DatabaseMaster_1.DatabaseMaster)
     ], BaseSizeColorsCopy.prototype, "dbMaster", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "color_name_en" }),
+        __metadata("design:type", String)
+    ], BaseSizeColorsCopy.prototype, "color_name_en", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "color_name_ar" }),
+        __metadata("design:type", String)
+    ], BaseSizeColorsCopy.prototype, "color_name_ar", void 0);
     BaseSizeColorsCopy = __decorate([
         typeorm_1.Entity("base_size_colors")
     ], BaseSizeColorsCopy);

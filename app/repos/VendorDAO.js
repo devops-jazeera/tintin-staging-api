@@ -39,12 +39,14 @@ var typeorm_1 = require("typeorm");
 var Address_1 = require("../../entities/Address");
 var Branch_1 = require("../../entities/Branch");
 var Profile_1 = require("../../entities/Profile");
+var TintingMachine_1 = require("../../entities/TintingMachine");
 var Vendor_1 = require("../../entities/Vendor");
 var VendorDAO = /** @class */ (function () {
     function VendorDAO() {
         this.dao = typeorm_1.getRepository(Vendor_1.Vendor);
         this.profile = typeorm_1.getRepository(Profile_1.Profile);
         this.address = typeorm_1.getRepository(Address_1.Address);
+        this.tintinMachine = typeorm_1.getRepository(TintingMachine_1.TintingMachine);
         this.branch = typeorm_1.getRepository(Branch_1.Branch);
     }
     VendorDAO.prototype.search = function (data) {
@@ -59,11 +61,11 @@ var VendorDAO = /** @class */ (function () {
     };
     VendorDAO.prototype.save = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var addresses_1, profiles_1, err_1;
+            var addresses_1, profiles_1, tintingMachines_1, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 12, , 13]);
+                        _a.trys.push([0, 14, , 15]);
                         if (!(data.profile && data.profile.id)) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.profile.save(data.profile)];
                     case 1:
@@ -89,11 +91,14 @@ var VendorDAO = /** @class */ (function () {
                         }
                         addresses_1 = [];
                         profiles_1 = [];
+                        tintingMachines_1 = [];
                         data.map(function (vendor) {
                             if (vendor.address)
                                 addresses_1.push(vendor.address);
                             if (vendor.profile)
                                 profiles_1.push(vendor.profile);
+                            if (vendor.tintingMachines && Array.isArray(vendor.tintingMachines))
+                                tintingMachines_1 = tintingMachines_1.concat(vendor.tintingMachines);
                         });
                         if (!addresses_1.length) return [3 /*break*/, 8];
                         return [4 /*yield*/, this.address.save(addresses_1)];
@@ -106,15 +111,21 @@ var VendorDAO = /** @class */ (function () {
                     case 9:
                         _a.sent();
                         _a.label = 10;
-                    case 10: return [4 /*yield*/, this.dao.save(data)];
+                    case 10:
+                        if (!tintingMachines_1.length) return [3 /*break*/, 12];
+                        return [4 /*yield*/, this.tintinMachine.save(tintingMachines_1)];
                     case 11:
                         _a.sent();
-                        return [3 /*break*/, 13];
-                    case 12:
+                        _a.label = 12;
+                    case 12: return [4 /*yield*/, this.dao.save(data)];
+                    case 13:
+                        _a.sent();
+                        return [3 /*break*/, 15];
+                    case 14:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        return [3 /*break*/, 13];
-                    case 13: return [2 /*return*/];
+                        return [3 /*break*/, 15];
+                    case 15: return [2 /*return*/];
                 }
             });
         });
