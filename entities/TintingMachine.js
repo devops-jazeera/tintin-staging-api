@@ -147,6 +147,18 @@ var TintingMachine = /** @class */ (function () {
         typeorm_1.Column({ name: "store_id" }),
         __metadata("design:type", String)
     ], TintingMachine.prototype, "store_id", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "client_version" }),
+        __metadata("design:type", String)
+    ], TintingMachine.prototype, "client_version", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "client_updated_on" }),
+        __metadata("design:type", Date)
+    ], TintingMachine.prototype, "client_updated_on", void 0);
+    __decorate([
+        typeorm_1.Column({ name: 'channel_id' }),
+        __metadata("design:type", String)
+    ], TintingMachine.prototype, "channel_id", void 0);
     TintingMachine = __decorate([
         typeorm_1.Entity("tinting_machine")
     ], TintingMachine);

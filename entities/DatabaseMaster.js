@@ -73,6 +73,10 @@ var DatabaseMaster = /** @class */ (function () {
         typeorm_1.ManyToOne(function (type) { return PigmentSet_1.PigmentSet; }, function (pigmentSet) { return pigmentSet.id; }),
         __metadata("design:type", PigmentSet_1.PigmentSet)
     ], DatabaseMaster.prototype, "pigmentSet", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "coating_type" }),
+        __metadata("design:type", String)
+    ], DatabaseMaster.prototype, "coating_type", void 0);
     DatabaseMaster = __decorate([
         typeorm_1.Entity("database_master")
     ], DatabaseMaster);

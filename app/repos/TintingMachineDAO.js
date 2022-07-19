@@ -168,7 +168,6 @@ var TintingMachineDAO = /** @class */ (function () {
                         delete data.districtMaster;
                         _a.label = 32;
                     case 32:
-                        console.log(data);
                         addresses_1 = [];
                         data.map(function (tm) {
                             if (tm.address)
