@@ -119,6 +119,10 @@ var BaseSizes = /** @class */ (function () {
         typeorm_1.Column({ name: "active" }),
         __metadata("design:type", Boolean)
     ], BaseSizes.prototype, "active", void 0);
+    __decorate([
+        typeorm_1.Column({ name: "system_code" }),
+        __metadata("design:type", String)
+    ], BaseSizes.prototype, "systemCode", void 0);
     BaseSizes = __decorate([
         typeorm_1.Entity("base_sizes")
     ], BaseSizes);
