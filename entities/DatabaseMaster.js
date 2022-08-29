@@ -64,6 +64,10 @@ var DatabaseMaster = /** @class */ (function () {
         __metadata("design:type", String)
     ], DatabaseMaster.prototype, "name_ar", void 0);
     __decorate([
+        typeorm_1.Column({ name: "vat" }),
+        __metadata("design:type", Number)
+    ], DatabaseMaster.prototype, "vat", void 0);
+    __decorate([
         typeorm_1.JoinColumn({ name: "vendor_id" }),
         typeorm_1.ManyToOne(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),
         __metadata("design:type", Vendor_1.Vendor)
