@@ -1,9 +1,33 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -34,18 +58,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MinioHelper = void 0;
 var minio_1 = require("minio");
 var Config = __importStar(require("../utils/Config"));
 var MineType_1 = __importDefault(require("../utils/MineType"));
@@ -56,7 +73,7 @@ var config = {
     endPoint: Config.minioKeys.host
 };
 var PUBLIC_BUCKET = "public";
-setTimeout(function () { return __awaiter(_this, void 0, void 0, function () {
+setTimeout(function () { return __awaiter(void 0, void 0, void 0, function () {
     var client, promise;
     return __generator(this, function (_a) {
         client = new minio_1.Client(config);
@@ -89,7 +106,7 @@ setTimeout(function () { return __awaiter(_this, void 0, void 0, function () {
         promise
             .then(function () {
             var bucket = Config.minioKeys.bucket + PUBLIC_BUCKET;
-            var access = "{\n            \"Version\":\"2012-10-17\",\n            \"Statement\":[\n              {\n                \"Sid\":\"AddPerm\",\n                \"Effect\":\"Allow\",\n                \"Principal\": \"*\",\n                \"Action\":[\"s3:GetObject\"],\n                \"Resource\":[\"arn:aws:s3:::" + bucket + "/*\"]\n              }\n            ]\n          }";
+            var access = "{\n            \"Version\":\"2012-10-17\",\n            \"Statement\":[\n              {\n                \"Sid\":\"AddPerm\",\n                \"Effect\":\"Allow\",\n                \"Principal\": \"*\",\n                \"Action\":[\"s3:GetObject\"],\n                \"Resource\":[\"arn:aws:s3:::".concat(bucket, "/*\"]\n              }\n            ]\n          }");
             access = access.toString();
             // console.log(access);
             client.setBucketPolicy(bucket, access, function (err) {
@@ -116,7 +133,7 @@ var MinioHelper = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        filename = filename + MineType_1.default(mineType);
+                        filename = filename + (0, MineType_1.default)(mineType);
                         console.log("Store Upload: " + filename);
                         return [4 /*yield*/, new Promise(function (resolve, rejects) {
                                 var bucket = Config.minioKeys.bucket + (isSecure ? "" : PUBLIC_BUCKET);
@@ -147,7 +164,7 @@ var MinioHelper = /** @class */ (function () {
     };
     MinioHelper.prototype.deleteFile = function (filename, mineType, isSecure) {
         if (isSecure === void 0) { isSecure = true; }
-        filename = filename + MineType_1.default(mineType);
+        filename = filename + (0, MineType_1.default)(mineType);
         // console.log("Store Delete: " + filename);
         var bucket = Config.minioKeys.bucket + (isSecure ? "" : PUBLIC_BUCKET);
         this.client.removeObject(bucket, filename, function (err) {
@@ -156,7 +173,7 @@ var MinioHelper = /** @class */ (function () {
         });
     };
     MinioHelper.prototype.streamDownloadFile = function (filename, mineType, response) {
-        filename = filename + MineType_1.default(mineType);
+        filename = filename + (0, MineType_1.default)(mineType);
         // console.log("Download File: " + filename);
         this.client.getObject(Config.minioKeys.bucket, filename, function (error, stream) {
             if (error) {
@@ -168,7 +185,7 @@ var MinioHelper = /** @class */ (function () {
     MinioHelper.FileUrl = function (filename, mineType, isSecure) {
         if (isSecure === void 0) { isSecure = false; }
         var bucket = Config.minioKeys.bucket + (isSecure ? "" : PUBLIC_BUCKET);
-        filename = filename.indexOf(".") > 0 ? filename : filename + MineType_1.default(mineType);
+        filename = filename.indexOf(".") > 0 ? filename : filename + (0, MineType_1.default)(mineType);
         var returnData = "https://" + Config.minioKeys.host + "/";
         returnData += bucket + "/";
         returnData += filename;

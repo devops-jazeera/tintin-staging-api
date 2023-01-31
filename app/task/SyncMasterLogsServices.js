@@ -1,9 +1,33 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -34,14 +58,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SyncMasterLogsServices = void 0;
 var Log_1 = require("./../../utils/Log");
 var Config = __importStar(require("../../utils/Config"));
 // import { DAOList } from "../../utils/LoadDAO";
@@ -65,7 +83,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                         syncLogData = _a.sent();
                         if (!(syncLogData && syncLogData.rows && syncLogData.rows.length > 0)) return [3 /*break*/, 7];
                         Log_1.master.info("((((((((((((((((((((((((((((((Got result from syn mater logs ))))))))))))))))))))))))))))))))");
-                        Log_1.master.info("((((((((((((((((((((((((((((((" + syncLogData.rows.length + " ))))))))))))))))))))))))))))))))");
+                        Log_1.master.info("((((((((((((((((((((((((((((((".concat(syncLogData.rows.length, " ))))))))))))))))))))))))))))))))"));
                         tableData = syncLogData.rows;
                         if (!(tableData && tableData.length > 0)) return [3 /*break*/, 7];
                         savedDataArray = [];
@@ -84,8 +102,8 @@ var SyncMasterLogsServices = /** @class */ (function () {
                         _i++;
                         return [3 /*break*/, 2];
                     case 5:
-                        Log_1.master.info("Actual data came ::: " + tableData.length + " ");
-                        Log_1.master.info("Saved data ::: " + savedDataArray.length);
+                        Log_1.master.info("Actual data came ::: ".concat(tableData.length, " "));
+                        Log_1.master.info("Saved data ::: ".concat(savedDataArray.length));
                         if (!(savedDataArray.length > 0)) return [3 /*break*/, 7];
                         return [4 /*yield*/, this.deleteSyncMaterLogsData(savedDataArray)];
                     case 6:
@@ -133,7 +151,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                         return [4 /*yield*/, this.getDAOService(table.tableName)];
                     case 1:
                         daoObj = _a.sent();
-                        log.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + ", \"operation:" + table.operation + " \" \"*****************************");
+                        log.info("*****************************DAO ".concat(daoObj ? "PRESENT" : undefined, ", \"operation:").concat(table.operation, " \" \"*****************************"));
                         if (!daoObj) return [3 /*break*/, 8];
                         return [4 /*yield*/, this.chunkArray(table.data, 1000)];
                     case 2:
@@ -145,7 +163,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                         chunck = chunck_data_1[_i];
                         log.info(chunck.length);
                         if (!(table.operation == 'DELETE')) return [3 /*break*/, 5];
-                        log.info("*****************************DAO \"operation:" + table.operation + " \" \"*****************************");
+                        log.info("*****************************DAO \"operation:".concat(table.operation, " \" \"*****************************"));
                         return [4 /*yield*/, daoObj.delete(chunck)];
                     case 4:
                         _a.sent();
@@ -174,7 +192,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         storeId = process.env.TINTING_STORE_ID;
-                        Log_1.master.info("((((((((((((((((((((STORE ID ::: " + storeId + " ))))))))))))))))))))");
+                        Log_1.master.info("((((((((((((((((((((STORE ID ::: ".concat(storeId, " ))))))))))))))))))))"));
                         reqData = {
                             data: {
                                 inventlocationid: storeId,
@@ -183,7 +201,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                         return [4 /*yield*/, this.callApi(this.url + "syncmasterlogs/search", this.token, reqData)];
                     case 1:
                         data = _a.sent();
-                        Log_1.master.info("((((((((((((((((((((STORE ID ::: " + data + " ))))))))))))))))))))");
+                        Log_1.master.info("((((((((((((((((((((STORE ID ::: ".concat(data, " ))))))))))))))))))))"));
                         if (data.error) {
                             throw data.error.message;
                         }
@@ -216,7 +234,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                         return [4 /*yield*/, this.callApi(this.url + "syncmasterlogs/deletedata", this.token, reqData)];
                     case 1:
                         data = _a.sent();
-                        Log_1.master.info("((((((((((((((((((((Deleted Data ::: " + ids + " ))))))))))))))))))))");
+                        Log_1.master.info("((((((((((((((((((((Deleted Data ::: ".concat(ids, " ))))))))))))))))))))"));
                         if (data.error) {
                             throw data.error.message;
                         }
@@ -309,7 +327,7 @@ var SyncMasterLogsServices = /** @class */ (function () {
                         _c.label = 3;
                     case 3:
                         _a.daoList = _b;
-                        Log_1.master.info("*******************getting dao for " + tablename + "*************************");
+                        Log_1.master.info("*******************getting dao for ".concat(tablename, "*************************"));
                         // console.log(this.daoList[tablename]);
                         return [2 /*return*/, this.daoList[tablename]];
                 }

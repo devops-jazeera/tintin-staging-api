@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -35,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProfileDocsDAO = void 0;
 var typeorm_1 = require("typeorm");
 var Address_1 = require("../../entities/Address");
 var Branch_1 = require("../../entities/Branch");
@@ -43,11 +45,11 @@ var Profile_1 = require("../../entities/Profile");
 var ProfileDocs_1 = require("../../entities/ProfileDocs");
 var ProfileDocsDAO = /** @class */ (function () {
     function ProfileDocsDAO() {
-        this.dao = typeorm_1.getRepository(ProfileDocs_1.ProfileDocs);
-        this.profile = typeorm_1.getRepository(Profile_1.Profile);
-        this.docFile = typeorm_1.getRepository(FileData_1.FileData);
-        this.address = typeorm_1.getRepository(Address_1.Address);
-        this.branch = typeorm_1.getRepository(Branch_1.Branch);
+        this.dao = (0, typeorm_1.getRepository)(ProfileDocs_1.ProfileDocs);
+        this.profile = (0, typeorm_1.getRepository)(Profile_1.Profile);
+        this.docFile = (0, typeorm_1.getRepository)(FileData_1.FileData);
+        this.address = (0, typeorm_1.getRepository)(Address_1.Address);
+        this.branch = (0, typeorm_1.getRepository)(Branch_1.Branch);
     }
     ProfileDocsDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {

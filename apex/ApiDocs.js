@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.APIDocs = void 0;
 var express_1 = require("express");
 var swaggerJSDoc = require("swagger-jsdoc");
 var swaggerUi = require("swagger-ui-express");
@@ -7,7 +8,7 @@ var fs_1 = require("fs");
 var path = require("path");
 var APIDocs = /** @class */ (function () {
     function APIDocs() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.config = null;
     }
     APIDocs.prototype.getRouter = function () {
@@ -19,7 +20,7 @@ var APIDocs = /** @class */ (function () {
         return this.router;
     };
     APIDocs.prototype.getHost = function (req, needProtype) {
-        return "" + (needProtype ? "http://" : "") + req.headers.host;
+        return "".concat(needProtype ? "http://" : "").concat(req.headers.host);
     };
     APIDocs.prototype.apiDocsConfig = function (host) {
         var apiList = APIDocs.getAllRoutes(path.join(__dirname, "./../assets/spec"), []);
@@ -48,12 +49,12 @@ var APIDocs = /** @class */ (function () {
         return spec;
     };
     APIDocs.getAllRoutes = function (dir, filelist) {
-        var _files = fs_1.readdirSync(dir);
+        var _files = (0, fs_1.readdirSync)(dir);
         filelist = filelist || [];
         _files.map(function (file) {
             // filter out .map and hidden files
             if (file.search(".map") < 0 && file.search(/^\./) < 0) {
-                if (fs_1.statSync(path.join(dir, file)).isDirectory()) {
+                if ((0, fs_1.statSync)(path.join(dir, file)).isDirectory()) {
                     filelist = APIDocs.getAllRoutes(path.join(dir, file), filelist);
                 }
                 else {

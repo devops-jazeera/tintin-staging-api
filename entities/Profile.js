@@ -9,86 +9,87 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Profile = void 0;
 var typeorm_1 = require("typeorm");
 var Vendor_1 = require("./Vendor");
 var Profile = /** @class */ (function () {
     function Profile() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], Profile.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name" }),
+        (0, typeorm_1.Column)({ name: "name" }),
         __metadata("design:type", String)
     ], Profile.prototype, "name", void 0);
     __decorate([
-        typeorm_1.Column({ name: "country_code" }),
+        (0, typeorm_1.Column)({ name: "country_code" }),
         __metadata("design:type", String)
     ], Profile.prototype, "country_code", void 0);
     __decorate([
-        typeorm_1.Column({ name: "mobile" }),
+        (0, typeorm_1.Column)({ name: "mobile" }),
         __metadata("design:type", String)
     ], Profile.prototype, "mobile", void 0);
     __decorate([
-        typeorm_1.Column({ name: "email" }),
+        (0, typeorm_1.Column)({ name: "email" }),
         __metadata("design:type", String)
     ], Profile.prototype, "email", void 0);
     __decorate([
-        typeorm_1.Column({ name: "password" }),
+        (0, typeorm_1.Column)({ name: "password" }),
         __metadata("design:type", String)
     ], Profile.prototype, "password", void 0);
     __decorate([
-        typeorm_1.Column({ name: "token" }),
+        (0, typeorm_1.Column)({ name: "token" }),
         __metadata("design:type", String)
     ], Profile.prototype, "token", void 0);
     __decorate([
-        typeorm_1.Column({ name: "role" }),
+        (0, typeorm_1.Column)({ name: "role" }),
         __metadata("design:type", String)
     ], Profile.prototype, "role", void 0);
     __decorate([
-        typeorm_1.Column({ name: "status" }),
+        (0, typeorm_1.Column)({ name: "status" }),
         __metadata("design:type", String)
     ], Profile.prototype, "status", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], Profile.prototype, "active", void 0);
     __decorate([
-        typeorm_1.Column({ name: "vid" }),
+        (0, typeorm_1.Column)({ name: "vid" }),
         __metadata("design:type", String)
     ], Profile.prototype, "vid", void 0);
     __decorate([
-        typeorm_1.Column({ name: "pic" }),
+        (0, typeorm_1.Column)({ name: "pic" }),
         __metadata("design:type", String)
     ], Profile.prototype, "pic", void 0);
     __decorate([
-        typeorm_1.Column({ name: "created_by" }),
+        (0, typeorm_1.Column)({ name: "created_by" }),
         __metadata("design:type", String)
     ], Profile.prototype, "created_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "created_on" }),
+        (0, typeorm_1.Column)({ name: "created_on" }),
         __metadata("design:type", Date)
     ], Profile.prototype, "created_on", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_by" }),
+        (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], Profile.prototype, "updated_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_on" }),
+        (0, typeorm_1.Column)({ name: "updated_on" }),
         __metadata("design:type", Date)
     ], Profile.prototype, "updated_on", void 0);
     __decorate([
-        typeorm_1.Column({ name: "system_code" }),
+        (0, typeorm_1.Column)({ name: "system_code" }),
         __metadata("design:type", String)
     ], Profile.prototype, "system_code", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "vid" }),
-        typeorm_1.ManyToOne(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),
+        (0, typeorm_1.JoinColumn)({ name: "vid" }),
+        (0, typeorm_1.ManyToOne)(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),
         __metadata("design:type", Vendor_1.Vendor)
     ], Profile.prototype, "vendors", void 0);
     Profile = __decorate([
-        typeorm_1.Entity("profile")
+        (0, typeorm_1.Entity)("profile")
     ], Profile);
     return Profile;
 }());

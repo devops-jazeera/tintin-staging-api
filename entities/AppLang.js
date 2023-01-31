@@ -9,36 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppLang = void 0;
 var typeorm_1 = require("typeorm");
 var AppLang = /** @class */ (function () {
     function AppLang() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], AppLang.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "en" }),
+        (0, typeorm_1.Column)({ name: "en" }),
         __metadata("design:type", String)
     ], AppLang.prototype, "en", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], AppLang.prototype, "active", void 0);
     __decorate([
-        typeorm_1.Column({ name: "ar" }),
+        (0, typeorm_1.Column)({ name: "ar" }),
         __metadata("design:type", String)
     ], AppLang.prototype, "ar", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_by" }),
+        (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], AppLang.prototype, "updated_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_on" }),
+        (0, typeorm_1.Column)({ name: "updated_on" }),
         __metadata("design:type", Date)
     ], AppLang.prototype, "updated_on", void 0);
     AppLang = __decorate([
-        typeorm_1.Entity("app_lang")
+        (0, typeorm_1.Entity)("app_lang")
     ], AppLang);
     return AppLang;
 }());

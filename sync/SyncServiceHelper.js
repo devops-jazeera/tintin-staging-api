@@ -1,9 +1,33 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -41,14 +65,8 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
     function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
     function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SyncServiceHelper = void 0;
 var pg_1 = require("pg");
 var Config = __importStar(require("../utils/Config"));
 var App_1 = require("../utils/App");
@@ -66,88 +84,97 @@ var SyncServiceHelper = /** @class */ (function () {
     function SyncServiceHelper() {
     }
     SyncServiceHelper.BatchQuery = function (config, sqls, log) {
-        var sqls_1, sqls_1_1;
+        var _a, sqls_1, sqls_1_1;
+        var _b, e_1, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
-            var e_1, _a, db, res, sql, e_1_1, e_2, err_1, err_2;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var db, res, sql, e_1_1, e_2, err_1, err_2;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
                     case 0:
                         log.info("-------------- Batch Query Starts --------------");
                         log.debug("\tHost Query: " + config.host);
                         log.debug("\t\tBatch length: " + sqls.length);
                         db = new pg_1.Client(config);
-                        _b.label = 1;
+                        _e.label = 1;
                     case 1:
-                        _b.trys.push([1, 18, 23, 27]);
+                        _e.trys.push([1, 20, 25, 29]);
                         return [4 /*yield*/, db.connect()];
                     case 2:
-                        _b.sent();
+                        _e.sent();
                         res = null;
                         return [4 /*yield*/, db.query("BEGIN")];
                     case 3:
-                        _b.sent();
-                        _b.label = 4;
+                        _e.sent();
+                        _e.label = 4;
                     case 4:
-                        _b.trys.push([4, 10, 11, 16]);
-                        sqls_1 = __asyncValues(sqls);
-                        _b.label = 5;
+                        _e.trys.push([4, 12, 13, 18]);
+                        _a = true, sqls_1 = __asyncValues(sqls);
+                        _e.label = 5;
                     case 5: return [4 /*yield*/, sqls_1.next()];
                     case 6:
-                        if (!(sqls_1_1 = _b.sent(), !sqls_1_1.done)) return [3 /*break*/, 9];
-                        sql = sqls_1_1.value;
-                        return [4 /*yield*/, db.query(sql)];
+                        if (!(sqls_1_1 = _e.sent(), _b = sqls_1_1.done, !_b)) return [3 /*break*/, 11];
+                        _d = sqls_1_1.value;
+                        _a = false;
+                        _e.label = 7;
                     case 7:
-                        res = _b.sent();
-                        _b.label = 8;
-                    case 8: return [3 /*break*/, 5];
-                    case 9: return [3 /*break*/, 16];
-                    case 10:
-                        e_1_1 = _b.sent();
-                        e_1 = { error: e_1_1 };
-                        return [3 /*break*/, 16];
-                    case 11:
-                        _b.trys.push([11, , 14, 15]);
-                        if (!(sqls_1_1 && !sqls_1_1.done && (_a = sqls_1.return))) return [3 /*break*/, 13];
-                        return [4 /*yield*/, _a.call(sqls_1)];
+                        _e.trys.push([7, , 9, 10]);
+                        sql = _d;
+                        return [4 /*yield*/, db.query(sql)];
+                    case 8:
+                        res = _e.sent();
+                        return [3 /*break*/, 10];
+                    case 9:
+                        _a = true;
+                        return [7 /*endfinally*/];
+                    case 10: return [3 /*break*/, 5];
+                    case 11: return [3 /*break*/, 18];
                     case 12:
-                        _b.sent();
-                        _b.label = 13;
-                    case 13: return [3 /*break*/, 15];
+                        e_1_1 = _e.sent();
+                        e_1 = { error: e_1_1 };
+                        return [3 /*break*/, 18];
+                    case 13:
+                        _e.trys.push([13, , 16, 17]);
+                        if (!(!_a && !_b && (_c = sqls_1.return))) return [3 /*break*/, 15];
+                        return [4 /*yield*/, _c.call(sqls_1)];
                     case 14:
+                        _e.sent();
+                        _e.label = 15;
+                    case 15: return [3 /*break*/, 17];
+                    case 16:
                         if (e_1) throw e_1.error;
                         return [7 /*endfinally*/];
-                    case 15: return [7 /*endfinally*/];
-                    case 16:
+                    case 17: return [7 /*endfinally*/];
+                    case 18:
                         log.info("END");
                         return [4 /*yield*/, db.query("COMMIT")];
-                    case 17:
-                        _b.sent();
-                        return [3 /*break*/, 27];
-                    case 18:
-                        e_2 = _b.sent();
-                        log.error(e_2);
-                        _b.label = 19;
                     case 19:
-                        _b.trys.push([19, 21, , 22]);
-                        return [4 /*yield*/, db.query("ROLLBACK")];
+                        _e.sent();
+                        return [3 /*break*/, 29];
                     case 20:
-                        _b.sent();
-                        return [3 /*break*/, 22];
+                        e_2 = _e.sent();
+                        log.error(e_2);
+                        _e.label = 21;
                     case 21:
-                        err_1 = _b.sent();
-                        throw err_1;
-                    case 22: throw e_2;
+                        _e.trys.push([21, 23, , 24]);
+                        return [4 /*yield*/, db.query("ROLLBACK")];
+                    case 22:
+                        _e.sent();
+                        return [3 /*break*/, 24];
                     case 23:
-                        _b.trys.push([23, 25, , 26]);
-                        return [4 /*yield*/, db.end()];
-                    case 24:
-                        _b.sent();
-                        return [3 /*break*/, 26];
+                        err_1 = _e.sent();
+                        throw err_1;
+                    case 24: throw e_2;
                     case 25:
-                        err_2 = _b.sent();
-                        return [3 /*break*/, 26];
-                    case 26: return [7 /*endfinally*/];
+                        _e.trys.push([25, 27, , 28]);
+                        return [4 /*yield*/, db.end()];
+                    case 26:
+                        _e.sent();
+                        return [3 /*break*/, 28];
                     case 27:
+                        err_2 = _e.sent();
+                        return [3 /*break*/, 28];
+                    case 28: return [7 /*endfinally*/];
+                    case 29:
                         log.info("-------------- Batch Query Ends --------------");
                         return [2 /*return*/];
                 }
@@ -315,11 +342,12 @@ var SyncServiceHelper = /** @class */ (function () {
         });
     };
     SyncServiceHelper.PrepareQuery = function (table, metaData, rows, filterIds, type, pk, log) {
-        var metaData_1, metaData_1_1;
+        var _a, metaData_1, metaData_1_1;
+        var _b, e_6, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
-            var e_6, _a, columns, sql, records_1, filterRows, sql_1, ele, e_6_1, records_2, filterRows;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var columns, sql, records_1, filterRows, sql_1, ele, e_6_1, records_2, filterRows;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
                     case 0:
                         columns = metaData.map(function (ele) { return ele.name; });
                         console.log(columns);
@@ -343,31 +371,38 @@ var SyncServiceHelper = /** @class */ (function () {
                         if (!(type == "UPDATE")) return [3 /*break*/, 14];
                         console.log("Update start ....");
                         sql_1 = "update " + table + " as t set ";
-                        _b.label = 2;
+                        _e.label = 2;
                     case 2:
-                        _b.trys.push([2, 7, 8, 13]);
-                        metaData_1 = __asyncValues(metaData);
-                        _b.label = 3;
+                        _e.trys.push([2, 7, 8, 13]);
+                        _a = true, metaData_1 = __asyncValues(metaData);
+                        _e.label = 3;
                     case 3: return [4 /*yield*/, metaData_1.next()];
                     case 4:
-                        if (!(metaData_1_1 = _b.sent(), !metaData_1_1.done)) return [3 /*break*/, 6];
-                        ele = metaData_1_1.value;
-                        sql_1 +=
-                            " " + ele.name + " = cast(c." + ele.name + " as " + SyncServiceHelper.TypeConvertion(ele.data_type) + " ), ";
-                        _b.label = 5;
+                        if (!(metaData_1_1 = _e.sent(), _b = metaData_1_1.done, !_b)) return [3 /*break*/, 6];
+                        _d = metaData_1_1.value;
+                        _a = false;
+                        try {
+                            ele = _d;
+                            sql_1 +=
+                                " " + ele.name + " = cast(c." + ele.name + " as " + SyncServiceHelper.TypeConvertion(ele.data_type) + " ), ";
+                        }
+                        finally {
+                            _a = true;
+                        }
+                        _e.label = 5;
                     case 5: return [3 /*break*/, 3];
                     case 6: return [3 /*break*/, 13];
                     case 7:
-                        e_6_1 = _b.sent();
+                        e_6_1 = _e.sent();
                         e_6 = { error: e_6_1 };
                         return [3 /*break*/, 13];
                     case 8:
-                        _b.trys.push([8, , 11, 12]);
-                        if (!(metaData_1_1 && !metaData_1_1.done && (_a = metaData_1.return))) return [3 /*break*/, 10];
-                        return [4 /*yield*/, _a.call(metaData_1)];
+                        _e.trys.push([8, , 11, 12]);
+                        if (!(!_a && !_b && (_c = metaData_1.return))) return [3 /*break*/, 10];
+                        return [4 /*yield*/, _c.call(metaData_1)];
                     case 9:
-                        _b.sent();
-                        _b.label = 10;
+                        _e.sent();
+                        _e.label = 10;
                     case 10: return [3 /*break*/, 12];
                     case 11:
                         if (e_6) throw e_6.error;
@@ -496,7 +531,7 @@ var SyncServiceHelper = /** @class */ (function () {
                                 }
                             }
                         }
-                        query = "\n                SELECT DISTINCT\n                C.ordinal_position AS POS,\n                  C.column_name              AS NAME,\n                      C.is_nullable              AS IS_NULLABLE,\n                      C.udt_name                 AS DATA_TYPE,\n                      C.character_maximum_length AS MAX_LENGTH,\n                      ( CASE\n                          WHEN TC.constraint_type = 'PRIMARY KEY' THEN 'ID'\n                          WHEN TC.constraint_type = 'UNIQUE' THEN NULL\n                          ELSE CCU.table_name\n                        END ) AS REF\n            FROM   information_schema.columns C\n              LEFT JOIN information_schema.key_column_usage AS KCU\n                    ON ( KCU.table_name = c.table_name\n                          AND KCU.column_name = c.column_name )\n              LEFT JOIN information_schema.table_constraints TC\n                    ON TC.table_name = C.table_name\n                        AND TC.table_catalog = C.table_catalog\n                        AND TC.constraint_name = kcu.constraint_name\n              LEFT JOIN information_schema.constraint_column_usage CCU\n                    ON CCU.constraint_name = TC.constraint_name\n                        AND C.table_catalog = CCU.table_catalog\n            WHERE  C.table_catalog = '" + config.database + "'\n              AND C.table_name = '" + table + "'\n            ORDER  BY C.ordinal_position;\n        ";
+                        query = "\n                SELECT DISTINCT\n                C.ordinal_position AS POS,\n                  C.column_name              AS NAME,\n                      C.is_nullable              AS IS_NULLABLE,\n                      C.udt_name                 AS DATA_TYPE,\n                      C.character_maximum_length AS MAX_LENGTH,\n                      ( CASE\n                          WHEN TC.constraint_type = 'PRIMARY KEY' THEN 'ID'\n                          WHEN TC.constraint_type = 'UNIQUE' THEN NULL\n                          ELSE CCU.table_name\n                        END ) AS REF\n            FROM   information_schema.columns C\n              LEFT JOIN information_schema.key_column_usage AS KCU\n                    ON ( KCU.table_name = c.table_name\n                          AND KCU.column_name = c.column_name )\n              LEFT JOIN information_schema.table_constraints TC\n                    ON TC.table_name = C.table_name\n                        AND TC.table_catalog = C.table_catalog\n                        AND TC.constraint_name = kcu.constraint_name\n              LEFT JOIN information_schema.constraint_column_usage CCU\n                    ON CCU.constraint_name = TC.constraint_name\n                        AND C.table_catalog = CCU.table_catalog\n            WHERE  C.table_catalog = '".concat(config.database, "'\n              AND C.table_name = '").concat(table, "'\n            ORDER  BY C.ordinal_position;\n        ");
                         db = new pg_1.Client(config);
                         _a.label = 1;
                     case 1:
@@ -550,7 +585,7 @@ var SyncServiceHelper = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var sql;
             return __generator(this, function (_a) {
-                sql = "\n    INSERT INTO sync_error \n    (id, store_id, \"type\", error_msg, error_desc) \n    VALUES(\n      '" + App_1.App.UniqueNumber() + "', '" + STORE_ID + "', '" + type + "', '" + JSON.stringify(err) + "', '" + (err.message ? err.message : "") + "'\n    )\n  ";
+                sql = "\n    INSERT INTO sync_error \n    (id, store_id, \"type\", error_msg, error_desc) \n    VALUES(\n      '".concat(App_1.App.UniqueNumber(), "', '").concat(STORE_ID, "', '").concat(type, "', '").concat(JSON.stringify(err), "', '").concat(err.message ? err.message : "", "'\n    )\n  ");
                 return [2 /*return*/];
             });
         });
@@ -622,19 +657,19 @@ var SyncServiceHelper = /** @class */ (function () {
                         stagUrl = syncUrl.url + "syncdata/";
                         token = syncUrl.token;
                         if (type == "RESET") {
-                            sql = "UPDATE sync_source SET  is_reset = false, updated_on = '" + moment().toISOString() + "'  WHERE id='" + STORE_ID + "' ";
+                            sql = "UPDATE sync_source SET  is_reset = false, updated_on = '".concat(moment().toISOString(), "'  WHERE id='").concat(STORE_ID, "' ");
                         }
                         else if (type == "CMD") {
                             sql = data;
                         }
                         else if (type == "JSON") {
-                            sql = "UPDATE sync_source SET  sync_cmd = null, updated_on = '" + moment().toISOString() + "'  WHERE id='" + STORE_ID + "' ";
+                            sql = "UPDATE sync_source SET  sync_cmd = null, updated_on = '".concat(moment().toISOString(), "'  WHERE id='").concat(STORE_ID, "' ");
                         }
                         else if (type == "VERSION") {
-                            sql = "UPDATE sync_source SET  type = 'v" + data + "', updated_on = '" + moment().toISOString() + "'  WHERE id='" + STORE_ID + "' ";
+                            sql = "UPDATE sync_source SET  type = 'v".concat(data, "', updated_on = '").concat(moment().toISOString(), "'  WHERE id='").concat(STORE_ID, "' ");
                         }
                         else if (type == "MAC") {
-                            sql = "UPDATE sync_source SET  mac_address = '" + data + "', updated_on = '" + moment().toISOString() + "'  WHERE id='" + STORE_ID + "' ";
+                            sql = "UPDATE sync_source SET  mac_address = '".concat(data, "', updated_on = '").concat(moment().toISOString(), "'  WHERE id='").concat(STORE_ID, "' ");
                         }
                         if (!sql) return [3 /*break*/, 3];
                         log.info(sql);
@@ -659,7 +694,7 @@ var SyncServiceHelper = /** @class */ (function () {
                         syncUrl = _a.sent();
                         stagUrl = syncUrl.url + "syncdata/";
                         token = syncUrl.token;
-                        sql = "select * from sync_source where id='" + storeid + "' ";
+                        sql = "select * from sync_source where id='".concat(storeid, "' ");
                         log.info(sql);
                         return [4 /*yield*/, SyncServiceHelper.ExecuteQueryApi(stagUrl, token, 'sync_source', sql, log)];
                     case 2:
@@ -684,17 +719,17 @@ var SyncServiceHelper = /** @class */ (function () {
     SyncServiceHelper.SyncReUpdateSQL = function (type, entity) {
         switch (type) {
             case "INSERT":
-                return "insert into sync_reupdate (id, store_id, table_name, table_pk, table_pk_value, type, sync_date, add_on ) values ('" + entity.id + "','" + entity.store_id + "','" + entity.table_name + "','" + entity.table_pk + "','" + entity.table_pk_value + "','" + entity.type + "','" + entity.sync_date + "', '" + JSON.stringify(entity.add_on) + "')";
+                return "insert into sync_reupdate (id, store_id, table_name, table_pk, table_pk_value, type, sync_date, add_on ) values ('".concat(entity.id, "','").concat(entity.store_id, "','").concat(entity.table_name, "','").concat(entity.table_pk, "','").concat(entity.table_pk_value, "','").concat(entity.type, "','").concat(entity.sync_date, "', '").concat(JSON.stringify(entity.add_on), "')");
             case "UPDATE":
-                return "update sync_reupdate set is_update = true, updated_on = now() where is_update = false and store_id = '" + entity.store_id + "' and table_name='" + entity.table_name + "' and table_pk_value = '" + entity.table_pk_value + "'";
+                return "update sync_reupdate set is_update = true, updated_on = now() where is_update = false and store_id = '".concat(entity.store_id, "' and table_name='").concat(entity.table_name, "' and table_pk_value = '").concat(entity.table_pk_value, "'");
             case "SELECT":
-                return "select distinct store_id, table_name, table_pk, table_pk_value, is_resync, type from sync_reupdate where store_id = '" + entity.store_id + "' and table_name in ('" + entity.table_name + "') and is_update = false ;";
+                return "select distinct store_id, table_name, table_pk, table_pk_value, is_resync, type from sync_reupdate where store_id = '".concat(entity.store_id, "' and table_name in ('").concat(entity.table_name, "') and is_update = false ;");
             default:
                 return null;
         }
     };
     SyncServiceHelper.BuildDMLSelectPkQuery = function (tableName, pk, value) {
-        var sql = "select * from " + tableName + " where " + pk + "= '" + value + "' ";
+        var sql = "select * from ".concat(tableName, " where ").concat(pk, "= '").concat(value, "' ");
         return sql;
     };
     SyncServiceHelper.BuildBatchQuery = function (soruceRes, sync, log, targetDb, batchSql) {

@@ -9,70 +9,71 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SizeMaster = void 0;
 var Vendor_1 = require("./Vendor");
 var typeorm_1 = require("typeorm");
 var SizeMaster = /** @class */ (function () {
     function SizeMaster() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], SizeMaster.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name_en" }),
+        (0, typeorm_1.Column)({ name: "name_en" }),
         __metadata("design:type", String)
     ], SizeMaster.prototype, "name_en", void 0);
     __decorate([
-        typeorm_1.Column({ name: "code" }),
+        (0, typeorm_1.Column)({ name: "code" }),
         __metadata("design:type", String)
     ], SizeMaster.prototype, "code", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name_ar" }),
+        (0, typeorm_1.Column)({ name: "name_ar" }),
         __metadata("design:type", String)
     ], SizeMaster.prototype, "name_ar", void 0);
     __decorate([
-        typeorm_1.Column({ name: "unit" }),
+        (0, typeorm_1.Column)({ name: "unit" }),
         __metadata("design:type", String)
     ], SizeMaster.prototype, "unit", void 0);
     __decorate([
-        typeorm_1.Column({ name: "volume" }),
+        (0, typeorm_1.Column)({ name: "volume" }),
         __metadata("design:type", Number)
     ], SizeMaster.prototype, "volume", void 0);
     __decorate([
-        typeorm_1.Column({ name: "vid" }),
+        (0, typeorm_1.Column)({ name: "vid" }),
         __metadata("design:type", String)
     ], SizeMaster.prototype, "vid", void 0);
     __decorate([
-        typeorm_1.Column({ name: "system_code" }),
+        (0, typeorm_1.Column)({ name: "system_code" }),
         __metadata("design:type", String)
     ], SizeMaster.prototype, "system_code", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], SizeMaster.prototype, "active", void 0);
     __decorate([
-        typeorm_1.Column({ name: "inserted_at" }),
+        (0, typeorm_1.Column)({ name: "inserted_at" }),
         __metadata("design:type", Date)
     ], SizeMaster.prototype, "inserted_at", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_by" }),
+        (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], SizeMaster.prototype, "updated_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_at" }),
+        (0, typeorm_1.Column)({ name: "updated_at" }),
         __metadata("design:type", Date)
     ], SizeMaster.prototype, "updated_at", void 0);
     __decorate([
-        typeorm_1.Column({ name: "deleted_at" }),
+        (0, typeorm_1.Column)({ name: "deleted_at" }),
         __metadata("design:type", Date)
     ], SizeMaster.prototype, "deleted_at", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "vid" }),
-        typeorm_1.OneToOne(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),
+        (0, typeorm_1.JoinColumn)({ name: "vid" }),
+        (0, typeorm_1.OneToOne)(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),
         __metadata("design:type", Vendor_1.Vendor)
     ], SizeMaster.prototype, "vendor", void 0);
     SizeMaster = __decorate([
-        typeorm_1.Entity("sizes")
+        (0, typeorm_1.Entity)("sizes")
     ], SizeMaster);
     return SizeMaster;
 }());

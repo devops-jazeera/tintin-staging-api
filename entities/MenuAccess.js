@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MenuAccess = void 0;
 var typeorm_1 = require("typeorm");
 var MenuRole_1 = require("./MenuRole");
 var MenuLink_1 = require("./MenuLink");
@@ -16,49 +17,49 @@ var MenuAccess = /** @class */ (function () {
     function MenuAccess() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], MenuAccess.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "read_access" }),
+        (0, typeorm_1.Column)({ name: "read_access" }),
         __metadata("design:type", Boolean)
     ], MenuAccess.prototype, "read_access", void 0);
     __decorate([
-        typeorm_1.Column({ name: "write_access" }),
+        (0, typeorm_1.Column)({ name: "write_access" }),
         __metadata("design:type", Boolean)
     ], MenuAccess.prototype, "writ_access", void 0);
     __decorate([
-        typeorm_1.Column({ name: "delete_access" }),
+        (0, typeorm_1.Column)({ name: "delete_access" }),
         __metadata("design:type", Boolean)
     ], MenuAccess.prototype, "delete_access", void 0);
     __decorate([
-        typeorm_1.Column({ name: "vid" }),
+        (0, typeorm_1.Column)({ name: "vid" }),
         __metadata("design:type", String)
     ], MenuAccess.prototype, "vid", void 0);
     __decorate([
-        typeorm_1.Column({ name: "priority" }),
+        (0, typeorm_1.Column)({ name: "priority" }),
         __metadata("design:type", Number)
     ], MenuAccess.prototype, "priority", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_by" }),
+        (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], MenuAccess.prototype, "updated_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_on" }),
+        (0, typeorm_1.Column)({ name: "updated_on" }),
         __metadata("design:type", Date)
     ], MenuAccess.prototype, "updated_on", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "role_id" }),
-        typeorm_1.ManyToOne(function (type) { return MenuRole_1.MenuRole; }),
+        (0, typeorm_1.JoinColumn)({ name: "role_id" }),
+        (0, typeorm_1.ManyToOne)(function (type) { return MenuRole_1.MenuRole; }),
         __metadata("design:type", MenuRole_1.MenuRole)
     ], MenuAccess.prototype, "role", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "link_id" }),
-        typeorm_1.ManyToOne(function (type) { return MenuLink_1.MenuLink; }),
+        (0, typeorm_1.JoinColumn)({ name: "link_id" }),
+        (0, typeorm_1.ManyToOne)(function (type) { return MenuLink_1.MenuLink; }),
         __metadata("design:type", MenuLink_1.MenuLink)
     ], MenuAccess.prototype, "link", void 0);
     MenuAccess = __decorate([
-        typeorm_1.Entity("menu_access")
+        (0, typeorm_1.Entity)("menu_access")
     ], MenuAccess);
     return MenuAccess;
 }());

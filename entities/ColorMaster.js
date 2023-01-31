@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ColorMaster = void 0;
 var typeorm_1 = require("typeorm");
 var CatalogueMaster_1 = require("./CatalogueMaster");
 var Vendor_1 = require("./Vendor");
@@ -16,101 +17,101 @@ var ColorMaster = /** @class */ (function () {
     function ColorMaster() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name_en" }),
+        (0, typeorm_1.Column)({ name: "name_en" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "name_en", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name_ar" }),
+        (0, typeorm_1.Column)({ name: "name_ar" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "name_ar", void 0);
     __decorate([
-        typeorm_1.Column({ name: "code" }),
+        (0, typeorm_1.Column)({ name: "code" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "code", void 0);
     __decorate([
-        typeorm_1.Column({ name: "hex" }),
+        (0, typeorm_1.Column)({ name: "hex" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "hex", void 0);
     __decorate([
-        typeorm_1.Column({ name: "red" }),
+        (0, typeorm_1.Column)({ name: "red" }),
         __metadata("design:type", Number)
     ], ColorMaster.prototype, "red", void 0);
     __decorate([
-        typeorm_1.Column({ name: "green" }),
+        (0, typeorm_1.Column)({ name: "green" }),
         __metadata("design:type", Number)
     ], ColorMaster.prototype, "green", void 0);
     __decorate([
-        typeorm_1.Column({ name: "blue" }),
+        (0, typeorm_1.Column)({ name: "blue" }),
         __metadata("design:type", Number)
     ], ColorMaster.prototype, "blue", void 0);
     __decorate([
-        typeorm_1.Column({ name: "hue" }),
+        (0, typeorm_1.Column)({ name: "hue" }),
         __metadata("design:type", Number)
     ], ColorMaster.prototype, "hue", void 0);
     __decorate([
-        typeorm_1.Column({ name: "saturation" }),
+        (0, typeorm_1.Column)({ name: "saturation" }),
         __metadata("design:type", Number)
     ], ColorMaster.prototype, "saturation", void 0);
     __decorate([
-        typeorm_1.Column({ name: "value" }),
+        (0, typeorm_1.Column)({ name: "value" }),
         __metadata("design:type", Number)
     ], ColorMaster.prototype, "value", void 0);
     __decorate([
-        typeorm_1.Column({ name: "img_id" }),
+        (0, typeorm_1.Column)({ name: "img_id" }),
         __metadata("design:type", Number)
     ], ColorMaster.prototype, "img_id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "productcode" }),
+        (0, typeorm_1.Column)({ name: "productcode" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "productcode", void 0);
     __decorate([
-        typeorm_1.Column({ name: "system_code" }),
+        (0, typeorm_1.Column)({ name: "system_code" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "system_code", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], ColorMaster.prototype, "active", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_by" }),
+        (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "updated_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_at" }),
+        (0, typeorm_1.Column)({ name: "updated_at" }),
         __metadata("design:type", Date)
     ], ColorMaster.prototype, "updated_on", void 0);
     __decorate([
-        typeorm_1.Column({ name: "inserted_at" }),
+        (0, typeorm_1.Column)({ name: "inserted_at" }),
         __metadata("design:type", Date)
     ], ColorMaster.prototype, "inserted_at", void 0);
     __decorate([
-        typeorm_1.Column({ name: "deleted_at" }),
+        (0, typeorm_1.Column)({ name: "deleted_at" }),
         __metadata("design:type", Date)
     ], ColorMaster.prototype, "deleted_at", void 0);
     __decorate([
-        typeorm_1.Column({ name: "catalogue_id" }),
+        (0, typeorm_1.Column)({ name: "catalogue_id" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "catalogue_id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "vid" }),
+        (0, typeorm_1.Column)({ name: "vid" }),
         __metadata("design:type", String)
     ], ColorMaster.prototype, "vid", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "catalogue_id" }),
-        typeorm_1.ManyToOne(function (type) { return CatalogueMaster_1.CatalogueMaster; }, function (catalogueMaster) { return catalogueMaster.id; }),
+        (0, typeorm_1.JoinColumn)({ name: "catalogue_id" }),
+        (0, typeorm_1.ManyToOne)(function (type) { return CatalogueMaster_1.CatalogueMaster; }, function (catalogueMaster) { return catalogueMaster.id; }),
         __metadata("design:type", CatalogueMaster_1.CatalogueMaster)
     ], ColorMaster.prototype, "catalogue", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "vid" }),
-        typeorm_1.OneToOne(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),
+        (0, typeorm_1.JoinColumn)({ name: "vid" }),
+        (0, typeorm_1.OneToOne)(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),
         __metadata("design:type", Vendor_1.Vendor)
     ], ColorMaster.prototype, "vendor", void 0);
     ColorMaster = __decorate([
-        typeorm_1.Entity("colors")
+        (0, typeorm_1.Entity)("colors")
     ], ColorMaster);
     return ColorMaster;
 }());

@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -35,18 +36,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RawQuery = void 0;
 var typeorm_1 = require("typeorm");
 var moment = require("moment");
 var RawQuery = /** @class */ (function () {
     function RawQuery() {
-        this.db = typeorm_1.getManager();
+        this.db = (0, typeorm_1.getManager)();
     }
     RawQuery.ConstData = function (code) {
         return __awaiter(this, void 0, void 0, function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.getManager().query("select data from app_const_data where code='" + code + "' ")];
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getManager)().query("select data from app_const_data where code='".concat(code, "' "))];
                     case 1:
                         data = _a.sent();
                         if (data && data[0] && data[0].data) {
@@ -65,7 +67,7 @@ var RawQuery = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.getManager().query("select data from config where type='" + code + "' ")];
+                    case 0: return [4 /*yield*/, (0, typeorm_1.getManager)().query("select data from config where type='".concat(code, "' "))];
                     case 1:
                         data = _a.sent();
                         if (data && data[0] && data[0].data) {
@@ -85,7 +87,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "SELECT overdue.invoiceamount FROM \"overdue\" WHERE overdue.accountnum = '" + accountNum + "' AND overdue.payment = 0";
+                        query = "SELECT overdue.invoiceamount FROM \"overdue\" WHERE overdue.accountnum = '".concat(accountNum, "' AND overdue.payment = 0");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -98,7 +100,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "SELECT paymterm.numofdays FROM \"paymterm\" WHERE paymterm.paymtermid like '%" + paymTermId + "%'";
+                        query = "SELECT paymterm.numofdays FROM \"paymterm\" WHERE paymterm.paymtermid like '%".concat(paymTermId, "%'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -113,16 +115,16 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select \n        c.accountnum, \n        c.name, \n        c.namealias, \n        c.address, \n        c.phone, \n        c.rcusttype, \n        c.pricegroup,\n        c.inventlocation,\n        c.dataareaid,\n        c.walkincustomer,\n        c.custgroup,\n        c.districtcode,\n        c.citycode,\n        c.cashdisc,\n        c.paymtermid,\n        c.salesgroup,\n        c.creditmax,\n        c.currency,\n        c.vendaccount,\n        c.multilinedisc,\n        c.vatnum,\n        c.countryregionid,\n        c.inventlocation,\n        c.email,\n        c.url,\n        c.blocked,\n        c.taxgroup,\n        c.paymmode,\n        c.bankaccount,\n        c.namealias,\n        c.invoiceaddress,\n        c.incltax,\n        c.numbersequencegroup,\n        c.city,\n        c.custclassificationid,\n        c.identificationnumber,\n        c.modifieddatetime,\n        c.createddatetime,\n        c.dimension6_ as salesmanid,\n        c.dataareaid,\n        c.recversion,\n        c.recid,\n        c.custtype,\n        c.walkincustomer,\n        c.lastmodifiedby,\n        c.lastmodifieddate,\n        c.createdby,\n        c.zipcode,\n         (CASE \n              WHEN c.dimension6_!='' THEN concat(d.num,' - ', d.description)\n              ELSE '" + (this.sessionInfo && this.sessionInfo.salesmanid.length > 0
+                        query = "select \n        c.accountnum, \n        c.name, \n        c.namealias, \n        c.address, \n        c.phone, \n        c.rcusttype, \n        c.pricegroup,\n        c.inventlocation,\n        c.dataareaid,\n        c.walkincustomer,\n        c.custgroup,\n        c.districtcode,\n        c.citycode,\n        c.cashdisc,\n        c.paymtermid,\n        c.salesgroup,\n        c.creditmax,\n        c.currency,\n        c.vendaccount,\n        c.multilinedisc,\n        c.vatnum,\n        c.countryregionid,\n        c.inventlocation,\n        c.email,\n        c.url,\n        c.blocked,\n        c.taxgroup,\n        c.paymmode,\n        c.bankaccount,\n        c.namealias,\n        c.invoiceaddress,\n        c.incltax,\n        c.numbersequencegroup,\n        c.city,\n        c.custclassificationid,\n        c.identificationnumber,\n        c.modifieddatetime,\n        c.createddatetime,\n        c.dimension6_ as salesmanid,\n        c.dataareaid,\n        c.recversion,\n        c.recid,\n        c.custtype,\n        c.walkincustomer,\n        c.lastmodifiedby,\n        c.lastmodifieddate,\n        c.createdby,\n        c.zipcode,\n         (CASE \n              WHEN c.dimension6_!='' THEN concat(d.num,' - ', d.description)\n              ELSE '".concat(this.sessionInfo && this.sessionInfo.salesmanid.length > 0
                             ? this.sessionInfo.salesmanid[0].salesman
-                            : null) + "'\n          END\n           ) as salesman,\n           (CASE \n            WHEN c.dimension6_!='' THEN concat(d.num)\n            ELSE '" + (this.sessionInfo && this.sessionInfo.salesmanid.length > 0
+                            : null, "'\n          END\n           ) as salesman,\n           (CASE \n            WHEN c.dimension6_!='' THEN concat(d.num)\n            ELSE '").concat(this.sessionInfo && this.sessionInfo.salesmanid.length > 0
                             ? this.sessionInfo.salesmanid[0].salesmanid
-                            : null) + "'\n        END\n         ) as salesmanid\n       from custtable c\n       left join dimensions d on c.dimension6_ = d.num\n       where UPPER(accountnum) in (UPPER('" + accountNum1 + "') ";
+                            : null, "'\n        END\n         ) as salesmanid\n       from custtable c\n       left join dimensions d on c.dimension6_ = d.num\n       where UPPER(accountnum) in (UPPER('").concat(accountNum1, "') ");
                         if (accountnum2) {
-                            query += ", UPPER('" + accountnum2 + "') ";
+                            query += ", UPPER('".concat(accountnum2, "') ");
                         }
                         if (accountnum3) {
-                            query += ", UPPER('" + accountnum3 + "') ";
+                            query += ", UPPER('".concat(accountnum3, "') ");
                         }
                         query += ") ";
                         return [4 /*yield*/, this.db.query(query)];
@@ -145,7 +147,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select \n        accountnum, \n        taxgroup\n       from custtable where accountnum='" + accountNum + "' LIMIT 1";
+                        query = "select \n        accountnum, \n        taxgroup\n       from custtable where accountnum='".concat(accountNum, "' LIMIT 1");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -177,7 +179,7 @@ var RawQuery = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         date = new Date().toISOString();
-                        query = "select \n        numbersequence,\n        LPAD(nextrec::text, 5, '0') as nextrec, \n        format, lastmodifieddate  \n        from numbersequencetable where transkind='" + transkind + "' and  inventlocationid = '" + inventlocationid + "'";
+                        query = "select \n        numbersequence,\n        LPAD(nextrec::text, 5, '0') as nextrec, \n        format, lastmodifieddate  \n        from numbersequencetable where transkind='".concat(transkind, "' and  inventlocationid = '").concat(inventlocationid, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -194,8 +196,8 @@ var RawQuery = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         date = new Date().toISOString();
-                        query = "UPDATE numbersequencetable\n        SET nextrec = " + (parseInt(value) + 1) + ",\n        lastmodifieddate = '" + date + "' ";
-                        query += " WHERE numbersequence = '" + numberSequence + "'";
+                        query = "UPDATE numbersequencetable\n        SET nextrec = ".concat(parseInt(value) + 1, ",\n        lastmodifieddate = '").concat(date, "' ");
+                        query += " WHERE numbersequence = '".concat(numberSequence, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -213,17 +215,17 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "UPDATE salestable\n        SET originalprinted = true,\n        status = '" + status + "' ";
+                        query = "UPDATE salestable\n        SET originalprinted = true,\n        status = '".concat(status, "' ");
                         if (date) {
-                            query += "\n      , lastmodifieddate = '" + date + "', invoicedate='" + date + "' ";
+                            query += "\n      , lastmodifieddate = '".concat(date, "', invoicedate='").concat(date, "' ");
                         }
-                        query += apptype ? ", apptype = " + apptype + " " : " ";
-                        query += " WHERE salesid = '" + salesId + "' or salesgroup = '" + salesId + "' or deliverystreet = '" + salesId + "' ";
-                        saleslineQuery = "UPDATE salesline SET status = '" + status + "'  ";
+                        query += apptype ? ", apptype = ".concat(apptype, " ") : " ";
+                        query += " WHERE salesid = '".concat(salesId, "' or salesgroup = '").concat(salesId, "' or deliverystreet = '").concat(salesId, "' ");
+                        saleslineQuery = "UPDATE salesline SET status = '".concat(status, "'  ");
                         if (date) {
-                            saleslineQuery += "\n      ,lastmodifieddate = '" + date + "' ";
+                            saleslineQuery += "\n      ,lastmodifieddate = '".concat(date, "' ");
                         }
-                        saleslineQuery += " WHERE salesid = '" + salesId + "' ";
+                        saleslineQuery += " WHERE salesid = '".concat(salesId, "' ");
                         console.log(query);
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
@@ -242,7 +244,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "UPDATE salestable\n        SET documentstatus = '" + true + "'\n        WHERE salesid = '" + salesId + "'";
+                        query = "UPDATE salestable\n        SET documentstatus = '".concat(true, "'\n        WHERE salesid = '").concat(salesId, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -258,20 +260,20 @@ var RawQuery = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        query = "\n            select a.itemid, a.nameen, a.namear, a.configid, a.inventsizeid, a.batchno, a.batchexpdate,  \n            a.sizeNameEn as \"sizeNameEn\", a.sizeNameAr as \"sizeNameAr\", \n            a.availabilty as \"availabilty\",\n            coalesce(a.reservedquantity, 0) as \"reservedQuantity\", \n            (coalesce(a.reservedquantity, 0)+ a.availabilty) as \"totalAvailable\"\n            from(\n            select\n            i.itemid as itemid,\n            bs.name_en as nameEn,\n            bs.name_ar as nameAr,\n            cast(SUM(i.qty) as decimal(10,2)) as availabilty,\n            i.configid as configid,\n            i.inventsizeid as inventsizeid,\n            i.batchno as batchno,\n            to_char(b.expdate, 'yyyy-MM-dd') as batchexpdate,\n            sz.name_en as sizeNameEn,\n            sz.name_ar as sizeNameAr,\n            abs(sum(case\n              when reserve_status ='RESERVED' then qty\n              else 0\n              end\n              )) as reservedquantity\n            from inventtrans as i\n            left join inventbatch b on i.batchno = b.inventbatchid\n            left join bases bs on i.itemid = bs.code\n            left join sizes sz on sz.code = i.inventsizeid\n            left join salestable st on st.salesid = i.transrefid\n            where i.inventlocationid='" + reqData.inventlocationid + "' and transactionclosed = true";
+                        query = "\n            select a.itemid, a.nameen, a.namear, a.configid, a.inventsizeid, a.batchno, a.batchexpdate,  \n            a.sizeNameEn as \"sizeNameEn\", a.sizeNameAr as \"sizeNameAr\", \n            a.availabilty as \"availabilty\",\n            coalesce(a.reservedquantity, 0) as \"reservedQuantity\", \n            (coalesce(a.reservedquantity, 0)+ a.availabilty) as \"totalAvailable\"\n            from(\n            select\n            i.itemid as itemid,\n            bs.name_en as nameEn,\n            bs.name_ar as nameAr,\n            cast(SUM(i.qty) as decimal(10,2)) as availabilty,\n            i.configid as configid,\n            i.inventsizeid as inventsizeid,\n            i.batchno as batchno,\n            to_char(b.expdate, 'yyyy-MM-dd') as batchexpdate,\n            sz.name_en as sizeNameEn,\n            sz.name_ar as sizeNameAr,\n            abs(sum(case\n              when reserve_status ='RESERVED' then qty\n              else 0\n              end\n              )) as reservedquantity\n            from inventtrans as i\n            left join inventbatch b on i.batchno = b.inventbatchid\n            left join bases bs on i.itemid = bs.code\n            left join sizes sz on sz.code = i.inventsizeid\n            left join salestable st on st.salesid = i.transrefid\n            where i.inventlocationid='".concat(reqData.inventlocationid, "' and transactionclosed = true");
                         if (reqData.itemId) {
-                            query = query + (" and i.itemid = '" + reqData.itemId + "'");
+                            query = query + " and i.itemid = '".concat(reqData.itemId, "'");
                             if (reqData.configid) {
-                                query = query + (" and i.configid='" + reqData.configid + "'");
+                                query = query + " and i.configid='".concat(reqData.configid, "'");
                             }
                             if (reqData.inventsizeid) {
-                                query = query + (" and i.inventsizeid='" + reqData.inventsizeid + "'");
+                                query = query + " and i.inventsizeid='".concat(reqData.inventsizeid, "'");
                             }
                             if (reqData.salesid) {
-                                query = query + (" and i.invoiceid='" + reqData.salesid + "'");
+                                query = query + " and i.invoiceid='".concat(reqData.salesid, "'");
                             }
                             if (reqData.returnorderid) {
-                                query = query + (" and i.transrefid='" + reqData.returnorderid + "'");
+                                query = query + " and i.transrefid='".concat(reqData.returnorderid, "'");
                             }
                         }
                         query =
@@ -305,11 +307,11 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        basequery = "select b.code as code from bases b where b.id = '" + reqData.baseId + "'";
+                        basequery = "select b.code as code from bases b where b.id = '".concat(reqData.baseId, "'");
                         return [4 /*yield*/, this.db.query(basequery)];
                     case 1:
                         baseCode = _a.sent();
-                        query = "select distinct bsc.color_id as id, c.code, b.code from base_size_colors bsc \n        inner join colors c on c.id = bsc.color_id \n        inner join base_sizes bs on bs.id = bsc.base_size_id\n        inner join bases b on b.id = bs.base_id\n        where b.id = '" + reqData.baseId + "' and c.code in \n        (select distinct i.configid from inventory_onhand i \n            where i.inventlocationid='" + reqData.inventlocationid + "' and i.itemid = '" + baseCode[0].code + "'\n            group by i.configid having sum(i.qty_in-i.qty_out) > 0)";
+                        query = "select distinct bsc.color_id as id, c.code, b.code from base_size_colors bsc \n        inner join colors c on c.id = bsc.color_id \n        inner join base_sizes bs on bs.id = bsc.base_size_id\n        inner join bases b on b.id = bs.base_id\n        where b.id = '".concat(reqData.baseId, "' and c.code in \n        (select distinct i.configid from inventory_onhand i \n            where i.inventlocationid='").concat(reqData.inventlocationid, "' and i.itemid = '").concat(baseCode[0].code, "'\n            group by i.configid having sum(i.qty_in-i.qty_out) > 0)");
                         return [4 /*yield*/, this.db.query(query)];
                     case 2: return [2 /*return*/, _a.sent()];
                 }
@@ -322,17 +324,17 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n    select distinct on (itemid, configid, inventsizeid , batchno)\n        UPPER(i.itemid) as itemid,\n        bs.namealias as nameen,\n        bs.itemname as namear,\n        UPPER(i.configid) as configid,\n        UPPER(i.inventsizeid) as inventsizeid,\n        UPPER(i.batchno) as \"batchNo\",\n        UPPER(i.batchno) as batchno,\n        to_char((CASE \n          WHEN UPPER(i.batchno) = '-' THEN now()\n          WHEN UPPER(i.batchno) = '--' THEN now()\n          ELSE b.expdate\n          END\n        ),'yyyy-MM-dd') as batchexpdate,\n        sz.description as \"sizeNameEn\",\n        sz.\"name\" as \"sizeNameAr\",\n        sum(i.qty) as availabilty,\n        sum(i.qty) as \"physicalAvailable\",\n        abs(sum(case\n          when i.reserve_status ='RESERVED' then i.qty\n          else 0\n          end\n          )) as reservedquantity,\n        abs(sum(case\n          when reserve_status ='RESERVED' then qty\n          else 0\n          end\n          )) as \"reservedQuantity\"\n        from inventtrans i\n        left join inventbatch b on i.batchno = b.inventbatchid and i.itemid = b.itemid and lower(i.configid) = lower(b.configid) \n        inner join inventtable bs on i.itemid = bs.itemid\n        left join inventsize sz on lower(sz.inventsizeid) = lower(i.inventsizeid) and sz.itemid = i.itemid\n        where transactionclosed  = true and inventlocationid = '" + reqData.inventlocationid + "' and i.itemid not like 'HSN-%'\n        ";
+                        query = "\n    select distinct on (itemid, configid, inventsizeid , batchno)\n        UPPER(i.itemid) as itemid,\n        bs.namealias as nameen,\n        bs.itemname as namear,\n        UPPER(i.configid) as configid,\n        UPPER(i.inventsizeid) as inventsizeid,\n        UPPER(i.batchno) as \"batchNo\",\n        UPPER(i.batchno) as batchno,\n        to_char((CASE \n          WHEN UPPER(i.batchno) = '-' THEN now()\n          WHEN UPPER(i.batchno) = '--' THEN now()\n          ELSE b.expdate\n          END\n        ),'yyyy-MM-dd') as batchexpdate,\n        sz.description as \"sizeNameEn\",\n        sz.\"name\" as \"sizeNameAr\",\n        sum(i.qty) as availabilty,\n        sum(i.qty) as \"physicalAvailable\",\n        abs(sum(case\n          when i.reserve_status ='RESERVED' then i.qty\n          else 0\n          end\n          )) as reservedquantity,\n        abs(sum(case\n          when reserve_status ='RESERVED' then qty\n          else 0\n          end\n          )) as \"reservedQuantity\"\n        from inventtrans i\n        left join inventbatch b on i.batchno = b.inventbatchid and i.itemid = b.itemid and lower(i.configid) = lower(b.configid) \n        inner join inventtable bs on i.itemid = bs.itemid\n        left join inventsize sz on lower(sz.inventsizeid) = lower(i.inventsizeid) and sz.itemid = i.itemid\n        where transactionclosed  = true and inventlocationid = '".concat(reqData.inventlocationid, "' and i.itemid not like 'HSN-%'\n        ");
                         if (reqData.itemId) {
-                            query = query + (" and LOWER(i.itemid) = LOWER('" + reqData.itemId + "')");
+                            query = query + " and LOWER(i.itemid) = LOWER('".concat(reqData.itemId, "')");
                             if (reqData.configid) {
-                                query = query + (" and LOWER(i.configid)=LOWER('" + reqData.configid + "')");
+                                query = query + " and LOWER(i.configid)=LOWER('".concat(reqData.configid, "')");
                             }
                             if (reqData.inventsizeid) {
-                                query = query + (" and LOWER(i.inventsizeid)=LOWER('" + reqData.inventsizeid + "')");
+                                query = query + " and LOWER(i.inventsizeid)=LOWER('".concat(reqData.inventsizeid, "')");
                             }
                             if (reqData.salesId) {
-                                query = query + (" and LOWER(i.invoiceid)!=LOWER('" + reqData.salesId + "')");
+                                query = query + " and LOWER(i.invoiceid)!=LOWER('".concat(reqData.salesId, "')");
                             }
                         }
                         query += " group by UPPER(i.itemid), UPPER(i.configid), UPPER(i.inventsizeid), UPPER(i.batchno),  i.inventlocationid,\n  bs.namealias, bs.itemname, b.expdate, sz.description, sz.\"name\"\n    ";
@@ -354,17 +356,17 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n        select distinct on (itemid, configid, inventsizeid , batchno)\n        UPPER(i.itemid) as itemid,\n        bs.namealias as nameen,\n        bs.itemname as namear,\n        UPPER(i.configid) as configid,\n        UPPER(i.inventsizeid) as inventsizeid,\n        UPPER(i.batchno) as \"batchNo\",\n        UPPER(i.batchno) as batchno,\n        to_char((CASE \n          WHEN UPPER(i.batchno) = '-' THEN now()\n          WHEN UPPER(i.batchno) = '--' THEN now()\n          ELSE b.expdate\n          END\n        ),'yyyy-MM-dd') as batchexpdate,\n        UPPER(i.inventsizeid) as \"sizeNameEn\",\n        UPPER(i.inventsizeid) as \"sizeNameAr\",\n        i.inventlocationid,\n        sum(qty) as availabilty,\n        sum(qty) as \"physicalAvailable\",\n        abs(sum(case\n          when reserve_status ='RESERVED' then qty\n          else 0\n          end\n          )) as \"reservedQuantity\"\n        from inventtrans i\n        left join inventbatch b on i.batchno = b.inventbatchid and i.itemid = b.itemid and lower(i.configid) = lower(b.configid) \n        inner join inventtable bs on i.itemid = bs.itemid\n        where i.transactionclosed  = true and i.inventlocationid = '" + reqData.inventlocationid + "' and i.itemid not like 'HSN-%'\n        ";
+                        query = "\n        select distinct on (itemid, configid, inventsizeid , batchno)\n        UPPER(i.itemid) as itemid,\n        bs.namealias as nameen,\n        bs.itemname as namear,\n        UPPER(i.configid) as configid,\n        UPPER(i.inventsizeid) as inventsizeid,\n        UPPER(i.batchno) as \"batchNo\",\n        UPPER(i.batchno) as batchno,\n        to_char((CASE \n          WHEN UPPER(i.batchno) = '-' THEN now()\n          WHEN UPPER(i.batchno) = '--' THEN now()\n          ELSE b.expdate\n          END\n        ),'yyyy-MM-dd') as batchexpdate,\n        UPPER(i.inventsizeid) as \"sizeNameEn\",\n        UPPER(i.inventsizeid) as \"sizeNameAr\",\n        i.inventlocationid,\n        sum(qty) as availabilty,\n        sum(qty) as \"physicalAvailable\",\n        abs(sum(case\n          when reserve_status ='RESERVED' then qty\n          else 0\n          end\n          )) as \"reservedQuantity\"\n        from inventtrans i\n        left join inventbatch b on i.batchno = b.inventbatchid and i.itemid = b.itemid and lower(i.configid) = lower(b.configid) \n        inner join inventtable bs on i.itemid = bs.itemid\n        where i.transactionclosed  = true and i.inventlocationid = '".concat(reqData.inventlocationid, "' and i.itemid not like 'HSN-%'\n        ");
                         if (reqData.itemId) {
-                            query = query + (" and UPPER(i.itemid) = UPPER('" + reqData.itemId + "')");
+                            query = query + " and UPPER(i.itemid) = UPPER('".concat(reqData.itemId, "')");
                             if (reqData.configid) {
-                                query = query + (" and UPPER(i.configid)=UPPER('" + reqData.configid + "')");
+                                query = query + " and UPPER(i.configid)=UPPER('".concat(reqData.configid, "')");
                             }
                             if (reqData.inventsizeid) {
-                                query = query + (" and UPPER(i.inventsizeid)=UPPER('" + reqData.inventsizeid + "')");
+                                query = query + " and UPPER(i.inventsizeid)=UPPER('".concat(reqData.inventsizeid, "')");
                             }
                             if (reqData.salesId) {
-                                query = query + (" and UPPER(i.invoiceid)!=UPPER('" + reqData.salesId + "')");
+                                query = query + " and UPPER(i.invoiceid)!=UPPER('".concat(reqData.salesId, "')");
                             }
                         }
                         query += " group by UPPER(i.itemid), UPPER(i.configid), UPPER(i.inventsizeid), UPPER(i.batchno),  i.inventlocationid,\n  bs.namealias, bs.itemname, b.expdate  having sum(qty) > 0\n    ";
@@ -386,9 +388,9 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n        select distinct on (itemid, configid, inventsizeid , batchno)\n        UPPER(i.itemid) as itemid,\n        UPPER(i.configid) as configid,\n        UPPER(i.inventsizeid) as inventsizeid,\n        UPPER(i.batchno) as \"batchNo\",\n        UPPER(i.batchno) as batchno,\n        i.inventlocationid,\n        sum(qty) as availabilty\n        from inventtrans i\n        where i.transactionclosed  = true and i.inventlocationid = '" + reqData.inventlocationid + "' and i.itemid not like 'HSN-%' and\n         UPPER(i.itemid) = UPPER('" + reqData.itemId + "') and \n         UPPER(i.configid)=UPPER('" + reqData.configid + "') and\n         UPPER(i.inventsizeid)=UPPER('" + reqData.inventsizeid + "') ";
+                        query = "\n        select distinct on (itemid, configid, inventsizeid , batchno)\n        UPPER(i.itemid) as itemid,\n        UPPER(i.configid) as configid,\n        UPPER(i.inventsizeid) as inventsizeid,\n        UPPER(i.batchno) as \"batchNo\",\n        UPPER(i.batchno) as batchno,\n        i.inventlocationid,\n        sum(qty) as availabilty\n        from inventtrans i\n        where i.transactionclosed  = true and i.inventlocationid = '".concat(reqData.inventlocationid, "' and i.itemid not like 'HSN-%' and\n         UPPER(i.itemid) = UPPER('").concat(reqData.itemId, "') and \n         UPPER(i.configid)=UPPER('").concat(reqData.configid, "') and\n         UPPER(i.inventsizeid)=UPPER('").concat(reqData.inventsizeid, "') ");
                         if (reqData.salesId) {
-                            query = query + (" and UPPER(i.invoiceid)!=UPPER('" + reqData.salesId + "')");
+                            query = query + " and UPPER(i.invoiceid)!=UPPER('".concat(reqData.salesId, "')");
                         }
                         query += " group by UPPER(i.itemid), UPPER(i.configid), UPPER(i.inventsizeid), UPPER(i.batchno),  i.inventlocationid having sum(qty) > 0 ";
                         console.log(query);
@@ -424,7 +426,7 @@ var RawQuery = /** @class */ (function () {
     RawQuery.prototype.getWareHouseDetails = function (wareHouseId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.db.query("select name, namealias from inventlocation where inventlocationid = '" + wareHouseId + "'")];
+                return [2 /*return*/, this.db.query("select name, namealias from inventlocation where inventlocationid = '".concat(wareHouseId, "'"))];
             });
         });
     };
@@ -437,7 +439,7 @@ var RawQuery = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         console.log(reqData);
-                        return [4 /*yield*/, this.db.query("select status, transkind, inventlocationid from salestable where salesid='" + reqData.salesid + "'")];
+                        return [4 /*yield*/, this.db.query("select status, transkind, inventlocationid from salestable where salesid='".concat(reqData.salesid, "'"))];
                     case 1:
                         salesData = _a.sent();
                         salesData = salesData.length > 0 ? salesData[0] : {};
@@ -458,7 +460,7 @@ var RawQuery = /** @class */ (function () {
                         // ;
                         // ;
                         if (salesData.transkind == "DESIGNERSERVICERETURN") {
-                            query = "\n                select \n                sl.itemid as itemid,\n                sl.salesid as invoiceid,\n                CAST(sl.salesqty as  INTEGER) as qty,\n                sl.configid as configid,\n                sl.inventsizeid as inventsizeid,\n                dp.name_en as nameEn,\n                dp.name_ar as nameAr\n                from salesline sl \n                left join designer_products dp on dp.code = sl.itemid\n                where salesid= '" + reqData.salesid + "'\n                ";
+                            query = "\n                select \n                sl.itemid as itemid,\n                sl.salesid as invoiceid,\n                CAST(sl.salesqty as  INTEGER) as qty,\n                sl.configid as configid,\n                sl.inventsizeid as inventsizeid,\n                dp.name_en as nameEn,\n                dp.name_ar as nameAr\n                from salesline sl \n                left join designer_products dp on dp.code = sl.itemid\n                where salesid= '".concat(reqData.salesid, "'\n                ");
                         }
                         else {
                             query = "\n                select\n                distinct on (i.id, sl.link_id)\n                i.itemid as itemid,\n                bs.namealias as nameEn,\n                bs.itemname as nameAr,\n                CAST(i.qty AS INTEGER) as qty,\n                i.configid as configid,\n                i.inventsizeid as inventsizeid,\n                i.invoiceid as invoiceid,\n                i.transrefid as transrefid,\n                s.\"name\" as sizenameen,\n                st.invoicedate as \"invoiceDate\",\n                s.description as sizenamear,\n                i.batchno as batchno,\n                i.batchno as \"batchNo\",\n                to_char((CASE \n                  WHEN i.batchno = '-' THEN now()\n                  WHEN i.batchno = '--' THEN now()\n                  ELSE b.expdate\n                  END\n                ),'yyyy-MM-dd') as batchExpDate,\n                i.sales_line_id as \"salesLineId\",\n                sl.is_item_free  as \"isItemFree\",\n                sl.link_id as \"linkId\",\n                sl.colorantid as \"colorantId\",\n                c.hexcode as hexcode\n            from inventtrans  i\n            inner join salestable st on st.salesid = i.invoiceid\n            left join salesline sl on sl.id = i.sales_line_id \n            left join inventbatch b on i.batchno = b.inventbatchid and b.itemid = i.itemid and b.configid = i.configid\n            left join inventtable bs on i.itemid = bs.itemid\n            left join inventsize s on s.inventsizeid = i.inventsizeid and s.itemid = i.itemid\n            left join configtable c on c.configid = i.configid and c.itemid = i.itemid\n             ";
@@ -466,19 +468,19 @@ var RawQuery = /** @class */ (function () {
                                 if (reqData.type == "RETURNORDER" ||
                                     reqData.type == "INVENTORYMOVEMENT" ||
                                     reqData.type == "PURCHASERETURN") {
-                                    query += "where i.invoiceid = '" + reqData.salesid + "'";
+                                    query += "where i.invoiceid = '".concat(reqData.salesid, "'");
                                     // if (reqData.type == "PURCHASERETURN"){
                                     //     query+= ` and i.inventlocationid = '${reqData.inventlocationid}' `
                                     // }
                                 }
                                 else if (reqData.type == "PURCHASEORDER") {
-                                    query += "where (i.invoiceid = '" + reqData.salesid + "' or i.transrefid = '" + reqData.salesid + "') and transactionclosed=" + transactionclosed + " ";
+                                    query += "where (i.invoiceid = '".concat(reqData.salesid, "' or i.transrefid = '").concat(reqData.salesid, "') and transactionclosed=").concat(transactionclosed, " ");
                                 }
                                 else if (reqData.type == "SALESORDER") {
-                                    query += "where  i.transrefid = '" + reqData.salesid + "'  and reserve_status != 'REJECTED'";
+                                    query += "where  i.transrefid = '".concat(reqData.salesid, "'  and reserve_status != 'REJECTED'");
                                 }
                                 else {
-                                    query += "where  i.transrefid = '" + reqData.salesid + "' and transactionclosed=" + transactionclosed + " ";
+                                    query += "where  i.transrefid = '".concat(reqData.salesid, "' and transactionclosed=").concat(transactionclosed, " ");
                                 }
                                 query += " order by sl.link_id ";
                                 // query +=
@@ -510,7 +512,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n    select transrefid, itemid, sum(qty) as quantity, configid as \"configId\", inventsizeid, batchno from inventtrans \n    where transrefid = '" + data + "' and reserve_status !='REJECTED'\n    group by itemid, configid, inventsizeid, batchno, transrefid\n    ";
+                        query = "\n    select transrefid, itemid, sum(qty) as quantity, configid as \"configId\", inventsizeid, batchno from inventtrans \n    where transrefid = '".concat(data, "' and reserve_status !='REJECTED'\n    group by itemid, configid, inventsizeid, batchno, transrefid\n    ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -523,7 +525,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "insert into inventtrans(itemid, qty, transrefid, invoiceid, configid, inventsizeid, batchno,  inventlocationid, reserve_status) \n        values ('" + data.itemid + "', '" + data.qty + "', '" + data.transrefid + "', '" + data.invoiceid + "', '" + data.configid + "', '" + data.inventsizeid + "', '" + data.batchno + "', '" + data.inventlocationid + "', '" + data.reserveStatus + "')";
+                        query = "insert into inventtrans(itemid, qty, transrefid, invoiceid, configid, inventsizeid, batchno,  inventlocationid, reserve_status) \n        values ('".concat(data.itemid, "', '").concat(data.qty, "', '").concat(data.transrefid, "', '").concat(data.invoiceid, "', '").concat(data.configid, "', '").concat(data.inventsizeid, "', '").concat(data.batchno, "', '").concat(data.inventlocationid, "', '").concat(data.reserveStatus, "')");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -555,7 +557,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "SELECT distinct\n                            id\n                        FROM\n                            bases\n                        WHERE\n                            code IN (\n                                select \n                                i.itemid as itemid\n                            from inventory_onhand  i \n                            inner join colors c on i.configid = c.code\n                            inner join bases b on i.itemid = b.code\n                            inner join base_sizes bs on b.id = bs.base_id\n                            inner join sizes s on s.id = bs.size_id\n                            inner join base_size_colors bsc on (bsc.color_id = c.id and bsc.base_size_id=bs.id)\n                            where i.inventlocationid='" + inventlocationid + "' GROUP BY\n                            i.itemid\n                            having SUM(i.qty_in-i.qty_out-i.qty_reserved)>0\n                        );";
+                        query = "SELECT distinct\n                            id\n                        FROM\n                            bases\n                        WHERE\n                            code IN (\n                                select \n                                i.itemid as itemid\n                            from inventory_onhand  i \n                            inner join colors c on i.configid = c.code\n                            inner join bases b on i.itemid = b.code\n                            inner join base_sizes bs on b.id = bs.base_id\n                            inner join sizes s on s.id = bs.size_id\n                            inner join base_size_colors bsc on (bsc.color_id = c.id and bsc.base_size_id=bs.id)\n                            where i.inventlocationid='".concat(inventlocationid, "' GROUP BY\n                            i.itemid\n                            having SUM(i.qty_in-i.qty_out-i.qty_reserved)>0\n                        );");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -593,7 +595,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n              select distinct i.itemid from inventtable i\n               inner join configtable c on c.itemid = i.itemid\n               inner join inventsize sz on sz.itemid = i.itemid\n               inner join inventtrans ioh on ioh.itemid = i.itemid\n               where ioh.inventlocationid='" + inventlocationid + "'  and transactionclosed = true GROUP BY\n               i.itemid\n               having SUM(qty)>0 ";
+                        query = "\n              select distinct i.itemid from inventtable i\n               inner join configtable c on c.itemid = i.itemid\n               inner join inventsize sz on sz.itemid = i.itemid\n               inner join inventtrans ioh on ioh.itemid = i.itemid\n               where ioh.inventlocationid='".concat(inventlocationid, "'  and transactionclosed = true GROUP BY\n               i.itemid\n               having SUM(qty)>0 ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -612,7 +614,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select distinct c.configid from configtable c\n               inner join inventtable i on i.itemid = c.itemid where c.itemid = '" + param.itemid + "'";
+                        query = "select distinct c.configid from configtable c\n               inner join inventtable i on i.itemid = c.itemid where c.itemid = '".concat(param.itemid, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -631,7 +633,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select configid from \n                  (select c.configid from configtable c\n                  inner join inventtrans ioh on ioh.itemid = c.itemid and lower(c.configid) = lower(ioh.configid)\n                  where ioh.inventlocationid='" + param.inventlocationid + "' and ioh.itemid = '" + param.itemid + "' and transactionclosed = true  GROUP BY\n                  c.configid \n                  having SUM(ioh.qty)>0)  as i \n               ";
+                        query = "select configid from \n                  (select c.configid from configtable c\n                  inner join inventtrans ioh on ioh.itemid = c.itemid and lower(c.configid) = lower(ioh.configid)\n                  where ioh.inventlocationid='".concat(param.inventlocationid, "' and ioh.itemid = '").concat(param.itemid, "' and transactionclosed = true  GROUP BY\n                  c.configid \n                  having SUM(ioh.qty)>0)  as i \n               ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -650,7 +652,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n                  select c.configid from configtable c\n                  where  c.itemid = '" + param.itemid + "'\n               ";
+                        query = "\n                  select c.configid from configtable c\n                  where  c.itemid = '".concat(param.itemid, "'\n               ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -669,7 +671,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select distinct lower(sz.inventsizeid) as inventsizeid from inventsize sz\n               inner join inventtable i on i.itemid = sz.itemid\n               inner join configtable c on c.itemid = sz.itemid\n                where sz.itemid = '" + param.itemid + "' and c.configid = '" + param.configid + "' ";
+                        query = "select distinct lower(sz.inventsizeid) as inventsizeid from inventsize sz\n               inner join inventtable i on i.itemid = sz.itemid\n               inner join configtable c on c.itemid = sz.itemid\n                where sz.itemid = '".concat(param.itemid, "' and c.configid = '").concat(param.configid, "' ");
                         if (param.itemid == "HSN-00001") {
                             query += " and sz.inventsizeid = 'GROUP' ";
                         }
@@ -691,9 +693,9 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = " select distinct lower(io.inventsizeid) as inventsizeid from inventtrans io\n                  where io.inventlocationid='" + param.inventlocationid + "' and io.itemid = '" + param.itemid + "' and lower(io.configid) = lower('" + param.configid + "')\n                  and transactionclosed = true ";
+                        query = " select distinct lower(io.inventsizeid) as inventsizeid from inventtrans io\n                  where io.inventlocationid='".concat(param.inventlocationid, "' and io.itemid = '").concat(param.itemid, "' and lower(io.configid) = lower('").concat(param.configid, "')\n                  and transactionclosed = true ");
                         if (param.salesId) {
-                            query += " and io.invoiceid !=  '" + param.salesId + "' ";
+                            query += " and io.invoiceid !=  '".concat(param.salesId, "' ");
                         }
                         query += " group by  io.inventsizeid having SUM(qty)>0  ";
                         return [4 /*yield*/, this.db.query(query)];
@@ -716,7 +718,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n        select  amount \n        from pricdisctableextra where \n        itemid ='" + data.itemid + "' and \n        inventsizeid='" + data.inventsizeid + "' \n        and configid='" + data.configid + "' and \n        itemrelation ='" + data.pricegroup + "' limit 1\n        ";
+                        query = "\n        select  amount \n        from pricdisctableextra where \n        itemid ='".concat(data.itemid, "' and \n        inventsizeid='").concat(data.inventsizeid, "' \n        and configid='").concat(data.configid, "' and \n        itemrelation ='").concat(data.pricegroup, "' limit 1\n        ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -729,7 +731,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n        select amount as price, tinventsizeid as inventsizeid, configid, itemrelation as itemid\n        from pricedisctable \n        where (itemcode = 0) and (accountcode = 1 or accountcode = 0) \n        and currency = '" + data.currency + "' and \n        itemrelation = '" + data.itemid + "' and (configid='" + data.configid + "')  and \n        accountrelation = '" + data.custaccount + "' and tinventsizeid = '" + data.inventsizeid + "'\n        ";
+                        query = "\n        select amount as price, tinventsizeid as inventsizeid, configid, itemrelation as itemid\n        from pricedisctable \n        where (itemcode = 0) and (accountcode = 1 or accountcode = 0) \n        and currency = '".concat(data.currency, "' and \n        itemrelation = '").concat(data.itemid, "' and (configid='").concat(data.configid, "')  and \n        accountrelation = '").concat(data.custaccount, "' and tinventsizeid = '").concat(data.inventsizeid, "'\n        ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -742,7 +744,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n            select amount as price, tinventsizeid as inventsizeid, configid, itemrelation as itemid\n            from pricedisctable \n            where (itemcode = 0) and (accountcode = 1 or accountcode = 0) \n            and currency = '" + data.currency + "' and \n            itemrelation = '" + data.itemid + "' and (configid='" + data.configid + "') and \n            accountrelation = '" + data.pricegroup + "' and tinventsizeid = '" + data.inventsizeid + "'\n            ";
+                        query = "\n            select amount as price, tinventsizeid as inventsizeid, configid, itemrelation as itemid\n            from pricedisctable \n            where (itemcode = 0) and (accountcode = 1 or accountcode = 0) \n            and currency = '".concat(data.currency, "' and \n            itemrelation = '").concat(data.itemid, "' and (configid='").concat(data.configid, "') and \n            accountrelation = '").concat(data.pricegroup, "' and tinventsizeid = '").concat(data.inventsizeid, "'\n            ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -755,7 +757,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n            select amount as price, tinventsizeid as inventsizeid, configid, itemrelation as itemid, accountrelation as accountrelation\n            from pricedisctable \n            where relation = 4 and (itemcode = 0) and accountcode in (1,0) \n            and currency = '" + data.currency + "' and \n            lower(itemrelation) = lower('" + data.itemid + "') and (lower(configid)=lower('" + data.configid + "')) and \n            lower(accountrelation) IN (lower('" + data.pricegroup + "'), lower('" + data.custaccount + "') \n            ) and lower(tinventsizeid) in (" + data.inventsizeids + ")\n            ";
+                        query = "\n            select amount as price, tinventsizeid as inventsizeid, configid, itemrelation as itemid, accountrelation as accountrelation\n            from pricedisctable \n            where relation = 4 and (itemcode = 0) and accountcode in (1,0) \n            and currency = '".concat(data.currency, "' and \n            lower(itemrelation) = lower('").concat(data.itemid, "') and (lower(configid)=lower('").concat(data.configid, "')) and \n            lower(accountrelation) IN (lower('").concat(data.pricegroup, "'), lower('").concat(data.custaccount, "') \n            ) and lower(tinventsizeid) in (").concat(data.inventsizeids, ")\n            ");
                         console.log(query);
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -769,7 +771,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n        select  amount \n        from pricedisctable \n        where (itemcode = 0) and (accountcode = 1 or accountcode = 0) \n        and currency = '" + data.currency + "' and itemrelation = '" + data.itemid + "' and (configid='" + data.configid + "')\n        and tinventsizeid = '" + data.inventsizeid + "' and \n        (accountrelation = '" + data.pricegroup + "' or  accountrelation = '" + data.custaccount + "') limit 1\n        ";
+                        query = "\n        select  amount \n        from pricedisctable \n        where (itemcode = 0) and (accountcode = 1 or accountcode = 0) \n        and currency = '".concat(data.currency, "' and itemrelation = '").concat(data.itemid, "' and (configid='").concat(data.configid, "')\n        and tinventsizeid = '").concat(data.inventsizeid, "' and \n        (accountrelation = '").concat(data.pricegroup, "' or  accountrelation = '").concat(data.custaccount, "') limit 1\n        ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -782,7 +784,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select \n        * from custtotaldiscount where dataareaid ='ajp' and custaccount = '" + custaccount + "' order by minamount";
+                        query = "select \n        * from custtotaldiscount where dataareaid ='ajp' and custaccount = '".concat(custaccount, "' order by minamount");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -797,7 +799,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select istantdiscountexclude from usergroupconfig where id = '" + id + "' limit 1";
+                        query = "select istantdiscountexclude from usergroupconfig where id = '".concat(id, "' limit 1");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -814,10 +816,10 @@ var RawQuery = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         if (orderType && orderType == "purchase") {
-                            query = "select \n        accountnum, name, vendgroup as custgroup, \n        pricegroup, enddisc, linedisc, multilinedisc from vendortable where accountnum='" + accountnum + "' limit 1";
+                            query = "select \n        accountnum, name, vendgroup as custgroup, \n        pricegroup, enddisc, linedisc, multilinedisc from vendortable where accountnum='".concat(accountnum, "' limit 1");
                         }
                         else {
-                            query = "select \n            accountnum, name, custgroup, \n            pricegroup, enddisc, linedisc, multilinedisc from custtable where accountnum='" + accountnum + "' limit 1";
+                            query = "select \n            accountnum, name, custgroup, \n            pricegroup, enddisc, linedisc, multilinedisc from custtable where accountnum='".concat(accountnum, "' limit 1");
                         }
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
@@ -833,9 +835,9 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select percent1 from pricedisctable where module=1 and \n        itemcode=2 and accountcode = 1 and dataareaid='" + dataareaid + "' and \n        accountrelation='" + accountrelation + "' ";
+                        query = "select percent1 from pricedisctable where module=1 and \n        itemcode=2 and accountcode = 1 and dataareaid='".concat(dataareaid, "' and \n        accountrelation='").concat(accountrelation, "' ");
                         currency = currency ? currency : "SAR";
-                        query += " and currency = '" + currency + "' ";
+                        query += " and currency = '".concat(currency, "' ");
                         query += " limit 1";
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
@@ -852,9 +854,9 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select itemcode, accountcode, itemrelation, percent1 from pricedisctable where module=1 and \n        itemcode in (0,1) and accountcode in(1,2)  and dataareaid='" + dataareaid + "' and \n        (accountrelation='" + accountrelation + "' or accountrelation='" + custaccount + "' )";
+                        query = "select itemcode, accountcode, itemrelation, percent1 from pricedisctable where module=1 and \n        itemcode in (0,1) and accountcode in(1,2)  and dataareaid='".concat(dataareaid, "' and \n        (accountrelation='").concat(accountrelation, "' or accountrelation='").concat(custaccount, "' )");
                         currency = currency ? currency : "SAR";
-                        query += " and currency = '" + currency + "' ";
+                        query += " and currency = '".concat(currency, "' ");
                         console.log(query);
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
@@ -870,7 +872,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select " + disctype + " \n        from inventtablemodule where dataareaid='" + dataareaid + "' and moduletype=2 and itemid='" + itemid + "' limit 1";
+                        query = "select ".concat(disctype, " \n        from inventtablemodule where dataareaid='").concat(dataareaid, "' and moduletype=2 and itemid='").concat(itemid, "' limit 1");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -890,7 +892,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "SELECT itemrelation, ACCOUNTRELATION, quantityamountfrom, quantityamountto,\n       CURRENCY,PERCENT1 FROM \n       PRICEDISCTABLE WHERE MODULE = 1 AND \n       ITEMCODE = 1 AND ACCOUNTCODE = 1 AND relation = 6 and \n       ACCOUNTRELATION = '" + accountrelation + "' AND DATAAREAID = '" + dataareaid + "' AND CURRENCY='" + currency + "'";
+                        query = "SELECT itemrelation, ACCOUNTRELATION, quantityamountfrom, quantityamountto,\n       CURRENCY,PERCENT1 FROM \n       PRICEDISCTABLE WHERE MODULE = 1 AND \n       ITEMCODE = 1 AND ACCOUNTCODE = 1 AND relation = 6 and \n       ACCOUNTRELATION = '".concat(accountrelation, "' AND DATAAREAID = '").concat(dataareaid, "' AND CURRENCY='").concat(currency, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -933,7 +935,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "SELECT \n                  id, \n                  dataareaid, \n                  salesid, \n                  custaccount, \n                  is_used, \n                  is_enabled,\n                  voucher_num, \n                  voucher_type, \n                  discount_percent, \n                  allowed_numbers, \n                  used_numbers, \n                  expiry_date,\n                  voucher_rules as \"voucherRules\"\n                  FROM public.discountvoucher\n                  WHERE voucher_num='" + code + "' and dataareaid = '" + dataareaid + "' limit 1;\n                 ";
+                        query = "SELECT \n                  id, \n                  dataareaid, \n                  salesid, \n                  custaccount, \n                  is_used, \n                  is_enabled,\n                  voucher_num, \n                  voucher_type, \n                  discount_percent, \n                  allowed_numbers, \n                  used_numbers, \n                  expiry_date,\n                  voucher_rules as \"voucherRules\"\n                  FROM public.discountvoucher\n                  WHERE voucher_num='".concat(code, "' and dataareaid = '").concat(dataareaid, "' limit 1;\n                 ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -948,7 +950,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "SELECT \n                id, \n                dataareaid, \n                recversion, \n                recid, \n                itemid, \n                from_date, \n                to_date, \n                discount_percent,\n                voucher_type\n                FROM voucherdiscountitems\n                WHERE voucher_type='" + voucherType + "' and itemid in(" + itemidArray + ");\n                ";
+                        query = "SELECT \n                id, \n                dataareaid, \n                recversion, \n                recid, \n                itemid, \n                from_date, \n                to_date, \n                discount_percent,\n                voucher_type\n                FROM voucherdiscountitems\n                WHERE voucher_type='".concat(voucherType, "' and itemid in(").concat(itemidArray, ");\n                ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -961,7 +963,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var query;
             return __generator(this, function (_a) {
-                query = "\n                UPDATE discountvoucher\n                SET  salesid='" + data.salesId + "', \n                custaccount='" + data.custAccount + "', \n                is_used=0, \n                used_numbers=used_numbers+1\n                WHERE voucher_num='" + data.voucherNum + "';\n                ";
+                query = "\n                UPDATE discountvoucher\n                SET  salesid='".concat(data.salesId, "', \n                custaccount='").concat(data.custAccount, "', \n                is_used=0, \n                used_numbers=used_numbers+1\n                WHERE voucher_num='").concat(data.voucherNum, "';\n                ");
                 this.db.query(query);
                 return [2 /*return*/];
             });
@@ -973,7 +975,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n                select * from discountvoucher\n                WHERE voucher_num='" + voucher.voucherNum + "';\n                ";
+                        query = "\n                select * from discountvoucher\n                WHERE voucher_num='".concat(voucher.voucherNum, "';\n                ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -989,7 +991,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select itemid from inventtable where itemgroupid='" + groupid + "'";
+                        query = "select itemid from inventtable where itemgroupid='".concat(groupid, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1006,7 +1008,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select salesid from salestable where intercompanyoriginalsalesid='" + salesId + "' and status = 'POSTED'";
+                        query = "select salesid from salestable where intercompanyoriginalsalesid='".concat(salesId, "' and status = 'POSTED'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1023,7 +1025,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select inventlocationid, name, namealias from inventlocation where inventlocationid = '" + id + "' limit 1";
+                        query = "select inventlocationid, name, namealias from inventlocation where inventlocationid = '".concat(id, "' limit 1");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1038,7 +1040,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select \n            statusid as status, selected_lines as \"salesTable\" from workflow\n            where orderid= '" + salesid + "' limit 1";
+                        query = "select \n            statusid as status, selected_lines as \"salesTable\" from workflow\n            where orderid= '".concat(salesid, "' limit 1");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1053,7 +1055,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select \n            returnorderapprovalrequired  as \"approvalRequired\", \n            returnorderrmapprovalrequired as \"rmApprovalRequired\",\n            returnorderraapprovalrequired \"raApprovalRequired\", \n            projectcustomer, return_order_days as \"returnOrderDays\",\n            agentcustomer from  usergroupconfig\n            where usergroupid= '" + usergroupconfigid + "' and inventlocationid='" + inventlocationid + "' limit 1";
+                        query = "select \n            returnorderapprovalrequired  as \"approvalRequired\", \n            returnorderrmapprovalrequired as \"rmApprovalRequired\",\n            returnorderraapprovalrequired \"raApprovalRequired\", \n            projectcustomer, return_order_days as \"returnOrderDays\",\n            agentcustomer from  usergroupconfig\n            where usergroupid= '".concat(usergroupconfigid, "' and inventlocationid='").concat(inventlocationid, "' limit 1");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1068,7 +1070,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select rmsigningauthority as rm, rasigningauthority as ra, designer_signing_authority as designer_signing_authority, sales_coordinator_signing_authority as salescoordinator\n        from usergroupconfig where usergroupid = '" + usergroupid + "' limit 1";
+                        query = "select rmsigningauthority as rm, rasigningauthority as ra, designer_signing_authority as designer_signing_authority, sales_coordinator_signing_authority as salescoordinator\n        from usergroupconfig where usergroupid = '".concat(usergroupid, "' limit 1");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1084,9 +1086,9 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select\n        sum(i.qty) as availabilty\n        from inventtrans  i\n        where i.inventlocationid='" + data.inventlocationid + "'\n        and i.itemid = '" + data.itemid + "' and UPPER(i.configid)=UPPER('" + data.configid + "') and \n        UPPER(i.inventsizeid)=UPPER('" + data.inventsizeid + "') and UPPER(i.batchno) = UPPER('" + data.batchno + "')\n         and transactionclosed = true \n        ";
+                        query = "select\n        sum(i.qty) as availabilty\n        from inventtrans  i\n        where i.inventlocationid='".concat(data.inventlocationid, "'\n        and i.itemid = '").concat(data.itemid, "' and UPPER(i.configid)=UPPER('").concat(data.configid, "') and \n        UPPER(i.inventsizeid)=UPPER('").concat(data.inventsizeid, "') and UPPER(i.batchno) = UPPER('").concat(data.batchno, "')\n         and transactionclosed = true \n        ");
                         if (data.invoiceid) {
-                            query += " and i.invoiceid != '" + data.invoiceid + "' ";
+                            query += " and i.invoiceid != '".concat(data.invoiceid, "' ");
                         }
                         query += " GROUP BY i.itemid,  UPPER(i.configid), UPPER(i.inventsizeid), i.batchno ";
                         return [4 /*yield*/, this.db.query(query)];
@@ -1104,7 +1106,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select custaccount from vendortable where accountnum = '" + accountnum + "'\n        ";
+                        query = "select custaccount from vendortable where accountnum = '".concat(accountnum, "'\n        ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         result = _a.sent();
@@ -1120,9 +1122,9 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n                select distinct d.invoiceid, d.customerid, d.inventlocationid,\n                cast(coalesce(d.balanceamount, 0) as Decimal(10,2)) as \"balanceAmount\", \n                cast((coalesce(d.designerserviceamount, 0) - coalesce(d.balanceamount, 0)) as Decimal(10,2)) as \"usedAmount\", \n                cast(coalesce(d.designerserviceamount, 0) as Decimal(10,2)) as \"designerserviceAmount\",\n                lastmodifieddate\n                from \n                (\n                select \n                a.invoiceid, \n                a.customerid,\n                a.custphone,\n                s.lastmodifieddate,s.inventlocationid ,\n                (select ABS(sum(b.amount)) from designerservice b where b.invoiceid=a.invoiceid and b.customerid = a.customerid and b.custphone= a.custphone group by b.invoiceid, b.customerid, b.custphone ) \n                as balanceamount,\n                (select ABS(sum(e.amount)) from designerservice e where e.amount > 0 and e.recordtype = 1 and e.invoiceid=a.invoiceid and e.customerid = a.customerid and e.custphone = a.custphone group by e.invoiceid, e.customerid, e.custphone)\n                as designerserviceamount\n                from designerservice a \n                inner join salestable s on s.salesid = a.invoiceid \n                where a.customerid = '" + customerid + "' and a.custphone = '" + mobileno + "'\n                )  as d where d.balanceamount > 0 ";
+                        query = "\n                select distinct d.invoiceid, d.customerid, d.inventlocationid,\n                cast(coalesce(d.balanceamount, 0) as Decimal(10,2)) as \"balanceAmount\", \n                cast((coalesce(d.designerserviceamount, 0) - coalesce(d.balanceamount, 0)) as Decimal(10,2)) as \"usedAmount\", \n                cast(coalesce(d.designerserviceamount, 0) as Decimal(10,2)) as \"designerserviceAmount\",\n                lastmodifieddate\n                from \n                (\n                select \n                a.invoiceid, \n                a.customerid,\n                a.custphone,\n                s.lastmodifieddate,s.inventlocationid ,\n                (select ABS(sum(b.amount)) from designerservice b where b.invoiceid=a.invoiceid and b.customerid = a.customerid and b.custphone= a.custphone group by b.invoiceid, b.customerid, b.custphone ) \n                as balanceamount,\n                (select ABS(sum(e.amount)) from designerservice e where e.amount > 0 and e.recordtype = 1 and e.invoiceid=a.invoiceid and e.customerid = a.customerid and e.custphone = a.custphone group by e.invoiceid, e.customerid, e.custphone)\n                as designerserviceamount\n                from designerservice a \n                inner join salestable s on s.salesid = a.invoiceid \n                where a.customerid = '".concat(customerid, "' and a.custphone = '").concat(mobileno, "'\n                )  as d where d.balanceamount > 0 ");
                         if (inventlocation) {
-                            query += " and d.inventlocationid='" + inventlocation + "' ";
+                            query += " and d.inventlocationid='".concat(inventlocation, "' ");
                         }
                         query += "order by lastmodifieddate";
                         return [4 /*yield*/, this.db.query(query)];
@@ -1137,7 +1139,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n      select distinct\n      a.invoiceid,\n      a.salesorderid,\n      a.customerid,\n      a.custphone,\n      a.amount,\n      a.recordtype,\n      s.salesgroup\n      from designerservice a \n      inner join salestable s on s.salesid = a.salesorderid\n      where a.amount > 0 and s.salesgroup = '" + salesgroup + "'\n    ";
+                        query = "\n      select distinct\n      a.invoiceid,\n      a.salesorderid,\n      a.customerid,\n      a.custphone,\n      a.amount,\n      a.recordtype,\n      s.salesgroup\n      from designerservice a \n      inner join salestable s on s.salesid = a.salesorderid\n      where a.amount > 0 and s.salesgroup = '".concat(salesgroup, "'\n    ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -1150,7 +1152,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select itemid from ajp_block_discounts where \n        inventlocationid='" + inventlocationid + "' and \n        (price_disc_account_relation ='" + custgroup + "' or price_disc_account_relation='" + accountnum + "')";
+                        query = "select itemid from ajp_block_discounts where \n        inventlocationid='".concat(inventlocationid, "' and \n        (price_disc_account_relation ='").concat(custgroup, "' or price_disc_account_relation='").concat(accountnum, "')");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -1163,7 +1165,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select \n        dataareaid, int_ext as \"intExt\", \n        sales_discount as \"salesDiscount\", \n        customer_id as \"customerId\" \n        from interior_exterior where customer_id='" + custaccount + "' and dataareaid='" + dataareaid + "'";
+                        query = "select \n        dataareaid, int_ext as \"intExt\", \n        sales_discount as \"salesDiscount\", \n        customer_id as \"customerId\" \n        from interior_exterior where customer_id='".concat(custaccount, "' and dataareaid='").concat(dataareaid, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -1176,7 +1178,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        buyOneGetOneDiscountQuery = "select\n                                                    dataareaid, \n                                                    inventlocationid, \n                                                    itemid,\n                                                    inventsizeid,\n                                                    configid,\n                                                    multiple_qty as \"multipleQty\", \n                                                    free_qty as \"freeQty\", \n                                                    price_disc_item_code as \"priceDiscItemCode\", \n                                                    price_disc_account_relation as \"priceDiscAccountRelation\"\n                                                    from sales_promotion_items_equal where \n                                                    inventlocationid = '" + inventlocationid + "'\n                                                    and (price_disc_account_relation = '" + custaccount + "' \n                                                    or price_disc_account_relation='" + custtype + "' or price_disc_item_code=2)\n                                                    and itemid in (" + items + ") and deleted=false";
+                        buyOneGetOneDiscountQuery = "select\n                                                    dataareaid, \n                                                    inventlocationid, \n                                                    itemid,\n                                                    inventsizeid,\n                                                    configid,\n                                                    multiple_qty as \"multipleQty\", \n                                                    free_qty as \"freeQty\", \n                                                    price_disc_item_code as \"priceDiscItemCode\", \n                                                    price_disc_account_relation as \"priceDiscAccountRelation\"\n                                                    from sales_promotion_items_equal where \n                                                    inventlocationid = '".concat(inventlocationid, "'\n                                                    and (price_disc_account_relation = '").concat(custaccount, "' \n                                                    or price_disc_account_relation='").concat(custtype, "' or price_disc_item_code=2)\n                                                    and itemid in (").concat(items, ") and deleted=false");
                         return [4 /*yield*/, this.db.query(buyOneGetOneDiscountQuery)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -1187,7 +1189,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var promotionalDiscountQuery;
             return __generator(this, function (_a) {
-                promotionalDiscountQuery = "select\n                                                    dataareaid, \n                                                    inventlocationid, \n                                                    itemid,\n                                                    inventsizeid,\n                                                    configid,\n                                                    multiple_qty as \"multipleQty\", \n                                                    free_qty as \"freeQty\", \n                                                    price_disc_item_code as \"priceDiscItemCode\", \n                                                    price_disc_account_relation as \"priceDiscAccountRelation\"\n                                                    from sales_promotion_items where \n                                                    inventlocationid = '" + inventlocationid + "'\n                                                    and (price_disc_account_relation = '" + custaccount + "' \n                                                    or price_disc_account_relation='" + custtype + "' or price_disc_item_code=2)\n                                                    and itemid in (" + items + ") and deleted=false";
+                promotionalDiscountQuery = "select\n                                                    dataareaid, \n                                                    inventlocationid, \n                                                    itemid,\n                                                    inventsizeid,\n                                                    configid,\n                                                    multiple_qty as \"multipleQty\", \n                                                    free_qty as \"freeQty\", \n                                                    price_disc_item_code as \"priceDiscItemCode\", \n                                                    price_disc_account_relation as \"priceDiscAccountRelation\"\n                                                    from sales_promotion_items where \n                                                    inventlocationid = '".concat(inventlocationid, "'\n                                                    and (price_disc_account_relation = '").concat(custaccount, "' \n                                                    or price_disc_account_relation='").concat(custtype, "' or price_disc_item_code=2)\n                                                    and itemid in (").concat(items, ") and deleted=false");
                 return [2 /*return*/, this.db.query(promotionalDiscountQuery)];
             });
         });
@@ -1199,7 +1201,7 @@ var RawQuery = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        SpecialDisocuntQuery = "select\n                                                    dataareaid, \n                                                    inventlocationid, \n                                                    itemid,\n                                                    inventsizeid,\n                                                    configid,\n                                                    discount_type as \"discountType\", \n                                                    discount as \"discount\", \n                                                    price_disc_item_code as \"priceDiscItemCode\", \n                                                    price_disc_account_relation as \"priceDiscAccountRelation\"\n                                                    from sales_discounts_on_products where \n                                                    inventlocationid = '" + inventlocationid + "'\n                                                    and (price_disc_account_relation = '" + custaccount + "' \n                                                    or price_disc_account_relation='" + custtype + "' or price_disc_item_code=2)\n                                                    and itemid in (" + items + ") and is_active = true";
+                        SpecialDisocuntQuery = "select\n                                                    dataareaid, \n                                                    inventlocationid, \n                                                    itemid,\n                                                    inventsizeid,\n                                                    configid,\n                                                    discount_type as \"discountType\", \n                                                    discount as \"discount\", \n                                                    price_disc_item_code as \"priceDiscItemCode\", \n                                                    price_disc_account_relation as \"priceDiscAccountRelation\"\n                                                    from sales_discounts_on_products where \n                                                    inventlocationid = '".concat(inventlocationid, "'\n                                                    and (price_disc_account_relation = '").concat(custaccount, "' \n                                                    or price_disc_account_relation='").concat(custtype, "' or price_disc_item_code=2)\n                                                    and itemid in (").concat(items, ") and is_active = true");
                         return [4 /*yield*/, this.db.query(SpecialDisocuntQuery)];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
@@ -1216,7 +1218,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        discQuery = "select itemid, enddisc, linedisc, multilinedisc\n        from inventtablemodule where dataareaid='ajp' and moduletype=2 and itemid in (" + items + ")";
+                        discQuery = "select itemid, enddisc, linedisc, multilinedisc\n        from inventtablemodule where dataareaid='ajp' and moduletype=2 and itemid in (".concat(items, ")");
                         return [4 /*yield*/, this.db.query(discQuery)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -1229,7 +1231,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "update fiscalyear set closing = 1 where yearno= " + yearNo + " and endingdate = '" + date[2] + "-" + date[1] + "-" + date[0] + "'";
+                        query = "update fiscalyear set closing = 1 where yearno= ".concat(yearNo, " and endingdate = '").concat(date[2], "-").concat(date[1], "-").concat(date[0], "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -1242,7 +1244,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select journalnum, balance from (select \n            journalnum, \n            cast((sum(amountcurdebit)-sum(amountcurcredit)) as integer ) as balance\n            from ledgerjournaltrans\n            trans where dataareaid='" + dataareaid + "' group by journalnum) as i where balance <> 0;";
+                        query = "select journalnum, balance from (select \n            journalnum, \n            cast((sum(amountcurdebit)-sum(amountcurcredit)) as integer ) as balance\n            from ledgerjournaltrans\n            trans where dataareaid='".concat(dataareaid, "' group by journalnum) as i where balance <> 0;");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         result = _a.sent();
@@ -1256,7 +1258,7 @@ var RawQuery = /** @class */ (function () {
             var custDetails;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select creditmax from custtable where accountnum = '" + accountNum + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("select creditmax from custtable where accountnum = '".concat(accountNum, "'"))];
                     case 1:
                         custDetails = _a.sent();
                         custDetails = custDetails.length >= 1 ? custDetails[0] : {};
@@ -1269,7 +1271,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select \n                numbersequence\n                from numbersequencetable where numbersequence='" + seq + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("select \n                numbersequence\n                from numbersequencetable where numbersequence='".concat(seq, "'"))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1279,7 +1281,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("update salestable set status = '" + status + "', lastmodifieddate = '" + new Date().toISOString() + "' where salesid='" + salesId + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("update salestable set status = '".concat(status, "', lastmodifieddate = '").concat(new Date().toISOString(), "' where salesid='").concat(salesId, "'"))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1289,7 +1291,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("update salesline set status = '" + status + "', lastmodifieddate = '" + new Date().toISOString() + "' where salesid='" + salesId + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("update salesline set status = '".concat(status, "', lastmodifieddate = '").concat(new Date().toISOString(), "' where salesid='").concat(salesId, "'"))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1299,7 +1301,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("\n        select itemid,batchno as \"batchNo\", configid, inventsizeid, CAST(ABS(qty) as INTEGER) as quantity, sales_line_id as saleslineid from inventtrans where invoiceid = '" + invoiceid + "'\n    ")];
+                    case 0: return [4 /*yield*/, this.db.query("\n        select itemid,batchno as \"batchNo\", configid, inventsizeid, CAST(ABS(qty) as INTEGER) as quantity, sales_line_id as saleslineid from inventtrans where invoiceid = '".concat(invoiceid, "'\n    "))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1310,7 +1312,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select * from salestable \n        where intercompanyoriginalsalesid = '" + salesId + "' " + (transkind ? "and transkind = '" + transkind + "'" : ""))];
+                    case 0: return [4 /*yield*/, this.db.query("select * from salestable \n        where intercompanyoriginalsalesid = '".concat(salesId, "' ").concat(transkind ? "and transkind = '".concat(transkind, "'") : ""))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1321,7 +1323,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select * from salestable \n        where salesid = '" + salesId + "' " + (transkind ? "and transkind = '" + transkind + "'" : ""))];
+                    case 0: return [4 /*yield*/, this.db.query("select * from salestable \n        where salesid = '".concat(salesId, "' ").concat(transkind ? "and transkind = '".concat(transkind, "'") : ""))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1331,7 +1333,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select SUM(amount) as amount from designerservice \n        where invoiceid = '" + invoiceid + " group by invoiceid")];
+                    case 0: return [4 /*yield*/, this.db.query("select SUM(amount) as amount from designerservice \n        where invoiceid = '".concat(invoiceid, " group by invoiceid"))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1341,7 +1343,7 @@ var RawQuery = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("update salestable set inventlocationid='" + inventLocationId + "' where salesid='" + salesId + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("update salestable set inventlocationid='".concat(inventLocationId, "' where salesid='").concat(salesId, "'"))];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -1352,7 +1354,7 @@ var RawQuery = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select id from colors where code = '" + code + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("select id from colors where code = '".concat(code, "'"))];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, data.length > 0 ? data[0] : null];
@@ -1365,7 +1367,7 @@ var RawQuery = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select taxitemgroupid from inventtablemodule where itemid = '" + code + "' and moduletype=2 limit 1")];
+                    case 0: return [4 /*yield*/, this.db.query("select taxitemgroupid from inventtablemodule where itemid = '".concat(code, "' and moduletype=2 limit 1"))];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, data.length > 0 ? data[0] : {}];
@@ -1378,7 +1380,7 @@ var RawQuery = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select it.taxitemgroup from taxgroupdata tg\n      inner join taxonitem it on tg.taxcode = it.taxcode \n      where tg.taxgroup = '" + taxgroup + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("select it.taxitemgroup from taxgroupdata tg\n      inner join taxonitem it on tg.taxcode = it.taxcode \n      where tg.taxgroup = '".concat(taxgroup, "'"))];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, data.length > 0 ? data[0].taxitemgroup : null];
@@ -1391,7 +1393,7 @@ var RawQuery = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select id from sizes where code = '" + code + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("select id from sizes where code = '".concat(code, "'"))];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, data.length > 0 ? data[0] : null];
@@ -1404,7 +1406,7 @@ var RawQuery = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select id from bases where code = '" + code + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("select id from bases where code = '".concat(code, "'"))];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, data.length > 0 ? data[0] : null];
@@ -1417,7 +1419,7 @@ var RawQuery = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query("select id from base_sizes where base_id = '" + reqData.baseId + "' and size_id = '" + reqData.sizeId + "'")];
+                    case 0: return [4 /*yield*/, this.db.query("select id from base_sizes where base_id = '".concat(reqData.baseId, "' and size_id = '").concat(reqData.sizeId, "'"))];
                     case 1:
                         data = _a.sent();
                         console.log(data);
@@ -1434,7 +1436,7 @@ var RawQuery = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         if (!userInfo) return [3 /*break*/, 2];
-                        return [4 /*yield*/, typeorm_1.getManager().query("select groupid, status from user_info where user_name='" + userInfo.userName + "'")];
+                        return [4 /*yield*/, (0, typeorm_1.getManager)().query("select groupid, status from user_info where user_name='".concat(userInfo.userName, "'"))];
                     case 1:
                         data = _a.sent();
                         data = data ? data[0] : {};
@@ -1478,17 +1480,17 @@ var RawQuery = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         if (!(fromCsv == true)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.db.query("delete from inventtrans where inventlocationid = '" + inventlocationid + "' and invoiceid in ('OPEN_BALANCE') ")];
+                        return [4 /*yield*/, this.db.query("delete from inventtrans where inventlocationid = '".concat(inventlocationid, "' and invoiceid in ('OPEN_BALANCE') "))];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 6];
-                    case 2: return [4 /*yield*/, this.db.query("delete from inventtrans where inventlocationid = '" + inventlocationid + "'")];
+                    case 2: return [4 /*yield*/, this.db.query("delete from inventtrans where inventlocationid = '".concat(inventlocationid, "'"))];
                     case 3:
                         _a.sent();
-                        return [4 /*yield*/, this.db.query("delete from salesline where inventlocationid = '" + inventlocationid + "'")];
+                        return [4 /*yield*/, this.db.query("delete from salesline where inventlocationid = '".concat(inventlocationid, "'"))];
                     case 4:
                         _a.sent();
-                        return [4 /*yield*/, this.db.query("delete from salestable where inventlocationid = '" + inventlocationid + "'")];
+                        return [4 /*yield*/, this.db.query("delete from salestable where inventlocationid = '".concat(inventlocationid, "'"))];
                     case 5:
                         _a.sent();
                         _a.label = 6;
@@ -1504,12 +1506,12 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        items = itemsList.map(function (d) { return "lower('" + d + "')"; }).join(",");
-                        sizes = sizesList.map(function (d) { return "lower('" + d + "')"; }).join(",");
-                        colors = colorsList.map(function (d) { return "lower('" + d + "')"; }).join(",");
-                        query = "select itemid, lower(configid) as configid, lower(inventsizeid) as inventsizeid,  sum(qty) as qty from inventtrans  \n    where lower(itemid) in (" + items + ")\n    and lower(configid) in (" + colors + ")\n    and lower(inventsizeid) in (" + sizes + ")\n    and inventlocationid = '" + inventlocationid + "' and transactionclosed = true ";
+                        items = itemsList.map(function (d) { return "lower('".concat(d, "')"); }).join(",");
+                        sizes = sizesList.map(function (d) { return "lower('".concat(d, "')"); }).join(",");
+                        colors = colorsList.map(function (d) { return "lower('".concat(d, "')"); }).join(",");
+                        query = "select itemid, lower(configid) as configid, lower(inventsizeid) as inventsizeid,  sum(qty) as qty from inventtrans  \n    where lower(itemid) in (".concat(items, ")\n    and lower(configid) in (").concat(colors, ")\n    and lower(inventsizeid) in (").concat(sizes, ")\n    and inventlocationid = '").concat(inventlocationid, "' and transactionclosed = true ");
                         if (salesId) {
-                            query += " and invoiceid != '" + salesId + "' ";
+                            query += " and invoiceid != '".concat(salesId, "' ");
                         }
                         query += "group by itemid, lower(configid), lower(inventsizeid) ";
                         console.log(query);
@@ -1526,13 +1528,13 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        items = itemsList.map(function (d) { return "lower('" + d + "')"; }).join(",");
-                        sizes = sizesList.map(function (d) { return "lower('" + d + "')"; }).join(",");
-                        colors = colorsList.map(function (d) { return "lower('" + d + "')"; }).join(",");
-                        batches = batchList.map(function (d) { return "lower('" + d + "')"; }).join(",");
-                        query = "select itemid, configid, inventsizeid, batchno,  sum(qty) as qty from inventtrans  \n    where lower(itemid) in (" + items + ")\n    and lower(configid) in (" + colors + ")\n    and lower(inventsizeid) in (" + sizes + ")\n    and lower(batchno) in (" + batches + ")\n    and inventlocationid = '" + inventlocationid + "' and transactionclosed = true ";
+                        items = itemsList.map(function (d) { return "lower('".concat(d, "')"); }).join(",");
+                        sizes = sizesList.map(function (d) { return "lower('".concat(d, "')"); }).join(",");
+                        colors = colorsList.map(function (d) { return "lower('".concat(d, "')"); }).join(",");
+                        batches = batchList.map(function (d) { return "lower('".concat(d, "')"); }).join(",");
+                        query = "select itemid, configid, inventsizeid, batchno,  sum(qty) as qty from inventtrans  \n    where lower(itemid) in (".concat(items, ")\n    and lower(configid) in (").concat(colors, ")\n    and lower(inventsizeid) in (").concat(sizes, ")\n    and lower(batchno) in (").concat(batches, ")\n    and inventlocationid = '").concat(inventlocationid, "' and transactionclosed = true ");
                         if (salesid) {
-                            query += " and invoiceid != '" + salesid + "' ";
+                            query += " and invoiceid != '".concat(salesid, "' ");
                         }
                         query += "group by itemid, configid, inventsizeid, batchno";
                         console.log(query);
@@ -1548,7 +1550,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select auth_token as \"authToken\" from salesorder_tokens where order_id = '" + id + "'";
+                        query = "select auth_token as \"authToken\" from salesorder_tokens where order_id = '".concat(id, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1563,7 +1565,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select status from salestable where salesid = '" + id + "'";
+                        query = "select status from salestable where salesid = '".concat(id, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1580,9 +1582,9 @@ var RawQuery = /** @class */ (function () {
                     case 0:
                         ids = reqData
                             .split(",")
-                            .map(function (d) { return "'" + d + "'"; })
+                            .map(function (d) { return "'".concat(d, "'"); })
                             .join(",");
-                        query = "select concat(num,' - ', description) as salesman, num as salesmanid\n    from dimensions where num in(" + ids + ")";
+                        query = "select concat(num,' - ', description) as salesman, num as salesmanid\n    from dimensions where num in(".concat(ids, ")");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1597,7 +1599,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select concat(num,' - ', description) as salesman\n    from dimensions where num = '" + salesmanId + "'";
+                        query = "select concat(num,' - ', description) as salesman\n    from dimensions where num = '".concat(salesmanId, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1615,7 +1617,7 @@ var RawQuery = /** @class */ (function () {
                     case 0:
                         query = "update sync_table set updated_on = '1900-01-01' \n    where map_table ='usergroupconfig' ";
                         if (inventlocationid) {
-                            query += " and group_on = '" + inventlocationid + "'";
+                            query += " and group_on = '".concat(inventlocationid, "'");
                         }
                         return [4 /*yield*/, this.db.query(query)];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -1629,7 +1631,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select tg.taxcode, t.taxvalue as vat\n                  from taxgroupdata tg \n                  inner join taxdata t on tg.taxcode =t.taxcode where tg.taxgroup = '" + taxcode + "'";
+                        query = "select tg.taxcode, t.taxvalue as vat\n                  from taxgroupdata tg \n                  inner join taxdata t on tg.taxcode =t.taxcode where tg.taxgroup = '".concat(taxcode, "'");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1679,7 +1681,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "select \n                sum(coalesce(amount,0)) as \"amount\", \n                sum(coalesce(netamount,0)) as \"netAmount\", \n                sum(coalesce(vatamount,0)) as \"vatamount\",\n                sum(coalesce(disc,0)) as \"disc\",  \n                sum(coalesce(cash_amount,0)) as \"cashAmount\", \n                sum(coalesce(redeemptsamt,0)) as \"redeemAmount\",\n                sum(coalesce(design_service_redeem_amount,0)) as \"designServiceRedeemAmount\",\n                sum(coalesce(card_amount,0)) as \"cardAmount\"\n                from salestable s where intercompanyoriginalsalesid = '" + salesId + "'\n                group by intercompanyoriginalsalesid ";
+                        query = "select \n                sum(coalesce(amount,0)) as \"amount\", \n                sum(coalesce(netamount,0)) as \"netAmount\", \n                sum(coalesce(vatamount,0)) as \"vatamount\",\n                sum(coalesce(disc,0)) as \"disc\",  \n                sum(coalesce(cash_amount,0)) as \"cashAmount\", \n                sum(coalesce(redeemptsamt,0)) as \"redeemAmount\",\n                sum(coalesce(design_service_redeem_amount,0)) as \"designServiceRedeemAmount\",\n                sum(coalesce(card_amount,0)) as \"cardAmount\"\n                from salestable s where intercompanyoriginalsalesid = '".concat(salesId, "'\n                group by intercompanyoriginalsalesid ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1694,7 +1696,7 @@ var RawQuery = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        query = "\n    select \n    accountnum, name, vendgroup as custgroup, custaccount,\n    pricegroup, enddisc, linedisc, multilinedisc from vendortable where accountnum='" + accountnum + "' limit 1\n    ";
+                        query = "\n    select \n    accountnum, name, vendgroup as custgroup, custaccount,\n    pricegroup, enddisc, linedisc, multilinedisc from vendortable where accountnum='".concat(accountnum, "' limit 1\n    ");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1708,7 +1710,7 @@ var RawQuery = /** @class */ (function () {
             var data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.db.query(" select name_en from designer_products where code = '" + itemid + "'")];
+                    case 0: return [4 /*yield*/, this.db.query(" select name_en from designer_products where code = '".concat(itemid, "'"))];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, data.length > 0 ? data[0].name_en : "-"];
@@ -1726,7 +1728,7 @@ var RawQuery = /** @class */ (function () {
                             .split(",")
                             .map(function (a) { return "'" + a + "'"; })
                             .join(",");
-                        return [4 /*yield*/, this.db.query("select al.en,al.ar from app_lang al \n    where al.id  in(" + ids + ")")];
+                        return [4 /*yield*/, this.db.query("select al.en,al.ar from app_lang al \n    where al.id  in(".concat(ids, ")"))];
                     case 1:
                         data = _a.sent();
                         return [2 /*return*/, data.length > 0 ? data[0] : null];
@@ -1741,7 +1743,7 @@ var RawQuery = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        query = "select distinct ui.email from usergroupconfig ugc \n      left join user_info ui on ui.groupid = ugc.usergroupid\n      where \n      ugc.usergroupid ='" + groupid + "' and\n      ui.status ILIKE '%active%'\n      group by ui.email;";
+                        query = "select distinct ui.email from usergroupconfig ugc \n      left join user_info ui on ui.groupid = ugc.usergroupid\n      where \n      ugc.usergroupid ='".concat(groupid, "' and\n      ui.status ILIKE '%active%'\n      group by ui.email;");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();
@@ -1761,7 +1763,7 @@ var RawQuery = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        query = "select distinct ui.email from usergroupconfig ugc \n      left join user_info ui on ui.groupid = ugc.usergroupid\n      where \n      ugc.inventlocationid ='" + inventlocation + "' and\n      ui.status ILIKE '%active%'\n      group by ui.email;";
+                        query = "select distinct ui.email from usergroupconfig ugc \n      left join user_info ui on ui.groupid = ugc.usergroupid\n      where \n      ugc.inventlocationid ='".concat(inventlocation, "' and\n      ui.status ILIKE '%active%'\n      group by ui.email;");
                         return [4 /*yield*/, this.db.query(query)];
                     case 1:
                         data = _a.sent();

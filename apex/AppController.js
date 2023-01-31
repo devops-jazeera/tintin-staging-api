@@ -1,9 +1,33 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -34,14 +58,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppController = void 0;
 var express_1 = require("express");
 var LoadController_1 = require("./LoadController");
 var CacheController_1 = require("./CacheController");
@@ -51,13 +69,14 @@ var fs = __importStar(require("fs"));
 var Log_1 = require("../utils/Log");
 var AppController = /** @class */ (function () {
     function AppController() {
-        this.router = express_1.Router();
-        this.routes = fs.readdirSync(__dirname + "/../app/routes");
+        this.router = (0, express_1.Router)();
+        this.routes = fs.readdirSync("".concat(__dirname, "/../app/routes"));
     }
     AppController.prototype.getRouter = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _a, _b, _c, _d, _e, _f, _g, _h, _j, route, _i, _k, path, action, ns;
             return __generator(this, function (_l) {
+                var _m;
                 switch (_l.label) {
                     case 0:
                         _b = (_a = this.router).use;
@@ -83,9 +102,9 @@ var AppController = /** @class */ (function () {
                         if (!(_i < _k.length)) return [3 /*break*/, 7];
                         route = _k[_i];
                         route = route.slice(0, -3);
-                        path = "/" + route.replace("Controller", "").toLowerCase();
-                        action = "../app/routes/" + route;
-                        return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require(action)); })];
+                        path = "/".concat(route.replace("Controller", "").toLowerCase());
+                        action = "../app/routes/".concat(route);
+                        return [4 /*yield*/, (_m = action, Promise.resolve().then(function () { return __importStar(require(_m)); }))];
                     case 5:
                         ns = _l.sent();
                         Log_1.log.info(path);

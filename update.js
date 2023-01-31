@@ -23,13 +23,13 @@ var UpdateSyncService = function () {
             var spawn = require("child_process").spawn;
             var ls = spawn("git", ["pull"]);
             ls.stdout.on("data", function (data) {
-                Log_1.ulog.warn("stdout: " + data);
+                Log_1.ulog.warn("stdout: ".concat(data));
             });
             ls.stderr.on("data", function (data) {
-                Log_1.ulog.error("stderr: " + data);
+                Log_1.ulog.error("stderr: ".concat(data));
             });
             ls.on("close", function (data) {
-                Log_1.ulog.warn("child process exited with code " + data);
+                Log_1.ulog.warn("child process exited with code ".concat(data));
             });
         });
         autoupdater.on("check.up-to-date", function (data) {
@@ -79,7 +79,7 @@ var UpdateSyncService = function () {
     }
     // cron.schedule("* * * * *", () => {
     try {
-        Store_1.setItem("syncdate", new Date().toISOString(), "sync -> cron");
+        (0, Store_1.setItem)("syncdate", new Date().toISOString(), "sync -> cron");
         autoupdater.fire("check");
     }
     catch (error) {
@@ -113,7 +113,7 @@ var main = function () {
     //   }
     // });
     SysService_1.SysService.UpdateVersion(Log_1.ulog);
-    Store_1.setItem("syncdate", new Date().toISOString(), "sync -> main");
+    (0, Store_1.setItem)("syncdate", new Date().toISOString(), "sync -> main");
     try {
         UpdateSyncService();
     }

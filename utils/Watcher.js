@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DBEvent = exports.WatcherInit = void 0;
 var pg = require("pg");
 var config = require("./Config");
 var EventEmitter = require("events");
@@ -8,10 +9,10 @@ pg.types.setTypeParser(1114, function (stringValue) {
     return stringValue.replace(" ", "T");
 });
 var event;
-exports.WatcherInit = function () {
+var WatcherInit = function () {
     event = new EventEmitter();
     pool = new pg.Pool({
-        connectionString: "postgres://" + config.dbOptions.username + ":" + config.dbOptions.password + "@" + config.dbOptions.host + ":" + config.dbOptions.port + "/" + config.dbOptions.database,
+        connectionString: "postgres://".concat(config.dbOptions.username, ":").concat(config.dbOptions.password, "@").concat(config.dbOptions.host, ":").concat(config.dbOptions.port, "/").concat(config.dbOptions.database),
     });
     pool.connect(function (err, client) {
         if (err) {
@@ -25,11 +26,13 @@ exports.WatcherInit = function () {
         }
     });
 };
-exports.DBEvent = function () {
+exports.WatcherInit = WatcherInit;
+var DBEvent = function () {
     return event;
 };
+exports.DBEvent = DBEvent;
 var dbEmitter = function (payload) {
     console.log("WATCHER", payload);
     var data = JSON.parse(payload);
-    exports.DBEvent().emit(data.name, data.record);
+    (0, exports.DBEvent)().emit(data.name, data.record);
 };

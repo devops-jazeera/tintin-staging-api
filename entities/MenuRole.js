@@ -9,32 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MenuRole = void 0;
 var typeorm_1 = require("typeorm");
 var MenuRole = /** @class */ (function () {
     function MenuRole() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], MenuRole.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name" }),
+        (0, typeorm_1.Column)({ name: "name" }),
         __metadata("design:type", String)
     ], MenuRole.prototype, "name", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], MenuRole.prototype, "active", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_by" }),
+        (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], MenuRole.prototype, "updated_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_on" }),
+        (0, typeorm_1.Column)({ name: "updated_on" }),
         __metadata("design:type", Date)
     ], MenuRole.prototype, "updated_on", void 0);
     MenuRole = __decorate([
-        typeorm_1.Entity("menu_role")
+        (0, typeorm_1.Entity)("menu_role")
     ], MenuRole);
     return MenuRole;
 }());

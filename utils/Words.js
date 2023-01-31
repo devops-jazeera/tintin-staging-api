@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ar = exports.en = void 0;
 function covertToSTring(string, units, tens, scales, and) {
     var start, end, chunks, chunksLen, chunk, ints, i, word, words, start = string.length;
     chunks = [];

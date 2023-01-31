@@ -9,32 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AccessData = void 0;
 var typeorm_1 = require("typeorm");
 var AccessData = /** @class */ (function () {
     function AccessData() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "name" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "name" }),
         __metadata("design:type", String)
     ], AccessData.prototype, "name", void 0);
     __decorate([
-        typeorm_1.Column({ name: "code" }),
+        (0, typeorm_1.Column)({ name: "code" }),
         __metadata("design:type", String)
     ], AccessData.prototype, "code", void 0);
     __decorate([
-        typeorm_1.Column({ name: "data" }),
+        (0, typeorm_1.Column)({ name: "data" }),
         __metadata("design:type", String)
     ], AccessData.prototype, "data", void 0);
     __decorate([
-        typeorm_1.Column({ name: "val" }),
+        (0, typeorm_1.Column)({ name: "val" }),
         __metadata("design:type", String)
     ], AccessData.prototype, "val", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], AccessData.prototype, "active", void 0);
     AccessData = __decorate([
-        typeorm_1.Entity("access_data")
+        (0, typeorm_1.Entity)("access_data")
     ], AccessData);
     return AccessData;
 }());

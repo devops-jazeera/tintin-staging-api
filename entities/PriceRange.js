@@ -9,56 +9,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PriceRange = void 0;
 var typeorm_1 = require("typeorm");
 var PriceRange = /** @class */ (function () {
     function PriceRange() {
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryGeneratedColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], PriceRange.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "from" }),
+        (0, typeorm_1.Column)({ name: "from" }),
         __metadata("design:type", Number)
     ], PriceRange.prototype, "from", void 0);
     __decorate([
-        typeorm_1.Column({ name: "to" }),
+        (0, typeorm_1.Column)({ name: "to" }),
         __metadata("design:type", Number)
     ], PriceRange.prototype, "to", void 0);
     __decorate([
-        typeorm_1.Column({ name: "amount" }),
+        (0, typeorm_1.Column)({ name: "amount" }),
         __metadata("design:type", Number)
     ], PriceRange.prototype, "amount", void 0);
     __decorate([
-        typeorm_1.Column({ name: "vid" }),
+        (0, typeorm_1.Column)({ name: "vid" }),
         __metadata("design:type", Number)
     ], PriceRange.prototype, "vid", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], PriceRange.prototype, "active", void 0);
     __decorate([
-        typeorm_1.Column({ name: "created_by" }),
+        (0, typeorm_1.Column)({ name: "created_by" }),
         __metadata("design:type", String)
     ], PriceRange.prototype, "created_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "modified_by" }),
+        (0, typeorm_1.Column)({ name: "modified_by" }),
         __metadata("design:type", String)
     ], PriceRange.prototype, "modified_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "created_on" }),
+        (0, typeorm_1.Column)({ name: "created_on" }),
         __metadata("design:type", String)
     ], PriceRange.prototype, "created_on", void 0);
     __decorate([
-        typeorm_1.Column({ name: "modified_on" }),
+        (0, typeorm_1.Column)({ name: "modified_on" }),
         __metadata("design:type", String)
     ], PriceRange.prototype, "modified_on", void 0);
     __decorate([
-        typeorm_1.Column({ name: "size" }),
+        (0, typeorm_1.Column)({ name: "size" }),
         __metadata("design:type", Number)
     ], PriceRange.prototype, "size", void 0);
     PriceRange = __decorate([
-        typeorm_1.Entity("price_range")
+        (0, typeorm_1.Entity)("price_range")
     ], PriceRange);
     return PriceRange;
 }());

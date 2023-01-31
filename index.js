@@ -1,9 +1,33 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -37,14 +61,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 var AppExpress_1 = __importDefault(require("./apex/AppExpress"));
@@ -62,16 +78,15 @@ var count = 0;
 Config.setEnvConfig();
 process.env.TZ = "UTC";
 var conn = null;
-var run = function () { return __awaiter(_this, void 0, void 0, function () {
+var run = function () { return __awaiter(void 0, void 0, void 0, function () {
     var appExpress, express, httpServer, CallSync, lastSyncDate, diff, error_1;
-    var _this = this;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 4, , 5]);
                 Log_1.log.info(JSON.stringify(Config.dbOptions));
                 if (!(!conn || !conn.isConnected)) return [3 /*break*/, 3];
-                return [4 /*yield*/, typeorm_1.createConnection(Config.dbOptions)];
+                return [4 /*yield*/, (0, typeorm_1.createConnection)(Config.dbOptions)];
             case 1:
                 // WatcherInit();
                 conn = _a.sent();
@@ -107,18 +122,18 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                         // }
                         next();
                     });
-                    httpServer.listen(port, function (err) { return __awaiter(_this, void 0, void 0, function () {
+                    httpServer.listen(port, function (err) { return __awaiter(void 0, void 0, void 0, function () {
                         return __generator(this, function (_a) {
                             if (err) {
                                 Log_1.log.error(err);
                                 throw err;
                             }
-                            console.log("\n        ***********************************************\n                server is listening on " + port + "\n        ***********************************************\n");
-                            return [2 /*return*/, Log_1.log.log("info", "\n                    ***********************************************\n                            server is listening on " + port + "\n                    ***********************************************\n          ")];
+                            console.log("\n        ***********************************************\n                server is listening on ".concat(port, "\n        ***********************************************\n"));
+                            return [2 /*return*/, Log_1.log.log("info", "\n                    ***********************************************\n                            server is listening on ".concat(port, "\n                    ***********************************************\n          "))];
                         });
                     }); });
                     try {
-                        CallSync = function () { return __awaiter(_this, void 0, void 0, function () {
+                        CallSync = function () { return __awaiter(void 0, void 0, void 0, function () {
                             var syncData;
                             return __generator(this, function (_a) {
                                 try {
@@ -136,11 +151,11 @@ var run = function () { return __awaiter(_this, void 0, void 0, function () {
                         if (TINTING_STORE_ID) {
                             CallSync();
                         }
-                        Log_1.log.info("TINTING_STORE_ID: " + TINTING_STORE_ID);
+                        Log_1.log.info("TINTING_STORE_ID: ".concat(TINTING_STORE_ID));
                         if (TINTING_STORE_ID) {
                             lastSyncDate = null;
                             diff = null;
-                            Store_1.StoreInIt();
+                            (0, Store_1.StoreInIt)();
                             // sync();
                             // const updateService = new UpdateService();
                             // updateService.initializeUpdater();
@@ -188,7 +203,7 @@ run();
 // };
 var syncTimeDiff = function () {
     try {
-        var lastSyncDate = Store_1.getItem("syncdate", "index -> cron");
+        var lastSyncDate = (0, Store_1.getItem)("syncdate", "index -> cron");
         Log_1.log.warn("Last sync time: ", lastSyncDate);
         lastSyncDate = new Date(lastSyncDate);
         var diff = (new Date().getTime() - lastSyncDate.getTime()) / 60000;
@@ -196,7 +211,7 @@ var syncTimeDiff = function () {
     }
     catch (error) {
         Log_1.log.error(error);
-        Store_1.StoreInIt();
+        (0, Store_1.StoreInIt)();
         return 0;
     }
 };

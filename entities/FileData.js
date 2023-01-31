@@ -9,41 +9,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.FileData = void 0;
 var typeorm_1 = require("typeorm");
 var FileData = /** @class */ (function () {
     function FileData() {
         this.is_secure = false;
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], FileData.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name" }),
+        (0, typeorm_1.Column)({ name: "name" }),
         __metadata("design:type", String)
     ], FileData.prototype, "name", void 0);
     __decorate([
-        typeorm_1.Column({ name: "mimetype" }),
+        (0, typeorm_1.Column)({ name: "mimetype" }),
         __metadata("design:type", String)
     ], FileData.prototype, "mimetype", void 0);
     __decorate([
-        typeorm_1.Column({ name: "is_secure" }),
+        (0, typeorm_1.Column)({ name: "is_secure" }),
         __metadata("design:type", Boolean)
     ], FileData.prototype, "is_secure", void 0);
     __decorate([
-        typeorm_1.Column({ name: "ref" }),
+        (0, typeorm_1.Column)({ name: "ref" }),
         __metadata("design:type", String)
     ], FileData.prototype, "ref", void 0);
     __decorate([
-        typeorm_1.Column({ name: "ref_type" }),
+        (0, typeorm_1.Column)({ name: "ref_type" }),
         __metadata("design:type", String)
     ], FileData.prototype, "ref_type", void 0);
     __decorate([
-        typeorm_1.Column({ name: "url" }),
+        (0, typeorm_1.Column)({ name: "url" }),
         __metadata("design:type", String)
     ], FileData.prototype, "url", void 0);
     FileData = __decorate([
-        typeorm_1.Entity("file_data")
+        (0, typeorm_1.Entity)("file_data")
     ], FileData);
     return FileData;
 }());

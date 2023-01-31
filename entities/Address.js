@@ -9,52 +9,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Address = void 0;
 var typeorm_1 = require("typeorm");
 var Address = /** @class */ (function () {
     function Address() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], Address.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "lane" }),
+        (0, typeorm_1.Column)({ name: "lane" }),
         __metadata("design:type", String)
     ], Address.prototype, "lane", void 0);
     __decorate([
-        typeorm_1.Column({ name: "land_mark" }),
+        (0, typeorm_1.Column)({ name: "land_mark" }),
         __metadata("design:type", String)
     ], Address.prototype, "land_mark", void 0);
     __decorate([
-        typeorm_1.Column({ name: "city" }),
+        (0, typeorm_1.Column)({ name: "city" }),
         __metadata("design:type", String)
     ], Address.prototype, "city", void 0);
     __decorate([
-        typeorm_1.Column({ name: "state" }),
+        (0, typeorm_1.Column)({ name: "state" }),
         __metadata("design:type", String)
     ], Address.prototype, "state", void 0);
     __decorate([
-        typeorm_1.Column({ name: "country" }),
+        (0, typeorm_1.Column)({ name: "country" }),
         __metadata("design:type", String)
     ], Address.prototype, "country", void 0);
     __decorate([
-        typeorm_1.Column({ name: "zip_code" }),
+        (0, typeorm_1.Column)({ name: "zip_code" }),
         __metadata("design:type", Number)
     ], Address.prototype, "zip_code", void 0);
     __decorate([
-        typeorm_1.Column({ name: "lng" }),
+        (0, typeorm_1.Column)({ name: "lng" }),
         __metadata("design:type", String)
     ], Address.prototype, "lng", void 0);
     __decorate([
-        typeorm_1.Column({ name: "lat" }),
+        (0, typeorm_1.Column)({ name: "lat" }),
         __metadata("design:type", String)
     ], Address.prototype, "lat", void 0);
     __decorate([
-        typeorm_1.Column({ name: "isd" }),
+        (0, typeorm_1.Column)({ name: "isd" }),
         __metadata("design:type", String)
     ], Address.prototype, "isd", void 0);
     Address = __decorate([
-        typeorm_1.Entity("address")
+        (0, typeorm_1.Entity)("address")
     ], Address);
     return Address;
 }());

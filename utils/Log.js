@@ -1,6 +1,7 @@
 "use strict";
 // import { createLogger, format, transports } from "winston";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.saleslog = exports.hlog = exports.ulog = exports.sflog = exports.transaction = exports.master = exports.log = void 0;
 // import { logOptions, logSyncOptions, logUpdateOptions } from "./Config";
 // export const log = createLogger({
 //   exitOnError: false,
@@ -53,7 +54,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // export const slog = log4js.getLogger("slog");
 // export const ulog = log4js.getLogger("ulog");
 var log4js_1 = require("log4js");
-log4js_1.configure({
+(0, log4js_1.configure)({
     appenders: {
         app: {
             type: "multiFile",
@@ -81,19 +82,19 @@ log4js_1.configure({
         out: { appenders: ["out"], level: "error" },
     },
 });
-exports.log = log4js_1.getLogger("app");
+exports.log = (0, log4js_1.getLogger)("app");
 exports.log.addContext("type", "app");
-exports.master = log4js_1.getLogger("master");
+exports.master = (0, log4js_1.getLogger)("master");
 exports.master.addContext("type", "master");
-exports.transaction = log4js_1.getLogger("transaction");
+exports.transaction = (0, log4js_1.getLogger)("transaction");
 exports.transaction.addContext("type", "transaction");
-exports.sflog = log4js_1.getLogger("sync");
+exports.sflog = (0, log4js_1.getLogger)("sync");
 exports.sflog.addContext("type", "syncf");
-exports.ulog = log4js_1.getLogger("update");
+exports.ulog = (0, log4js_1.getLogger)("update");
 exports.ulog.addContext("type", "update");
-exports.hlog = log4js_1.getLogger("health");
+exports.hlog = (0, log4js_1.getLogger)("health");
 exports.hlog.addContext("type", "health");
-exports.saleslog = log4js_1.getLogger("sales");
+exports.saleslog = (0, log4js_1.getLogger)("sales");
 exports.saleslog.addContext("type", "sales");
 // export const log = getLogger();
 // export const slog = getLogger();

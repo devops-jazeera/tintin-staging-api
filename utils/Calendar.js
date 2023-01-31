@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Calender = void 0;
 var moment = require("moment-business-days");
 // import moment from 'moment';
 // import localization from 'moment/locale/fr';

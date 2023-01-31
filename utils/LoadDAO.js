@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DAOList = void 0;
 var AccessDAO_1 = require("./../app/repos/AccessDAO");
 var AddressDAO_1 = require("./../app/repos/AddressDAO");
 var AppDataDAO_1 = require("./../app/repos/AppDataDAO");

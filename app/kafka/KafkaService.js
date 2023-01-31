@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -35,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.KafkaService = void 0;
 var Config_1 = require("../../utils/Config");
 var SyncMasterLogsServices_1 = require("../task/SyncMasterLogsServices");
 var _a = require("kafkajs"), Kafka = _a.Kafka, logLevel = _a.logLevel;
@@ -89,7 +91,7 @@ var KafkaService = /** @class */ (function () {
                         return [4 /*yield*/, this.producer.send({
                                 topic: reqData.topic,
                                 acks: 1,
-                                messages: reqData.messages
+                                messages: reqData.messages,
                             })];
                     case 2:
                         _a.sent();
@@ -115,7 +117,7 @@ var KafkaService = /** @class */ (function () {
                         return [4 /*yield*/, this.producer.sendBatch({
                                 topicMessages: topicMessages,
                                 acks: 1,
-                                timeout: 3000
+                                timeout: 3000,
                             })];
                     case 2:
                         _a.sent();
@@ -129,6 +131,20 @@ var KafkaService = /** @class */ (function () {
             });
         });
     };
+    /* async subscriber(topics: any, log) {
+      log.info("*****************************SUNBSCRIBE***************************************");
+      let consumer = await this.kafka.consumer({
+        groupId: kafkaOptions.clientId,
+        minBytes: 5,
+        maxBytes: 1e6,
+        maxWaitTimeInMs: 3000,
+      });
+      await consumer.connect();
+      for (let topic of topics) {
+        await consumer.subscribe({ topic, fromBeginning: true });
+      }
+      return consumer;
+    } */
     KafkaService.prototype.subscriber = function (topics, log) {
         return __awaiter(this, void 0, void 0, function () {
             var consumer, _i, topics_1, topic;
@@ -138,9 +154,20 @@ var KafkaService = /** @class */ (function () {
                         log.info("*****************************SUNBSCRIBE***************************************");
                         return [4 /*yield*/, this.kafka.consumer({
                                 groupId: Config_1.kafkaOptions.clientId,
-                                minBytes: 5,
-                                maxBytes: 1e6,
-                                maxWaitTimeInMs: 3000,
+                                // Auto commit config
+                                autoCommit: true,
+                                autoCommitMsgCount: 100,
+                                autoCommitIntervalMs: 5000,
+                                // Fetch message config
+                                fetchMaxWaitMs: 100,
+                                fetchMinBytes: 1,
+                                fetchMaxBytes: 1e6,
+                                fromOffset: true,
+                                fromBeginning: false,
+                                encoding: "utf8",
+                                // minBytes: 5,
+                                // maxBytes: 1e6,
+                                // maxWaitTimeInMs: 3000,
                             })];
                     case 1:
                         consumer = _a.sent();
@@ -152,7 +179,20 @@ var KafkaService = /** @class */ (function () {
                     case 3:
                         if (!(_i < topics_1.length)) return [3 /*break*/, 6];
                         topic = topics_1[_i];
-                        return [4 /*yield*/, consumer.subscribe({ topic: topic, fromBeginning: true })];
+                        return [4 /*yield*/, consumer.subscribe({
+                                topic: topic,
+                                fromBeginning: false,
+                                autoCommit: true,
+                                autoCommitMsgCount: 100,
+                                autoCommitIntervalMs: 5000,
+                                // Fetch message config
+                                fetchMaxWaitMs: 100,
+                                fetchMinBytes: 1,
+                                fetchMaxBytes: 1e6,
+                                fromOffset: true,
+                                //to stop reading from beggening
+                                encoding: "utf8",
+                            })];
                     case 4:
                         _a.sent();
                         _a.label = 5;

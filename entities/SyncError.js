@@ -9,36 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SyncError = void 0;
 var typeorm_1 = require("typeorm");
 var SyncError = /** @class */ (function () {
     function SyncError() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], SyncError.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "store_id" }),
+        (0, typeorm_1.Column)({ name: "store_id" }),
         __metadata("design:type", String)
     ], SyncError.prototype, "store_id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "type" }),
+        (0, typeorm_1.Column)({ name: "type" }),
         __metadata("design:type", String)
     ], SyncError.prototype, "type", void 0);
     __decorate([
-        typeorm_1.Column({ name: "error_msg" }),
+        (0, typeorm_1.Column)({ name: "error_msg" }),
         __metadata("design:type", String)
     ], SyncError.prototype, "error_msg", void 0);
     __decorate([
-        typeorm_1.Column({ name: "error_desc" }),
+        (0, typeorm_1.Column)({ name: "error_desc" }),
         __metadata("design:type", String)
     ], SyncError.prototype, "error_desc", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_on" }),
+        (0, typeorm_1.Column)({ name: "updated_on" }),
         __metadata("design:type", Date)
     ], SyncError.prototype, "updated_on", void 0);
     SyncError = __decorate([
-        typeorm_1.Entity("sync_error")
+        (0, typeorm_1.Entity)("sync_error")
     ], SyncError);
     return SyncError;
 }());

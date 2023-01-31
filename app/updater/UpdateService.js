@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UpdateService = void 0;
 // import { ulog as log } from "../../utils/Log";
 var Store_1 = require("../../utils/Store");
 var SysService_1 = require("../../SysService");
@@ -48,13 +49,13 @@ var UpdateService = /** @class */ (function () {
                     var spawn = require("child_process").spawn;
                     var ls = spawn("git", ["pull"]);
                     ls.stdout.on("data", function (data) {
-                        _this.ulog.warn("stdout: " + data);
+                        _this.ulog.warn("stdout: ".concat(data));
                     });
                     ls.stderr.on("data", function (data) {
-                        _this.ulog.error("stderr: " + data);
+                        _this.ulog.error("stderr: ".concat(data));
                     });
                     ls.on("close", function (data) {
-                        _this.ulog.warn("child process exited with code " + data);
+                        _this.ulog.warn("child process exited with code ".concat(data));
                     });
                 });
                 this.autoupdater.on("check.up-to-date", function (data) {
@@ -106,7 +107,7 @@ var UpdateService = /** @class */ (function () {
     };
     UpdateService.prototype.UpdateSyncService = function () {
         try {
-            Store_1.setItem("syncdate", new Date().toISOString(), "sync -> cron");
+            (0, Store_1.setItem)("syncdate", new Date().toISOString(), "sync -> cron");
             this.autoupdater.fire("check");
         }
         catch (error) {
@@ -117,7 +118,7 @@ var UpdateService = /** @class */ (function () {
     UpdateService.prototype.initUpdate = function () {
         this.ulog.info("Update Started ... ");
         SysService_1.SysService.UpdateVersion(this.ulog);
-        Store_1.setItem("syncdate", new Date().toISOString(), "sync -> main");
+        (0, Store_1.setItem)("syncdate", new Date().toISOString(), "sync -> main");
         try {
             this.UpdateSyncService();
         }

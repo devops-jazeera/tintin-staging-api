@@ -1,9 +1,33 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -34,14 +58,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SyncTransactionsServices = void 0;
 var Log_1 = require("./../../utils/Log");
 var Config = __importStar(require("../../utils/Config"));
 // import { SalesTable } from "../../entities/SalesTable";
@@ -121,11 +139,11 @@ var SyncTransactionsServices = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        Log_1.transaction.info("*************************************((((((((((Fetch Data for " + table + " )))))))))))))))*********************************************");
+                        Log_1.transaction.info("*************************************((((((((((Fetch Data for ".concat(table, " )))))))))))))))*********************************************"));
                         return [4 /*yield*/, this.getDAOService(table)];
                     case 1:
                         daoObj = _a.sent();
-                        Log_1.transaction.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
+                        Log_1.transaction.info("*****************************DAO ".concat(daoObj ? "PRESENT" : undefined, "*****************************"));
                         if (!daoObj) return [3 /*break*/, 3];
                         return [4 /*yield*/, daoObj
                                 .search({})
@@ -140,7 +158,7 @@ var SyncTransactionsServices = /** @class */ (function () {
                     case 2:
                         data = _a.sent();
                         if (data && data.length > 0) {
-                            Log_1.transaction.debug("__________________________GOT DATA for table " + table + " of " + data.length + " records__________________________");
+                            Log_1.transaction.debug("__________________________GOT DATA for table ".concat(table, " of ").concat(data.length, " records__________________________"));
                             transData[table] = data;
                         }
                         _a.label = 3;
@@ -157,16 +175,16 @@ var SyncTransactionsServices = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.getDAOService(table)];
                     case 1:
                         daoObj = _a.sent();
-                        Log_1.transaction.info("Actual data came ::: " + table + " ===> " + resultData.length + " ");
+                        Log_1.transaction.info("Actual data came ::: ".concat(table, " ===> ").concat(resultData.length, " "));
                         return [4 /*yield*/, daoObj
                                 .save(resultData.savedIds)
                                 .then(function (res) {
-                                Log_1.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$ synced records " + table + " records " + resultData.savedIds.length + " $$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                                Log_1.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$ synced records ".concat(table, " records ").concat(resultData.savedIds.length, " $$$$$$$$$$$$$$$$$$$$$$$$$$$$"));
                                 return res;
                             })
                                 .catch(function (rej) {
                                 Log_1.transaction.error(rej);
-                                Log_1.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$ skiped records " + table + " records " + resultData.length + " $$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                                Log_1.transaction.info("$$$$$$$$$$$$$$$$$$$$$$$$ skiped records ".concat(table, " records ").concat(resultData.length, " $$$$$$$$$$$$$$$$$$$$$$$$$$$$"));
                                 return null;
                             })];
                     case 2:
@@ -182,12 +200,12 @@ var SyncTransactionsServices = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        Log_1.transaction.info("*************************************((((((((((Fetch Data for " + table + " )))))))))))))))*********************************************");
+                        Log_1.transaction.info("*************************************((((((((((Fetch Data for ".concat(table, " )))))))))))))))*********************************************"));
                         return [4 /*yield*/, this.getDAOService(table)];
                     case 1:
                         daoObj = _a.sent();
                         if (!daoObj) return [3 /*break*/, 3];
-                        Log_1.transaction.info("*****************************DAO " + (daoObj ? "PRESENT" : undefined) + "*****************************");
+                        Log_1.transaction.info("*****************************DAO ".concat(daoObj ? "PRESENT" : undefined, "*****************************"));
                         return [4 /*yield*/, daoObj
                                 .search({})
                                 .then(function (res) {
@@ -201,7 +219,7 @@ var SyncTransactionsServices = /** @class */ (function () {
                     case 2:
                         data = _a.sent();
                         if (data.length > 0) {
-                            Log_1.transaction.debug("__________________________GOT DATA for table " + table + " of " + data.length + " records__________________________");
+                            Log_1.transaction.debug("__________________________GOT DATA for table ".concat(table, " of ").concat(data.length, " records__________________________"));
                         }
                         return [2 /*return*/, data];
                     case 3: return [2 /*return*/];
@@ -226,7 +244,7 @@ var SyncTransactionsServices = /** @class */ (function () {
                         _c.label = 3;
                     case 3:
                         _a.daoList = _b;
-                        Log_1.transaction.info("*******************getting dao for " + tablename + "*************************");
+                        Log_1.transaction.info("*******************getting dao for ".concat(tablename, "*************************"));
                         // console.log(this.daoList[tablename]);
                         return [2 /*return*/, this.daoList[tablename]];
                     case 4:

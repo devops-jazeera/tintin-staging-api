@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -35,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BaseSizeColorsDAO = void 0;
 var typeorm_1 = require("typeorm");
 var BaseSizeColors_1 = require("../../entities/BaseSizeColors");
 var BaseSizeColorsCopy_1 = require("../../entities/BaseSizeColorsCopy");
@@ -43,11 +45,11 @@ var ColorMaster_1 = require("../../entities/ColorMaster");
 var DatabaseMaster_1 = require("../../entities/DatabaseMaster");
 var BaseSizeColorsDAO = /** @class */ (function () {
     function BaseSizeColorsDAO() {
-        this.dao = typeorm_1.getRepository(BaseSizeColors_1.BaseSizeColors);
-        this.daoCopy = typeorm_1.getRepository(BaseSizeColorsCopy_1.BaseSizeColorsCopy);
-        this.dbMaster = typeorm_1.getRepository(DatabaseMaster_1.DatabaseMaster);
-        this.colordao = typeorm_1.getRepository(ColorMaster_1.ColorMaster);
-        this.basedao = typeorm_1.getRepository(BasesMaster_1.BasesMaster);
+        this.dao = (0, typeorm_1.getRepository)(BaseSizeColors_1.BaseSizeColors);
+        this.daoCopy = (0, typeorm_1.getRepository)(BaseSizeColorsCopy_1.BaseSizeColorsCopy);
+        this.dbMaster = (0, typeorm_1.getRepository)(DatabaseMaster_1.DatabaseMaster);
+        this.colordao = (0, typeorm_1.getRepository)(ColorMaster_1.ColorMaster);
+        this.basedao = (0, typeorm_1.getRepository)(BasesMaster_1.BasesMaster);
     }
     BaseSizeColorsDAO.prototype.search = function (data) {
         return __awaiter(this, void 0, void 0, function () {
@@ -141,7 +143,7 @@ var BaseSizeColorsDAO = /** @class */ (function () {
                         return [4 /*yield*/, data.map(function (v) { return v.id; })];
                     case 1:
                         ids = _a.sent();
-                        return [4 /*yield*/, this.dao.delete({ id: typeorm_1.In(ids) })];
+                        return [4 /*yield*/, this.dao.delete({ id: (0, typeorm_1.In)(ids) })];
                     case 2: return [2 /*return*/, _a.sent()];
                 }
             });

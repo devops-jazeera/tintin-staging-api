@@ -9,82 +9,83 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Branch = void 0;
 var typeorm_1 = require("typeorm");
 var Address_1 = require("./Address");
 var Branch = /** @class */ (function () {
     function Branch() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], Branch.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name" }),
+        (0, typeorm_1.Column)({ name: "name" }),
         __metadata("design:type", String)
     ], Branch.prototype, "name", void 0);
     __decorate([
-        typeorm_1.Column({ name: "country_code" }),
+        (0, typeorm_1.Column)({ name: "country_code" }),
         __metadata("design:type", String)
     ], Branch.prototype, "country_code", void 0);
     __decorate([
-        typeorm_1.Column({ name: "phone" }),
+        (0, typeorm_1.Column)({ name: "phone" }),
         __metadata("design:type", String)
     ], Branch.prototype, "phone", void 0);
     __decorate([
-        typeorm_1.Column({ name: "mobile" }),
+        (0, typeorm_1.Column)({ name: "mobile" }),
         __metadata("design:type", String)
     ], Branch.prototype, "mobile", void 0);
     __decorate([
-        typeorm_1.Column({ name: "email" }),
+        (0, typeorm_1.Column)({ name: "email" }),
         __metadata("design:type", String)
     ], Branch.prototype, "email", void 0);
     __decorate([
-        typeorm_1.Column({ name: "pan" }),
+        (0, typeorm_1.Column)({ name: "pan" }),
         __metadata("design:type", String)
     ], Branch.prototype, "pan", void 0);
     __decorate([
-        typeorm_1.Column({ name: "tan" }),
+        (0, typeorm_1.Column)({ name: "tan" }),
         __metadata("design:type", String)
     ], Branch.prototype, "tan", void 0);
     __decorate([
-        typeorm_1.Column({ name: "gstin" }),
+        (0, typeorm_1.Column)({ name: "gstin" }),
         __metadata("design:type", String)
     ], Branch.prototype, "gstin", void 0);
     __decorate([
-        typeorm_1.Column({ name: "lat" }),
+        (0, typeorm_1.Column)({ name: "lat" }),
         __metadata("design:type", String)
     ], Branch.prototype, "lat", void 0);
     __decorate([
-        typeorm_1.Column({ name: "lng" }),
+        (0, typeorm_1.Column)({ name: "lng" }),
         __metadata("design:type", String)
     ], Branch.prototype, "lng", void 0);
     __decorate([
-        typeorm_1.Column({ name: "is_main" }),
+        (0, typeorm_1.Column)({ name: "is_main" }),
         __metadata("design:type", Boolean)
     ], Branch.prototype, "is_main", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], Branch.prototype, "active", void 0);
     __decorate([
-        typeorm_1.Column({ name: "vid" }),
+        (0, typeorm_1.Column)({ name: "vid" }),
         __metadata("design:type", String)
     ], Branch.prototype, "vid", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_by" }),
+        (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], Branch.prototype, "updated_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_on" }),
+        (0, typeorm_1.Column)({ name: "updated_on" }),
         __metadata("design:type", Date)
     ], Branch.prototype, "updated_on", void 0);
     __decorate([
-        typeorm_1.JoinColumn({ name: "address_id" }),
-        typeorm_1.ManyToOne(function (type) { return Address_1.Address; }),
+        (0, typeorm_1.JoinColumn)({ name: "address_id" }),
+        (0, typeorm_1.ManyToOne)(function (type) { return Address_1.Address; }),
         __metadata("design:type", Address_1.Address)
     ], Branch.prototype, "address", void 0);
     Branch = __decorate([
-        typeorm_1.Entity("branch")
+        (0, typeorm_1.Entity)("branch")
     ], Branch);
     return Branch;
 }());

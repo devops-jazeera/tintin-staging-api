@@ -9,36 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Translation = void 0;
 var typeorm_1 = require("typeorm");
 var Translation = /** @class */ (function () {
     function Translation() {
     }
     __decorate([
-        typeorm_1.PrimaryColumn({ name: "id" }),
+        (0, typeorm_1.PrimaryColumn)({ name: "id" }),
         __metadata("design:type", String)
     ], Translation.prototype, "id", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name" }),
+        (0, typeorm_1.Column)({ name: "name" }),
         __metadata("design:type", String)
     ], Translation.prototype, "name", void 0);
     __decorate([
-        typeorm_1.Column({ name: "name_ar" }),
+        (0, typeorm_1.Column)({ name: "name_ar" }),
         __metadata("design:type", String)
     ], Translation.prototype, "name_ar", void 0);
     __decorate([
-        typeorm_1.Column({ name: "active" }),
+        (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], Translation.prototype, "active", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_by" }),
+        (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], Translation.prototype, "updated_by", void 0);
     __decorate([
-        typeorm_1.Column({ name: "updated_on" }),
+        (0, typeorm_1.Column)({ name: "updated_on" }),
         __metadata("design:type", Date)
     ], Translation.prototype, "updated_on", void 0);
     Translation = __decorate([
-        typeorm_1.Entity("translation")
+        (0, typeorm_1.Entity)("translation")
     ], Translation);
     return Translation;
 }());
