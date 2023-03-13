@@ -342,6 +342,14 @@ var DispenseLog = /** @class */ (function () {
         (0, typeorm_1.Column)({ name: "show_room_invoice" }),
         __metadata("design:type", String)
     ], DispenseLog.prototype, "showRoomInvoice", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ name: "unite_scale" }),
+        __metadata("design:type", String)
+    ], DispenseLog.prototype, "uniteScale", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ name: "catalogueid" }),
+        __metadata("design:type", String)
+    ], DispenseLog.prototype, "catalogueId", void 0);
     DispenseLog = __decorate([
         (0, typeorm_1.Entity)("dispense_log")
     ], DispenseLog);
