@@ -48,6 +48,14 @@ var Pigment = /** @class */ (function () {
         __metadata("design:type", Boolean)
     ], Pigment.prototype, "active", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ name: "inserted_by" }),
+        __metadata("design:type", String)
+    ], Pigment.prototype, "inserted_by", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ name: "inserted_at" }),
+        __metadata("design:type", Date)
+    ], Pigment.prototype, "inserted_at", void 0);
+    __decorate([
         (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], Pigment.prototype, "updated_by", void 0);

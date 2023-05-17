@@ -52,6 +52,10 @@ var SizeMaster = /** @class */ (function () {
         __metadata("design:type", Boolean)
     ], SizeMaster.prototype, "active", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ name: "inserted_by" }),
+        __metadata("design:type", String)
+    ], SizeMaster.prototype, "inserted_by", void 0);
+    __decorate([
         (0, typeorm_1.Column)({ name: "inserted_at" }),
         __metadata("design:type", Date)
     ], SizeMaster.prototype, "inserted_at", void 0);

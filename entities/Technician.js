@@ -29,11 +29,11 @@ var Technician = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)({ name: "name_ar" }),
         __metadata("design:type", String)
-    ], Technician.prototype, "nameAr", void 0);
+    ], Technician.prototype, "name_ar", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "country_code" }),
         __metadata("design:type", String)
-    ], Technician.prototype, "countryCode", void 0);
+    ], Technician.prototype, "country_code", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "mobile" }),
         __metadata("design:type", String)
@@ -61,11 +61,11 @@ var Technician = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
-    ], Technician.prototype, "updatedBy", void 0);
+    ], Technician.prototype, "updated_by", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "updated_on" }),
         __metadata("design:type", Date)
-    ], Technician.prototype, "updatedOn", void 0);
+    ], Technician.prototype, "updated_on", void 0);
     __decorate([
         (0, typeorm_1.JoinColumn)({ name: "address_id" }),
         (0, typeorm_1.ManyToOne)(function (type) { return Address_1.Address; }),
@@ -90,11 +90,11 @@ var Technician = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)({ name: "city_id" }),
         __metadata("design:type", Number)
-    ], Technician.prototype, "cityId", void 0);
+    ], Technician.prototype, "city_id", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "district_id" }),
         __metadata("design:type", Number)
-    ], Technician.prototype, "districtId", void 0);
+    ], Technician.prototype, "district_id", void 0);
     __decorate([
         (0, typeorm_1.JoinColumn)({ name: "vendor_id" }),
         (0, typeorm_1.OneToOne)(function (type) { return Vendor_1.Vendor; }, function (vendor) { return vendor.id; }),

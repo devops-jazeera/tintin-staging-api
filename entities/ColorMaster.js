@@ -83,7 +83,11 @@ var ColorMaster = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], ColorMaster.prototype, "updated_on", void 0);
+    ], ColorMaster.prototype, "updated_at", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ name: "inserted_by" }),
+        __metadata("design:type", String)
+    ], ColorMaster.prototype, "inserted_by", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "inserted_at" }),
         __metadata("design:type", Date)

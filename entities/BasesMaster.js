@@ -51,6 +51,10 @@ var BasesMaster = /** @class */ (function () {
         __metadata("design:type", Date)
     ], BasesMaster.prototype, "updated_at", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ name: "inserted_by" }),
+        __metadata("design:type", String)
+    ], BasesMaster.prototype, "inserted_by", void 0);
+    __decorate([
         (0, typeorm_1.Column)({ name: "inserted_at" }),
         __metadata("design:type", Date)
     ], BasesMaster.prototype, "inserted_at", void 0);

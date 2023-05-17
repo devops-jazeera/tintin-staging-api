@@ -101,9 +101,17 @@ var BaseSizes = /** @class */ (function () {
         __metadata("design:type", ProductMaster_1.ProductMaster)
     ], BaseSizes.prototype, "product", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ name: "inserted_by" }),
+        __metadata("design:type", String)
+    ], BaseSizes.prototype, "inserted_by", void 0);
+    __decorate([
         (0, typeorm_1.Column)({ name: "inserted_at" }),
         __metadata("design:type", Date)
     ], BaseSizes.prototype, "inserted_at", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ name: "updated_by" }),
+        __metadata("design:type", String)
+    ], BaseSizes.prototype, "updated_by", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "updated_at" }),
         __metadata("design:type", Date)
@@ -120,10 +128,6 @@ var BaseSizes = /** @class */ (function () {
         (0, typeorm_1.Column)({ name: "active" }),
         __metadata("design:type", Boolean)
     ], BaseSizes.prototype, "active", void 0);
-    __decorate([
-        (0, typeorm_1.Column)({ name: "system_code" }),
-        __metadata("design:type", String)
-    ], BaseSizes.prototype, "systemCode", void 0);
     BaseSizes = __decorate([
         (0, typeorm_1.Entity)("base_sizes")
     ], BaseSizes);

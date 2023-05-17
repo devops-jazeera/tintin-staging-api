@@ -82,6 +82,14 @@ var Stores = /** @class */ (function () {
         (0, typeorm_1.Column)({ name: 'vid' }),
         __metadata("design:type", String)
     ], Stores.prototype, "vid", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ name: "warehouse_id" }),
+        __metadata("design:type", String)
+    ], Stores.prototype, "warehouse_id", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ name: 'erp_code' }),
+        __metadata("design:type", String)
+    ], Stores.prototype, "erp_code", void 0);
     Stores = __decorate([
         (0, typeorm_1.Entity)("stores")
     ], Stores);

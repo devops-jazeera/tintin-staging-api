@@ -149,6 +149,10 @@ var TintingMachine = /** @class */ (function () {
         __metadata("design:type", String)
     ], TintingMachine.prototype, "store_id", void 0);
     __decorate([
+        (0, typeorm_1.Column)({ name: "backup_id" }),
+        __metadata("design:type", String)
+    ], TintingMachine.prototype, "backup_id", void 0);
+    __decorate([
         (0, typeorm_1.Column)({ name: "client_version" }),
         __metadata("design:type", String)
     ], TintingMachine.prototype, "client_version", void 0);

@@ -39,19 +39,19 @@ var CatalogueMaster = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)({ name: "inserted_by" }),
         __metadata("design:type", String)
-    ], CatalogueMaster.prototype, "created_by", void 0);
+    ], CatalogueMaster.prototype, "inserted_by", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "inserted_at" }),
         __metadata("design:type", Date)
-    ], CatalogueMaster.prototype, "created_on", void 0);
+    ], CatalogueMaster.prototype, "inserted_at", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "updated_by" }),
         __metadata("design:type", String)
     ], CatalogueMaster.prototype, "updated_by", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ name: "updated_on" }),
+        (0, typeorm_1.Column)({ name: "updated_at" }),
         __metadata("design:type", Date)
-    ], CatalogueMaster.prototype, "updated_on", void 0);
+    ], CatalogueMaster.prototype, "updated_at", void 0);
     __decorate([
         (0, typeorm_1.Column)({ name: "code" }),
         __metadata("design:type", String)
