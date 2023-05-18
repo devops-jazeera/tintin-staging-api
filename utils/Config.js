@@ -114,8 +114,8 @@ exports.minioKeys = {
 };
 exports.kafkaOptions = {
     brokers: ['52.58.231.31:9092'],
-    // brokers:['3.121.118.15:9092'], // dev server
-    // brokers:['172.50.16.114:9092'],  // local server
+    // brokers:['3.121.118.15:9092'],
+    // brokers:['3.125.168.5:9092'],
     username: "",
     pass: "",
     clientId: process.env.TINTING_STORE_ID
